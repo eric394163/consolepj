@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class WordProgram implements Program{	
 	/* 영어 단어장을 관리하는 프로그램을 작성하세요
 	 * 한 단어에 뜻이 여러 개 있을 수 있음
