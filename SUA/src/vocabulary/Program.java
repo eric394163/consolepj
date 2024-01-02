@@ -1,3 +1,5 @@
+package vocabulary;
+
 
 
 public interface Program{
