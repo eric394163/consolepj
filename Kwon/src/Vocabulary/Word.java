@@ -1,4 +1,3 @@
-package day15.homework;
 
 import java.util.ArrayList;
 import java.util.Objects;

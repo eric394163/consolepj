@@ -1,4 +1,3 @@
-package day15.homework;
 
 public interface Program {
 	 void run();
