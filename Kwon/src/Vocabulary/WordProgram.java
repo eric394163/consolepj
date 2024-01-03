@@ -18,7 +18,7 @@ import java.util.Scanner;
  * */
 public class WordProgram implements Program {
 	private Scanner scan = new Scanner(System.in);
-	private final int EXIT = 8;
+	private final int EXIT = 9;
 	private List<Word> list = new ArrayList<Word>();
 	@Override
 	public void run() {
@@ -49,7 +49,8 @@ public class WordProgram implements Program {
 		System.out.println("5. 뜻 수정");
 		System.out.println("6. 뜻 삭제");
 		System.out.println("7. 단어 조회");
-		System.out.println("8. 프로그램 종료");
+		System.out.println("8. 단어 목록");
+		System.out.println("9. 프로그램 종료");
 		System.out.println("-----------------");
 		System.out.print("메뉴 선택 : ");
 	}
@@ -78,7 +79,10 @@ public class WordProgram implements Program {
 		case 7: //단어 조회
 			selectWord();
 			break;
-		case 8:
+		case 8: //단어 목록=============================================추가
+			listWord();
+			break;
+		case 9:
 			System.out.println("프로그램을 종료합니다.");
 			break;
 		default:
@@ -86,7 +90,14 @@ public class WordProgram implements Program {
 		}
 	}
 
-	private void selectWord() {
+	//조회수 코드 추가===============================================
+	public void listWord() {
+		//많이 조회한 순서로 정렬해서 출력하는 메서드
+		
+	}
+	//===========================================================
+
+	public void selectWord() {
 		System.out.println("=====단어 조회=====");
 		//조회할 단어 입력
 		System.out.print("조회할 단어 : ");
@@ -123,6 +134,13 @@ public class WordProgram implements Program {
 			}
 		}
 		System.out.println();
+		
+		
+		//조회수 코드 추가===============================================
+		w.addView();
+		System.out.print("조회수 : " + w.getView());
+		System.out.println();
+		//===========================================================
 	}
 
 	public void deleteMeaning() {
