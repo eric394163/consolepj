@@ -1,4 +1,4 @@
-package Test;
+package Test2;
 
 public interface Program {
 	void run();
