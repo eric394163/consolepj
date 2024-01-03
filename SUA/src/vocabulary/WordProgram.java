@@ -1,9 +1,21 @@
+/* To-Do
+ * 1. 파일에 데이터 저장하고 불러오기 확인
+ * 2. 많이 검색한 단어 보여주는 기능 만들기
+ * 3. 기타 추가 기능 만들기 (게임, 오답노트)
+ * 4. contains 이용하기 (equals 대체)
+ * 
+ * */
 
-
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+
 
 public class WordProgram implements Program{	
 	/* 영어 단어장을 관리하는 프로그램을 작성하세요
@@ -23,10 +35,12 @@ public class WordProgram implements Program{
 	 * - 많이 조회한 단어를 확인하는 기능*/
 	
 	private Scanner scan= new Scanner(System.in);
-	private List<Word> list = new ArrayList<Word>();
+	private static List<Word> list = new ArrayList<Word>();
+	String fileName = "src/vocabulary/voca.txt";
 
 	@Override
 	public void run() {
+		load(fileName);
 		System.out.println("------------------");
 		System.out.println("프로그램을 실행합니다.");
 		System.out.println("------------------");
@@ -44,6 +58,26 @@ public class WordProgram implements Program{
 			}
 			
 		}
+	}
+
+	private static void save(String fileName) {
+		try(FileOutputStream fos = new FileOutputStream(fileName);
+			ObjectOutputStream oos = new ObjectOutputStream(fos)){
+			oos.writeObject(list);
+		} catch (IOException e) {
+			System.out.println("저장에 실패했습니다.");
+		}
+
+	}
+	
+	private void load(String fileName) {
+		try(FileInputStream fis = new FileInputStream(fileName);
+				ObjectInputStream ois = new ObjectInputStream(fis)){
+				list = (List<Word>)ois.readObject();
+				System.out.println("학생 정보를 불러왔습니다.");
+			} catch (Exception e) {
+				System.out.println("불러오기에 실패했습니다.");
+			}
 	}
 
 	@Override
