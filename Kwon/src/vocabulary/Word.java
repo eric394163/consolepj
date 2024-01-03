@@ -62,6 +62,7 @@ public class Word {
 	//===========================================================
 	
 	public String toString() {
-		return "[ 단어 : " + word + " 품사 : " + PoS + " 뜻 : " + means + " 조회수 : " + view + " ]";
+		
+		return "-------------" + "\n단어 : " + word + "\n품사 : " + PoS + "\n뜻 : " + means + "\n조회수 : " + view;
 	}
 }

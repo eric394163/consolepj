@@ -91,11 +91,26 @@ public class WordProgram implements Program {
 	}
 
 	//조회수 코드 추가===============================================
+	//많이 조회한 순서로 정렬해서 출력하는 메서드
 	public void listWord() {
-		//많이 조회한 순서로 정렬해서 출력하는 메서드
+		System.out.println("==단어 목록(조회 순)==");
+		sort();
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 		
 	}
-	//===========================================================
+	
+	
+	public void sort() {
+		list.sort((s1, s2) -> {
+			if(s1.getView() != s2.getView()) {
+				return s2.getView() - s1.getView();
+			}
+			return 0;
+		});
+	}
+	//===========================================================문제! 조회수가 같을 때 단어 알파벳 순으로 정렬한다던지 그런게 없음..
 
 	public void selectWord() {
 		System.out.println("=====단어 조회=====");
@@ -140,6 +155,7 @@ public class WordProgram implements Program {
 		w.addView();
 		System.out.print("조회수 : " + w.getView());
 		System.out.println();
+		sort();
 		//===========================================================
 	}
 
@@ -347,6 +363,7 @@ public class WordProgram implements Program {
 			System.out.println("단어를 등록했습니다.");
 			//확인용 코드
 			System.out.println(list);
+			sort();
 			return;
 		}
 		System.out.println("이미 등록된 단어입니다.");
