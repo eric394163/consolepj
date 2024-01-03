@@ -1,8 +1,10 @@
-package Test;
+package Test2;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class WordProgram implements Program{
@@ -60,10 +62,39 @@ public class WordProgram implements Program{
 	
 	private void randomGame() {
 		
-		//저장된 단어를 랜덤으로 출력
+		//저장된 단어가 없으면 없다고 출력
+		if (list.isEmpty()) {
+	        System.out.println("저장된 단어가 없습니다.");
+	        return;
+	    }
 		
-		//출력 된 단어와 의미가 맞으면 정답
-			//아닐 시 오답
+		//저장된 단어를 랜덤으로 출력
+		Collections.shuffle(list, new Random());
+		
+		for (Word word : list) {
+			System.out.println("단어: " + word.getWord());
+			
+			//사용자가 뜻 입력
+			 System.out.print("뜻 입력: ");
+			 String userAnswer = scan.next();
+			 
+			 //출력 된 단어와 사용자가 입력한 뜻이 맞으면 정답
+			 if (userAnswer.equals(word.getMean())) {
+		            System.out.println("정답입니다.");
+		            //아닐 시 오답
+		        } else {
+		            System.out.println("오답입니다. 정답은 " + word.getMean() + "입니다.");
+		        }
+			 
+			 System.out.print("계속 하시겠습니까? (y/n): ");
+		        String continueGame = scan.next();
+
+		        if (!continueGame.equals("y")) {
+		            System.out.println("게임을 종료합니다.");
+		            break;
+		        }
+
+		}
 		
 		
 	}
@@ -172,8 +203,6 @@ public class WordProgram implements Program{
 				} else {
 				    System.out.println("등록되지 않은 단어입니다.");
 				}
-				
-		
 	}
 
 	private Word FindWORD(String targetWord) {

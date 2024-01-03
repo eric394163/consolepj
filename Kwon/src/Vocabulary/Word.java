@@ -16,6 +16,8 @@ public class Word {
 	private String word, PoS, meaning;
 	private ArrayList<String> means = new ArrayList<String>();
 	
+	private int view; //조회수
+	
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -50,5 +52,16 @@ public class Word {
 		return this.means.size();
 	}
 
-
+	
+	//조회수 코드 추가===============================================
+	//조회했을 때 조회수 +1
+	public int addView() {
+		view++;
+		return view;
+	}
+	//===========================================================
+	
+	public String toString() {
+		return "[ 단어 : " + word + " 품사 : " + PoS + " 뜻 : " + means + " 조회수 : " + view + " ]";
+	}
 }
