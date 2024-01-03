@@ -1,4 +1,4 @@
-
+package vocabulary;
 public interface Program {
 	 void run();
 	 void printMenu();

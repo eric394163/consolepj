@@ -1,4 +1,4 @@
-
+package vocabulary;
 public class HomeworkEx1 {
 
 	/*
