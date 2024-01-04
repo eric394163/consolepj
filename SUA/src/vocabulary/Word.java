@@ -1,16 +1,20 @@
 
 
+
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
  @EqualsAndHashCode
- @Getter
- @Setter
-public class Word {
+ @Data
+public class Word implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2894069871331042647L;
 	private String word;
 	private char type;
 	private Set<String> meaning = new HashSet<String>();

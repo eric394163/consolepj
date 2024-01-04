@@ -6,6 +6,7 @@
  * 
  * */
 
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -40,11 +41,13 @@ public class WordProgram implements Program{
 
 	@Override
 	public void run() {
-		load(fileName);
+//		load(fileName);
 		System.out.println("------------------");
 		System.out.println("프로그램을 실행합니다.");
 		System.out.println("------------------");
 		int menu=0;
+		
+		printAll();
 		
 		while(menu!=5) {
 			printMenu();
@@ -60,25 +63,7 @@ public class WordProgram implements Program{
 		}
 	}
 
-	private static void save(String fileName) {
-		try(FileOutputStream fos = new FileOutputStream(fileName);
-			ObjectOutputStream oos = new ObjectOutputStream(fos)){
-			oos.writeObject(list);
-		} catch (IOException e) {
-			System.out.println("저장에 실패했습니다.");
-		}
-
-	}
 	
-	private void load(String fileName) {
-		try(FileInputStream fis = new FileInputStream(fileName);
-				ObjectInputStream ois = new ObjectInputStream(fis)){
-				list = (List<Word>)ois.readObject();
-				System.out.println("학생 정보를 불러왔습니다.");
-			} catch (Exception e) {
-				System.out.println("불러오기에 실패했습니다.");
-			}
-	}
 
 	@Override
 	public void printMenu() {
@@ -136,17 +121,35 @@ public class WordProgram implements Program{
 				searchWord();
 				break;
 			case 2:
+				searchRank();
 				break;
 			default:
 				System.out.println("잘못된 메뉴입니다.");
 					
 			}
 			break;
+		case 5:
+			save(fileName);
+			System.out.println("프로그램을 종료합니다.");
+			break;
 		default:
 			System.out.println("잘못된 메뉴입니다.");
 		}
 		
 	}
+
+	private void searchRank() {
+		sort(); // 많이 검색한 순서 대로 단어 정렬하기
+		for(int i =1 ; i < 5; i++) { // 가장 많이 검색한 단어 위에서 5개만 출력하기
+			Word tmp = list.get(list.size()-i);
+			System.out.print(i+". " );
+			tmp.printInfo();
+			System.out.println(tmp.getSearchNum()+"번 검색");
+		}
+		
+	}
+
+
 
 	private void removeWord() {
 		Word tmp;
@@ -304,17 +307,45 @@ public class WordProgram implements Program{
 		newWord.printInfo();
 		return;
 		
-		// 중복확인 부분 물어보기
-//		if(!list.contains(tmpWord)) {
-//			tmpWord.setMeaning(meaning);
-//			list.add(tmpWord);
-//			System.out.println("\n단어 추가가 완료되었습니다.\n");
-//			tmpWord.printInfo();
-//			count++;
-//			return;
-//		}
-		
-		
+	}
+	
+	public void sort() {
+		list.sort((s1, s2)-> {
+			//학년이 다르면
+			if(s1.getSearchNum() != s2.getSearchNum()) {
+				return s1.getSearchNum() - s2.getSearchNum();
+			}
+			return s1.getSearchNum() - s2.getSearchNum();
+		});
+		System.out.println("단어를 정렬하였습니다.");
+	}
+	
+	
+	public void printAll() {
+		list.stream().forEach(s->System.out.println(s));
+	}
+	
+	
+	
+	private static void save(String fileName) {
+		try(FileOutputStream fos = new FileOutputStream(fileName);
+			ObjectOutputStream oos = new ObjectOutputStream(fos)){
+			oos.writeObject(list);
+		} catch (IOException e) {
+			System.out.println("저장에 실패했습니다.");
+		}
+
+	}
+	
+	private void load(String fileName) {
+		try(FileInputStream fis = new FileInputStream(fileName);
+				ObjectInputStream ois = new ObjectInputStream(fis)){
+				list = (List<Word>)ois.readObject();
+				System.out.println("학생 정보를 불러왔습니다.");
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println("불러오기에 실패했습니다.");
+			}
 	}
 }
 	
