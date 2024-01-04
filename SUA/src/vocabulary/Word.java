@@ -1,22 +1,41 @@
 
 
+
+import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
 
  @EqualsAndHashCode
- @Getter
- @Setter
-public class Word {
+ @Data
+public class Word implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2894069871331042647L;
 	private String word;
 	private char type;
 	private Set<String> meaning = new HashSet<String>();
 	private int searchNum=0;
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Word other = (Word) obj;
+		return this.word.equals(other.word);
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(word, type);
+	}
 	
 	public Word(String word, char type, String meaning) {
 		this.word = word;

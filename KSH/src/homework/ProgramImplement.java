@@ -2,6 +2,7 @@ package homework;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Random;
 import java.util.Scanner;
 
 public class ProgramImplement implements MainProgram {
@@ -45,6 +46,7 @@ public class ProgramImplement implements MainProgram {
                 break;
             case 3:
                 // 미니 게임
+                game();
                 break;
             case 4:
                 System.out.println("프로그램 종료.");
@@ -104,9 +106,40 @@ public class ProgramImplement implements MainProgram {
                 // 단어 추가
                 System.out.println("==================================");
                 System.out.print("추가할 단어 : ");
-                String inputAddWord = sc.next();
-                sc.nextLine();
-                myVocabulary.addWord(inputAddWord);
+                String inputAddWord = sc.nextLine();
+                while (myVocabulary.duplicateCheckWord(inputAddWord)) {
+                    System.out.print("이미 등록된 단어 : ");
+                    inputAddWord = sc.next();
+                    sc.nextLine();
+                }
+                System.out.print(inputAddWord + "의 품사 :");
+                String inputPartSpeech = sc.nextLine();
+                while (!myVocabulary.checkPartOfSpeech(inputPartSpeech)) {
+                    System.out.print("잘못된 품사 다시 입력 : ");
+                    inputPartSpeech = sc.next();
+                    sc.nextLine();
+                }
+                ArrayList<String> meanings = new ArrayList<>();
+                System.out.println(inputAddWord + "의 뜻 : ( 'q' 입력시 뜻 입력 종료 )");
+                while (true) {
+                    String meaning = sc.next();
+                    sc.nextLine();
+                    if (meaning.equals("q")) {
+                        break;
+                    }
+                    if (myVocabulary.duplicateCheckMeaning(meaning)) {
+                        System.out.println("이미 등록된 뜻 다시 입력");
+                        continue;
+                    }
+                    if (meanings.contains(meaning)) {
+                        System.out.println("이미 입력한 뜻 다시 입력");
+                        continue;
+                    }
+                    meanings.add(meaning);
+                }
+                myVocabulary.addWord(inputAddWord, inputPartSpeech, meanings);
+                System.out.println("단어가 추가되었습니다.");
+
                 break;
 
             case 2:
@@ -114,10 +147,6 @@ public class ProgramImplement implements MainProgram {
                 System.out.println("==================================");
                 System.out.print("수정할 단어 : ");
                 String inputUpdateWord = sc.next();
-                if (!myVocabulary.getWords().contains(inputUpdateWord)) {
-                    System.out.println(inputUpdateWord + "단어는 단어장에 없음");
-                    break;
-                }
 
                 System.out.println("==================================");
                 System.out.println("1. 뜻 수정");
@@ -127,35 +156,33 @@ public class ProgramImplement implements MainProgram {
                 int input = sc.nextInt();
                 sc.nextLine();
 
-                if (input == 1) {
-                    // 뜻 수정
-                    System.out.println(inputUpdateWord + "의 새로운 뜻 입력. (입력이 끝나면 'exit' 입력)");
-                    ArrayList<String> newMeanings = new ArrayList<>();
-                    String meaning;
-                    while (true) {
-                        meaning = sc.nextLine();
-                        if (meaning.equals("exit")) {
-                            break;
+                switch (input) {
+                    case 1:
+                        // 뜻 수정
+                        ArrayList<String> newMeanings = new ArrayList<>();
+                        myVocabulary.updateWordMeaning(inputUpdateWord, newMeanings);
+                        break;
+                    case 2:
+                        // 단어 수정
+                        System.out.print("새로운 단어: ");
+                        String newWord = sc.nextLine();
+                        System.out.print(newWord + "의 품사 :");
+                        String inputNewPartSpeech = sc.nextLine();
+                        while (!myVocabulary.checkPartOfSpeech(inputNewPartSpeech)) {
+                            System.out.print("잘못된 품사 다시 입력 : ");
+                            inputNewPartSpeech = sc.next();
+                            sc.nextLine();
                         }
-                        newMeanings.add(meaning);
-                    }
-                    myVocabulary.updateMeanings(inputUpdateWord, newMeanings);
-                } else if (input == 2) {
-                    // 단어 수정
-                    System.out.print("새로운 단어: ");
-                    String newWord = sc.next();
-                    sc.nextLine();
-                    myVocabulary.updateWord(inputUpdateWord, newWord);
+                        myVocabulary.updateWordName(inputUpdateWord, newWord, inputNewPartSpeech);
+                        break;
                 }
-                break;
 
             case 3:
                 // 단어 삭제
                 System.out.println("==================================");
-                System.out.print("삭제할 단어 : ");
-                String inputDeleteWord = sc.next();
-                sc.nextLine();
-                myVocabulary.deleteWord(inputDeleteWord);
+                System.out.print("삭제할 단어: ");
+                String inputDelete = sc.nextLine();
+                myVocabulary.deleteWord(inputDelete);
 
                 break;
             case 4:
@@ -191,7 +218,8 @@ public class ProgramImplement implements MainProgram {
         System.out.println("============= 단어장 =============");
         System.out.println("1. 단어 검색 ");
         System.out.println("2. 단어장 ");
-        System.out.println("3. 이전 ");
+        System.out.println("3. 단어 조회수 순위 ");
+        System.out.println("4. 이전 ");
         System.out.println("==================================");
         System.out.print("메뉴 선택  :");
 
@@ -199,7 +227,7 @@ public class ProgramImplement implements MainProgram {
 
     private void runVocabulary(int inputMenu) {
 
-        int wordSize = myVocabulary.getTotalWordSize();
+        int wordSize = myVocabulary.getWordListSize();
 
         switch (inputMenu) {
             case 1:
@@ -218,13 +246,14 @@ public class ProgramImplement implements MainProgram {
 
                 int input = 0;
                 int currentPage = 0;
-                final int pageSize = 20; // 한 페이지에 들어갈 단어 수
+                final int pageSize = 5; // 한 페이지에 들어갈 단어 수
                 int totalPages = (wordSize + pageSize - 1) / pageSize; // 총 페이지 수 계산 (단어장 수 + 페이지 크키 -1)/페이지크기
 
                 do {
                     System.out.println("======= 단어장 (페이지 " + (currentPage + 1) + " / " + totalPages
                             + ") ==========");
-                    myVocabulary.printWords(currentPage * pageSize, pageSize);
+
+                    myVocabulary.printVocabulary(currentPage * pageSize, pageSize);
 
                     System.out.println("=======================================");
                     System.out.println("[ 이전 : 1 ]  [ 다음 : 2 ] [ 종료 : 3 ]");
@@ -241,6 +270,10 @@ public class ProgramImplement implements MainProgram {
                 break;
 
             case 3:
+                // 많이 조회한 단어 조회
+                searchRank();
+                break;
+            case 4:
                 // 종료
                 break;
             default:
@@ -248,5 +281,33 @@ public class ProgramImplement implements MainProgram {
         }
 
     }
+
+    // 게임
+    // =======================================================================================================================================
+    private void game() {
+        Random random = new Random();
+        int wordListSize = myVocabulary.getWordListSize();
+
+        int rndNum = random.nextInt(wordListSize);
+        Words randomWord = myVocabulary.getRndWord(rndNum);
+        System.out.println("======== 미니게임 ========");
+        System.out.print(randomWord.getWord() + "의 뜻 : ");
+        sc.nextLine();
+        String userInput = sc.nextLine();
+
+        if (randomWord.getMeaning().contains(userInput)) {
+            System.out.println("정답");
+        } else {
+            System.out.println("오답 // 정답 : " + randomWord.getMeaning());
+        }
+
+    }
+
+    private void searchRank() {
+        myVocabulary.sortSearchedCnt(); // 많이 검색한 순서 대로 단어 정렬하기
+        myVocabulary.printWords();
+    }
+
+    // 조회
 
 }
