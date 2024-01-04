@@ -74,6 +74,7 @@ public class Vocabulary {
 
         ArrayList<String> meaningsList = new ArrayList<>();
         String meaning;
+
         while (true) {
             meaning = sc.nextLine();
             if (meaning.equals("exit")) {
@@ -106,7 +107,7 @@ public class Vocabulary {
     }
 
     // 단어 검색 메서드
-    // ===========================================================================================================================================
+    // ===========================================================================================================================
     public void searchWord(String word) {
         int wordIndex = words.indexOf(word);
 
