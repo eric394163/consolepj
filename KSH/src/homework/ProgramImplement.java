@@ -121,22 +121,7 @@ public class ProgramImplement implements MainProgram {
                 }
                 ArrayList<String> meanings = new ArrayList<>();
                 System.out.println(inputAddWord + "의 뜻 : ( 'q' 입력시 뜻 입력 종료 )");
-                while (true) {
-                    String meaning = sc.next();
-                    sc.nextLine();
-                    if (meaning.equals("q")) {
-                        break;
-                    }
-                    if (myVocabulary.duplicateCheckMeaning(meaning)) {
-                        System.out.println("이미 등록된 뜻 다시 입력");
-                        continue;
-                    }
-                    if (meanings.contains(meaning)) {
-                        System.out.println("이미 입력한 뜻 다시 입력");
-                        continue;
-                    }
-                    meanings.add(meaning);
-                }
+                readMean(meanings);
                 myVocabulary.addWord(inputAddWord, inputPartSpeech, meanings);
                 System.out.println("단어가 추가되었습니다.");
 
@@ -160,6 +145,8 @@ public class ProgramImplement implements MainProgram {
                     case 1:
                         // 뜻 수정
                         ArrayList<String> newMeanings = new ArrayList<>();
+                        System.out.print("새로운 뜻: (입력 끝나면 'q')");
+                        readMean(newMeanings);
                         myVocabulary.updateWordMeaning(inputUpdateWord, newMeanings);
                         break;
                     case 2:
@@ -176,6 +163,7 @@ public class ProgramImplement implements MainProgram {
                         myVocabulary.updateWordName(inputUpdateWord, newWord, inputNewPartSpeech);
                         break;
                 }
+                break;
 
             case 3:
                 // 단어 삭제
@@ -192,6 +180,25 @@ public class ProgramImplement implements MainProgram {
                 throw new InputMismatchException();
         }
 
+    }
+
+    private void readMean(ArrayList<String> meanings) {
+        while (true) {
+            String meaning = sc.next();
+            sc.nextLine();
+            if (meaning.equals("q")) {
+                break;
+            }
+            if (myVocabulary.duplicateCheckMeaning(meaning)) {
+                System.out.println("이미 등록된 뜻 다시 입력");
+                continue;
+            }
+            if (meanings.contains(meaning)) {
+                System.out.println("이미 입력한 뜻 다시 입력");
+                continue;
+            }
+            meanings.add(meaning);
+        }
     }
 
     // 단어장
