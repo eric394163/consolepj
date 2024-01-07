@@ -1,13 +1,23 @@
 package homework3;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class DeleteIncomeExpenseManager implements DeleteIncomeExpenseInterface {
 	private Scanner scan = new Scanner(System.in);
-	private AccountBook ab = new AccountBook();
+	//private AccountBook ab = new AccountBook();
+	private List<IncomeExpense> IncomeExpense;
+	
+	public DeleteIncomeExpenseManager(List<IncomeExpense> IncomeExpense) {
+		if(IncomeExpense == null) {
+			return;
+		}
+		this.IncomeExpense = IncomeExpense;
+	}
 
     @Override
     public void DeleteIncomeExpenseRun() {
+    	AccountBook ab = new AccountBook(IncomeExpense);
     	System.out.println("============ 가계부 삭제 ============");
     	System.out.println("[삭제할 기록을 작성해주세요.]");
     	System.out.print("날짜(예: 20XX-XX-XX) : ");
@@ -27,7 +37,7 @@ public class DeleteIncomeExpenseManager implements DeleteIncomeExpenseInterface 
         }
     	category = scan.next();
     	
-    	IncomeExpense ie = new IncomeExpense(incomeOrExpense, transactionAmount, "", category, date);
+    	IncomeExpense ie = new IncomeExpense(category, date, transactionAmount);
     
     	ab.deleteIncomeExpense(ie);
     }

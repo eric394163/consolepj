@@ -1,12 +1,14 @@
 package homework3;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainProgramImplement implements MainProgram {
 
     // 메인 화면 구현 클래스
-
+	private List<IncomeExpense> list = new ArrayList<IncomeExpense>();
     private InputIncomeExpenseInterface inputIEManager;
     private UpdateIncomeExpenseInterface UpdateIEManager;
     private DeleteIncomeExpenseInterface DeleteIEManager;
@@ -14,7 +16,7 @@ public class MainProgramImplement implements MainProgram {
     public MainProgramImplement() {
         this.inputIEManager = new InputIncomeExpenseManager();
         this.UpdateIEManager = new UpdateIncomeExpenseManager();
-        this.DeleteIEManager = new DeleteIncomeExpenseManager();
+        this.DeleteIEManager = new DeleteIncomeExpenseManager(list);
     }
 
     private static Scanner sc = new Scanner(System.in);

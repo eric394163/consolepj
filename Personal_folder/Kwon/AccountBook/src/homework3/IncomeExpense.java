@@ -31,6 +31,7 @@ public class IncomeExpense {
 
     
     
+    
 
 	public IncomeExpense(boolean incomeOrExpense, long transactionAmount, String incomeExpenseDetails, String category, String date) {
 		this.incomeOrExpense = incomeOrExpense;
@@ -73,6 +74,11 @@ public class IncomeExpense {
 	}
 
 
+	public IncomeExpense(String category, String date, long transactionAmount) {
+    	this.category = category;
+    	this.date = date;
+    	this.transactionAmount = transactionAmount;
+    }
 
 
 	@Override
@@ -84,11 +90,9 @@ public class IncomeExpense {
 		if (getClass() != obj.getClass())
 			return false;
 		IncomeExpense other = (IncomeExpense) obj;
-		return this.category.equals(other.category) && this.date.equals(other.date)
+		return Objects.equals(category, other.category) && Objects.equals(date, other.date)
 				&& transactionAmount == other.transactionAmount;
 	}
-
-
 
 
 	@Override
@@ -96,8 +100,7 @@ public class IncomeExpense {
 		return Objects.hash(category, date, transactionAmount);
 	}
 
-
-
-
+	
+	
 	
 }

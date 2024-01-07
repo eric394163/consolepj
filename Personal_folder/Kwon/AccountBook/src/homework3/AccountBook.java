@@ -11,6 +11,13 @@ import lombok.NoArgsConstructor;
 public class AccountBook {
     private List<IncomeExpense> IncomeExpense = new ArrayList<IncomeExpense>(); // 수입지출 객체 관리 리스트
     
+    public AccountBook (List<IncomeExpense> IncomeExpense) {
+		if(IncomeExpense == null) {
+			System.out.println("기록이 넘어오지 않음");
+			return;
+		}
+		this.IncomeExpense = IncomeExpense;
+	}
     
 	public boolean insertIncomeExpense(IncomeExpense ie) {
 		IncomeExpense.add(ie);
@@ -36,11 +43,20 @@ public class AccountBook {
 	}
 	
 	public void deleteIncomeExpense(IncomeExpense ie) {
-		if(IncomeExpense.remove(ie)) {
-			System.out.println("삭제완료");
-			System.out.println(IncomeExpense);
+//		if(IncomeExpense.remove(ie)) {
+//			System.out.println("삭제완료");
+//			System.out.println(IncomeExpense);
+//		}else {
+//			System.out.println("등록되지 않은 단어입니다.");
+//		}
+		int index;
+		if(IncomeExpense.contains(ie)) {
+			index = IncomeExpense.indexOf(ie);
+			IncomeExpense.remove(index);
+			return;
 		}else {
-			System.out.println("등록되지 않은 단어입니다.");
+			System.out.println("존재하지 않는 기록");
+			return;
 		}
 	}
 	
