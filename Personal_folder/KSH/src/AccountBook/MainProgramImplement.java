@@ -3,18 +3,28 @@ package homework3;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import homework3.DeleteIncomeExpense.DeleteIncomeExpenseInterface;
+import homework3.DeleteIncomeExpense.DeleteIncomeExpenseManager;
+import homework3.InputIncomeExpense.InputIncomeExpenseInterface;
+import homework3.InputIncomeExpense.InputIncomeExpenseManager;
+import homework3.UpdateIncomeExpense.UpdateIncomeExpenseInterface;
+import homework3.UpdateIncomeExpense.UpdateIncomeExpenseManager;
+
 public class MainProgramImplement implements MainProgram {
 
     // 메인 화면 구현 클래스
+
+    private AccountBook myAccountBook;
 
     private InputIncomeExpenseInterface inputIEManager;
     private UpdateIncomeExpenseInterface UpdateIEManager;
     private DeleteIncomeExpenseInterface DeleteIEManager;
 
     public MainProgramImplement() {
-        this.inputIEManager = new InputIncomeExpenseManager();
-        this.UpdateIEManager = new UpdateIncomeExpenseManager();
-        this.DeleteIEManager = new DeleteIncomeExpenseManager();
+        this.myAccountBook = new AccountBook();
+        this.inputIEManager = new InputIncomeExpenseManager(myAccountBook);
+        this.UpdateIEManager = new UpdateIncomeExpenseManager(myAccountBook);
+        this.DeleteIEManager = new DeleteIncomeExpenseManager(myAccountBook);
     }
 
     private static Scanner sc = new Scanner(System.in);
