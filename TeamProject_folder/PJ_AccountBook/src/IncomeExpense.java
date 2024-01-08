@@ -1,5 +1,6 @@
 package homework3;
 
+
 public class IncomeExpense {
     boolean incomeOrExpense; // 수입이면 true 지출이면 false
     long totalAmount; // 총 금액
