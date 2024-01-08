@@ -1,20 +1,34 @@
-package homework3;
+package PJ_AccountBook;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import PJ_AccountBook.DeleteIncomeExpense.DeleteIncomeExpenseInterface;
+import PJ_AccountBook.DeleteIncomeExpense.DeleteIncomeExpenseManager;
+import PJ_AccountBook.DisplayAccountBook.DisplayAccountBookInterface;
+import PJ_AccountBook.DisplayAccountBook.DisplayAccountBookManager;
+import PJ_AccountBook.InputIncomeExpense.InputIncomeExpenseInterface;
+import PJ_AccountBook.InputIncomeExpense.InputIncomeExpenseManager;
+import PJ_AccountBook.UpdateIncomeExpense.UpdateIncomeExpenseInterface;
+import PJ_AccountBook.UpdateIncomeExpense.UpdateIncomeExpenseManager;
 
 public class MainProgramImplement implements MainProgram {
 
     // 메인 화면 구현 클래스
 
-    private InputIncomeExpenseInterface inputIEManager;
+    private AccountBook myAccountBook;
+
+    private InputIncomeExpenseInterface InputIEManager;
     private UpdateIncomeExpenseInterface UpdateIEManager;
     private DeleteIncomeExpenseInterface DeleteIEManager;
+    private DisplayAccountBookInterface DisplayACManager;
 
     public MainProgramImplement() {
-        this.inputIEManager = new InputIncomeExpenseManager();
-        this.UpdateIEManager = new UpdateIncomeExpenseManager();
-        this.DeleteIEManager = new DeleteIncomeExpenseManager();
+        this.myAccountBook = new AccountBook();
+        this.InputIEManager = new InputIncomeExpenseManager(myAccountBook);
+        this.UpdateIEManager = new UpdateIncomeExpenseManager(myAccountBook);
+        this.DeleteIEManager = new DeleteIncomeExpenseManager(myAccountBook);
+        this.DisplayACManager = new DisplayAccountBookManager(myAccountBook);
     }
 
     private static Scanner sc = new Scanner(System.in);
@@ -56,7 +70,7 @@ public class MainProgramImplement implements MainProgram {
         switch (inputMainMenu) {
             case 1:
                 // 수입 지출 추가
-                inputIEManager.inputIncomeExpenseRun();
+                InputIEManager.inputIncomeExpenseRun();
 
                 break;
             case 2:
@@ -69,7 +83,8 @@ public class MainProgramImplement implements MainProgram {
 
                 break;
             case 4:
-                // 추가 기능
+                // 가계부 출력
+                DisplayACManager.DisplayAccountBookRun();
                 break;
             case 5:
                 // 프로그램 종료

@@ -1,4 +1,4 @@
-package homework3;
+package PJ_AccountBook;
 
 //가계부 프로그램 메인 
 public class Main {
