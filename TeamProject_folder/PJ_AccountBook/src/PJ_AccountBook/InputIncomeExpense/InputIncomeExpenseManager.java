@@ -19,7 +19,7 @@ public class InputIncomeExpenseManager implements InputIncomeExpenseInterface {
     private static Scanner sc = new Scanner(System.in);
 
     @Override
-    public void inputIncomeExpenseRun() {
+    public void inputIncomeExpenseRun() { //ㅇㅇㅇㅇㅇㅇㅇㅇㅇ
 
         System.out.println("===== 가계부 작성 =====");
         System.out.print("수입 (1) / 지출 (2) :");

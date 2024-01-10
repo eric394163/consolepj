@@ -26,4 +26,12 @@ public class IncomeExpense {
         this.dateDay = dateDay;
     }
 
+	@Override
+	public String toString() {
+		return " =========================\n[수입/지출] : " + incomeOrExpense + "\n 금액 : " + amount + "\n내역 : "
+				+ incomeExpenseDetails + "분류 : " + category + "\n날짜 : " + date;
+	}
+    
+    
+
 }
