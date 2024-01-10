@@ -1,11 +1,13 @@
 package PJ_AccountBook.DisplayAccountBook;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import PJ_AccountBook.AccountBook;
 
 public class DisplayAccountBookManager implements DisplayAccountBookInterface {
     private AccountBook myAccountBook;
+    private int EXIT = 5;
 
     private Scanner sc = new Scanner(System.in);
 
@@ -13,12 +15,95 @@ public class DisplayAccountBookManager implements DisplayAccountBookInterface {
         this.myAccountBook = accountBook;
     }
 
+    // =======================================================================================================================================
+
+    //
     @Override
-    public void DisplayAccountBookRun() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'DisplayAccountBookRun'");
+    public void displayAccountBookMainRun() {
+        displayAccountBookRun();
     }
 
-    
+    private void displayAccountBookRun() {
+        int input = 0;
+        // 반복
+        do {
+            // 메뉴 출력
+            printDisplayABMenu();
+            try {
+                // 메뉴 선택
+                input = sc.nextInt();
+                // 메뉴 실행
+                runDisplayACBookMenu(input);
+            } catch (InputMismatchException e) {
+                System.out.println("잘못된 메뉴입니다.");
+                sc.nextLine();
+            }
+        } while (input != EXIT);
+    }
+
+    private void printDisplayABMenu() {
+        System.out.println("====== 가계부 ======");
+        System.out.println("1. 전체 ");
+        System.out.println("2. 월별 검색 ");
+        System.out.println("3. 카테고리별 검색 ");
+        System.out.println("===================");
+        System.out.print("입력 :");
+    }
+
+    private void runDisplayACBookMenu(int input) {
+
+        switch (input) {
+            case 1:
+                // 전체 출력
+                displayAll();
+
+                break;
+            case 2:
+                // 월별 검색 출력
+                searchMonthAnddisplay();
+
+                break;
+            case 3:
+                // 카테고리별 검색 출력
+                searchCategoryAndDisplay();
+
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private void displayAll() {
+        int input = 0;
+        int currentPage = 0;
+        final int pageSize = 5; // 한 페이지에 들어갈 항목 수
+        int totalPages = (myAccountBook.getAccountBookSize() + pageSize - 1) / pageSize; // 총 페이지 수 계산
+
+        do {
+            System.out.println("======= 가계부 (페이지 " + (currentPage + 1) + " / " + totalPages
+                    + ") ==========");
+            myAccountBook.printIncomeExpense(currentPage * pageSize, pageSize);
+
+            System.out.println("=========================================");
+            System.out.println("[ 이전 : 1 ]  [ 다음 : 2 ] [ 종료 : 3 ]");
+            System.out.println("=========================================");
+            System.out.print("입력 : ");
+            input = sc.nextInt();
+
+            if (input == 1 && currentPage > 0) {
+                currentPage--;
+            } else if (input == 2 && currentPage < totalPages - 1) {
+                currentPage++;
+            }
+        } while (input != 3);
+
+    }
+
+    private void searchCategoryAndDisplay() {
+    }
+
+    private void searchMonthAnddisplay() {
+    }
 
 }
