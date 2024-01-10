@@ -17,6 +17,7 @@ public class MainProgramImplement implements MainProgram {
     // 메인 화면 구현 클래스
 
     private AccountBook myAccountBook;
+
     private InputIncomeExpenseInterface InputIEManager;
     private UpdateIncomeExpenseInterface UpdateIEManager;
     private DeleteIncomeExpenseInterface DeleteIEManager;
@@ -83,7 +84,7 @@ public class MainProgramImplement implements MainProgram {
                 break;
             case 4:
                 // 가계부 출력
-                DisplayACManager.displayAccountBookMainRun();
+                DisplayACManager.DisplayAccountBookRun();
                 break;
             case 5:
                 // 프로그램 종료
