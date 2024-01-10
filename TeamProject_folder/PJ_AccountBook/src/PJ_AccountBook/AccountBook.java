@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class AccountBook {
-    private List<IncomeExpense> incomeExpense;
+    private List<IncomeExpense> incomeExpense = new ArrayList<IncomeExpense>();
 
     public AccountBook() {
         this.incomeExpense = new ArrayList<>();
@@ -86,4 +86,50 @@ public class AccountBook {
             System.out.println("유효하지 않은 인덱스");
         }
     }
+    
+    // 총 수입지출 조회 메서드
+    // =======================================================================================================================================
+    public void printTotalIE() {
+    	long totalIncome = 0, totalSpent=0;
+    	if(incomeExpense == null) {
+    		System.out.println("가계부가 비어있습니다.");
+    		return; 
+    	}
+    	
+        for(int i = 0; i<incomeExpense.size();i++) {
+        	if(incomeExpense.get(i).isIncomeOrExpense()) {
+        		totalIncome+=incomeExpense.get(i).amount;
+        	}else {
+        		totalSpent+=incomeExpense.get(i).amount;
+        	}
+        }
+        System.out.println("총 수입: "+totalIncome+"/ 총 지출: "+totalSpent);
+        
+        
+    }
+    // 날짜별 조회 메서드
+    // =======================================================================================================================================
+    
+    public void dateQuery(String enter) {
+
+    	System.out.println(enter);
+    	
+    	int count = (int)incomeExpense.stream()
+    			.filter(w->w.getDate().substring(0, enter.length()).equals(enter))
+    			.count();
+    	
+    	if(count==0) {
+    		System.out.println("해당되는 기록이 없습니다.");
+    		return;
+    	}
+    	
+    	incomeExpense.stream()
+		.filter(w->w.getDate().substring(0, enter.length()).equals(enter))
+		.forEach(w->{
+			System.out.println(w);
+		});	
+		
+	}
+   
+    
 }
