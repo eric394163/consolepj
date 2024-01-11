@@ -16,42 +16,20 @@ public class UpdateIncomeExpenseManager implements UpdateIncomeExpenseInterface 
 	        List<Transaction> transactions = new ArrayList<>();
 
 	        System.out.print("새로운 수입(+)/지출(-): ");
-	        Object transaction;
-			transaction.type = scan.nextLine();
+			char type = scan.next().charAt(0);
 
 	        System.out.print("새로운 금액: ");
-	        transaction.amount = scan.nextDouble();
+	        double amount = scan.nextDouble();
 	        scan.nextLine(); // 버퍼 비우기
 
 	        System.out.print("새로운 날짜 (yyyy-MM-dd): ");
-	        transaction.date = scan.nextLine();
-
-	        if (transaction.type.equals("+")) {
-	            System.out.println("1. 용돈 2. 월급 3. 기타");
-	        } else {
-	            System.out.println("1. 식비 2. 생활비 3. 의료비 4. 여가생활");
-	        }
+	        String date = scan.nextLine();
 
 	        System.out.print("새로운 내역 선택: ");
-	        int category = scan.nextInt();
+	        String category = scan.nextLine();
 	        scan.nextLine(); // 버퍼 비우기
-
-	        switch (category) {
-	            case 1:
-	                transaction.description = (transaction.type.equals("+")) ? "용돈" : "식비";
-	                break;
-	            case 2:
-	                transaction.description = (transaction.type.equals("+")) ? "월급" : "생활비";
-	                break;
-	            case 3:
-	                transaction.description = (transaction.type.equals("+")) ? "기타" : "의료비";
-	                break;
-	            case 4:
-	                transaction.description = "여가생활";
-	                break;
-	            default:
-	                System.out.println("올바른 카테고리를 선택하세요.");
-	        }
+	        
+	        //Transaction transaction = new Transaction();
 	    }
 
 		@Override
