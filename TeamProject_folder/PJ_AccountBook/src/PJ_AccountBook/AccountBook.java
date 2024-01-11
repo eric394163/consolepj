@@ -1,6 +1,5 @@
 package PJ_AccountBook;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class AccountBook implements Serializable{
-	private static final long serialVersionUID = 517337195370607463L;
+public class AccountBook{
 	
 	private List<IncomeExpense> incomeExpense;
 

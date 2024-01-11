@@ -23,8 +23,7 @@ public class UpdateIncomeExpenseManager implements UpdateIncomeExpenseInterface 
 
         System.out.println("============ 가계부 수정 ============");
         displayAccountBook();
-        
-        //여기다가 불러오기 하고
+
     }
 
     public void displayAccountBook() {
@@ -75,8 +74,7 @@ public class UpdateIncomeExpenseManager implements UpdateIncomeExpenseInterface 
         myAccountBook.updateIncomeExpense(inputIndexNum, incomeExpense);
 
         System.out.println("수정 완료 ");
-        
-        //여기다가 저장...?
+
     }
 
     // ====================================================================

@@ -25,9 +25,19 @@ public class MainProgramImplement implements MainProgram {
     private UpdateIncomeExpenseInterface UpdateIEManager;
     private DeleteIncomeExpenseInterface DeleteIEManager;
     private DisplayAccountBookInterface DisplayACManager;
+    
+    private FileService fileService = new FileServiceImp();
+    private String fileName = "src/PJ_AccountBook/accountBookList.txt";
+    
 
     public MainProgramImplement() {
         this.myAccountBook = new AccountBook();
+		
+		//불러오기
+		List<IncomeExpense> list = fileService.load(fileName);
+		
+		myAccountBook = new AccountBook(list);
+        
         this.InputIEManager = new InputIncomeExpenseManager(myAccountBook);
         this.UpdateIEManager = new UpdateIncomeExpenseManager(myAccountBook);
         this.DeleteIEManager = new DeleteIncomeExpenseManager(myAccountBook);
@@ -35,21 +45,11 @@ public class MainProgramImplement implements MainProgram {
     }
 
     private static Scanner sc = new Scanner(System.in);
-	private FileService fileService = new FileServiceImp();
-	
-	private AccountBook accountBook = new AccountBook(null);
-
+    
     int EXIT = 5;
 
     public void run() {
         int inputMainMenu = 0;
-        
-        String fileName = "src/PJ_AccountBook/accountBookList.txt";
-		
-		//불러오기
-		List<IncomeExpense> list = fileService.load(fileName);
-		
-		accountBook = new AccountBook(list);
         
         // 반복
         do {
@@ -67,7 +67,7 @@ public class MainProgramImplement implements MainProgram {
         } while (inputMainMenu != EXIT);
         
         //저장하기
-  		if(fileService.save(fileName, accountBook.getIncomeExpense())) {
+  		if(fileService.save(fileName, myAccountBook.getIncomeExpense())) {
   			System.out.println("저장이 완료되었습니다.");
   		}else {
   			System.out.println("저장에 실패했습니다.");

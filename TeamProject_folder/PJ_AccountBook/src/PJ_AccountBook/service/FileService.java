@@ -7,7 +7,6 @@ import PJ_AccountBook.IncomeExpense;
 public interface FileService {
 
 	List<IncomeExpense> load(String fileName);
-
 	boolean save(String fileName, List<IncomeExpense> list);
 	
 }
