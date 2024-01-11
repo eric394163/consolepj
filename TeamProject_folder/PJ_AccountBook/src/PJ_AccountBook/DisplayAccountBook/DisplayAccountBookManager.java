@@ -7,7 +7,7 @@ import PJ_AccountBook.AccountBook;
 
 public class DisplayAccountBookManager implements DisplayAccountBookInterface {
     private AccountBook myAccountBook;
-    private int EXIT = 4;
+    private int EXIT = 5;
 
     private Scanner sc = new Scanner(System.in);
 
@@ -44,9 +44,10 @@ public class DisplayAccountBookManager implements DisplayAccountBookInterface {
     private void printDisplayABMenu() {
         System.out.println("====== 가계부 ======");
         System.out.println("1. 전체 ");
-        System.out.println("2. 월별 검색 ");
+        System.out.println("2. 날짜별 검색 ");
         System.out.println("3. 카테고리별 검색 ");
-        System.out.println("4. 이전으로 ");
+        System.out.println("4. 총 수입/지출 ");
+        System.out.println("5. 이전으로 ");
         System.out.println("===================");
         System.out.print("입력 :");
     }
@@ -71,8 +72,14 @@ public class DisplayAccountBookManager implements DisplayAccountBookInterface {
                 break;
                 
             case 4:
+                            // 총 수입/지출 출력
+            printTotalIE();s
                
                 break;
+             case 5:
+
+
+            break;
 
             default:
                 break;
@@ -104,11 +111,19 @@ public class DisplayAccountBookManager implements DisplayAccountBookInterface {
         } while (input != 3);
 
     }
+    private void printTotalIE() {
+		// 총 수입지출 출력
+		myAccountBook.printTotalIE();
+	}
 
     private void searchCategoryAndDisplay() {
     }
 
-    private void searchMonthAnddisplay() {
+    private void searchMonthAnddisplay() { // 날짜별 검색(모든 날짜)
+        int i;
+		System.out.print("원하는 날짜 범위를 입력하세요 (예: 2023.12 or 2023.11.30): ");
+		String enter = sc.next();
+		myAccountBook.dateQuery(enter);
     }
 
 }
