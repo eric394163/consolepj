@@ -19,6 +19,4 @@ public class DisplayAccountBookManager implements DisplayAccountBookInterface {
         throw new UnsupportedOperationException("Unimplemented method 'DisplayAccountBookRun'");
     }
 
-    
-
 }
