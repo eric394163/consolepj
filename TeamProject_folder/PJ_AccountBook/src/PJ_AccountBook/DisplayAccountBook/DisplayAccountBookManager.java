@@ -47,6 +47,7 @@ public class DisplayAccountBookManager implements DisplayAccountBookInterface {
         System.out.println("2. 날짜별 검색 ");
         System.out.println("3. 카테고리별 검색 ");
         System.out.println("4. 총 수입/지출 ");
+        System.out.println("5. 이전으로 ");
         System.out.println("===================");
         System.out.print("입력 :");
     }
@@ -69,9 +70,14 @@ public class DisplayAccountBookManager implements DisplayAccountBookInterface {
                 searchCategoryAndDisplay();
 
                 break;
-             case 4:
-            // 총 수입/지출 출력
-            printTotalIE();
+                
+            case 4:
+                            // 총 수입/지출 출력
+            printTotalIE();s
+               
+                break;
+             case 5:
+
 
             break;
 
@@ -91,9 +97,9 @@ public class DisplayAccountBookManager implements DisplayAccountBookInterface {
                     + ") ==========");
             myAccountBook.printIncomeExpense(currentPage * pageSize, pageSize);
 
-            System.out.println("=========================================");
+            System.out.println("===================================");
             System.out.println("[ 이전 : 1 ]  [ 다음 : 2 ] [ 종료 : 3 ]");
-            System.out.println("=========================================");
+            System.out.println("===================================");
             System.out.print("입력 : ");
             input = sc.nextInt();
 
