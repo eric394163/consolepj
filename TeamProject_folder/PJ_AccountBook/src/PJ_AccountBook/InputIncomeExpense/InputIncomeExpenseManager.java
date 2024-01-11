@@ -68,15 +68,25 @@ public class InputIncomeExpenseManager implements InputIncomeExpenseInterface {
         String inputDetail = sc.nextLine();
 
         // 금액 입력
-        System.out.print("금액 :");
+
         Long inputAmount = (long) 0;
+
         while (true) {
-            inputAmount = sc.nextLong();
+            try {
+                System.out.print("금액 :");
+                inputAmount = sc.nextLong();
+            } catch (RuntimeException e) {
+                System.out.println("잘못된 입력 다시 입력하세요");
+                sc.nextLine();
+                continue;
+            }
             if (inputAmount != 0) {
                 break;
             } else {
                 System.out.println("다시 입력");
+                continue;
             }
+
         }
         sc.nextLine();
 
@@ -87,13 +97,17 @@ public class InputIncomeExpenseManager implements InputIncomeExpenseInterface {
                 System.out.println(category);
             }
             System.out.println("==============");
-            System.out.print("분류 : ");
-            String userInputIncomeCategory = sc.nextLine();
             IncomeCategory inputIncomeCategory = null;
-            try {
-                inputIncomeCategory = IncomeCategory.valueOf(userInputIncomeCategory.toUpperCase());
-            } catch (IllegalArgumentException e) {
-                System.out.println("잘못된 분류 입력");
+            while (true) {
+                System.out.print("분류 : ");
+
+                String userInputIncomeCategory = sc.nextLine();
+                try {
+                    inputIncomeCategory = IncomeCategory.valueOf(userInputIncomeCategory.toUpperCase());
+                    break;
+                } catch (IllegalArgumentException e) {
+                    System.out.println("잘못된 분류 입력 다시 입력");
+                }
             }
 
             IncomeExpense incomeExpense = new IncomeExpense(true, inputAmount, inputDetail, inputIncomeCategory.name(),
@@ -124,8 +138,6 @@ public class InputIncomeExpenseManager implements InputIncomeExpenseInterface {
             IncomeExpense incomeExpense = new IncomeExpense(false, inputAmount, inputDetail,
                     inputExpenseCategory.name(), inputDate,
                     month, year, year);
-
-            System.out.println("입력 완료");
 
             return incomeExpense;
 
