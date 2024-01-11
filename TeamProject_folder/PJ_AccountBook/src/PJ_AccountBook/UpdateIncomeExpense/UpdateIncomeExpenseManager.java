@@ -74,6 +74,7 @@ public class UpdateIncomeExpenseManager implements UpdateIncomeExpenseInterface 
         myAccountBook.updateIncomeExpense(inputIndexNum, incomeExpense);
 
         System.out.println("수정 완료 ");
+
     }
 
     // ====================================================================

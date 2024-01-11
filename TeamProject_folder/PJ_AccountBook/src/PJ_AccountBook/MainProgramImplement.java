@@ -1,6 +1,7 @@
 package PJ_AccountBook;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import PJ_AccountBook.DeleteIncomeExpense.DeleteIncomeExpenseInterface;
@@ -11,6 +12,9 @@ import PJ_AccountBook.InputIncomeExpense.InputIncomeExpenseInterface;
 import PJ_AccountBook.InputIncomeExpense.InputIncomeExpenseManager;
 import PJ_AccountBook.UpdateIncomeExpense.UpdateIncomeExpenseInterface;
 import PJ_AccountBook.UpdateIncomeExpense.UpdateIncomeExpenseManager;
+import PJ_AccountBook.service.FileService;
+import PJ_AccountBook.service.FileServiceImp;
+
 
 public class MainProgramImplement implements MainProgram {
 
@@ -21,9 +25,19 @@ public class MainProgramImplement implements MainProgram {
     private UpdateIncomeExpenseInterface UpdateIEManager;
     private DeleteIncomeExpenseInterface DeleteIEManager;
     private DisplayAccountBookInterface DisplayACManager;
+    
+    private FileService fileService = new FileServiceImp();
+    private String fileName = "src/PJ_AccountBook/accountBookList.txt";
+    
 
     public MainProgramImplement() {
         this.myAccountBook = new AccountBook();
+		
+		//불러오기
+		List<IncomeExpense> list = fileService.load(fileName);
+		
+		myAccountBook = new AccountBook(list);
+        
         this.InputIEManager = new InputIncomeExpenseManager(myAccountBook);
         this.UpdateIEManager = new UpdateIncomeExpenseManager(myAccountBook);
         this.DeleteIEManager = new DeleteIncomeExpenseManager(myAccountBook);
@@ -31,11 +45,12 @@ public class MainProgramImplement implements MainProgram {
     }
 
     private static Scanner sc = new Scanner(System.in);
-
+    
     int EXIT = 5;
 
     public void run() {
         int inputMainMenu = 0;
+        
         // 반복
         do {
             // 메뉴 출력
@@ -50,6 +65,13 @@ public class MainProgramImplement implements MainProgram {
                 sc.nextLine();
             }
         } while (inputMainMenu != EXIT);
+        
+        //저장하기
+  		if(fileService.save(fileName, myAccountBook.getIncomeExpense())) {
+  			System.out.println("저장이 완료되었습니다.");
+  		}else {
+  			System.out.println("저장에 실패했습니다.");
+  		}
     }
 
     @Override

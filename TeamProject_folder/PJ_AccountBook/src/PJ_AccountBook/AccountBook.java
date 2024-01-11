@@ -7,13 +7,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
-public class AccountBook {
-    private List<IncomeExpense> incomeExpense;
+public class AccountBook{
+	
+	private List<IncomeExpense> incomeExpense;
 
     public AccountBook() {
         this.incomeExpense = new ArrayList<>();
     }
+    
+    
+    public AccountBook(List<IncomeExpense> list) {
+		if(list == null) {
+			list = new ArrayList<IncomeExpense>();
+		}
+		this.incomeExpense = list;
+	}
+    
 
     // 가계부 리스트 길이 반환 메서드
     // =======================================================================================================================================
