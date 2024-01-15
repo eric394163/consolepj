@@ -45,9 +45,8 @@ public class DisplayAccountBookManager implements DisplayAccountBookInterface {
         System.out.println("====== 가계부 ======");
         System.out.println("1. 전체 ");
         System.out.println("2. 날짜별 검색 ");
-        System.out.println("3. 카테고리별 검색 ");
-        System.out.println("4. 총 수입/지출 ");
-        System.out.println("5. 이전으로 ");
+        System.out.println("3. 총 수입/지출 ");
+        System.out.println("4. 이전으로 ");
         System.out.println("===================");
         System.out.print("입력 :");
     }
