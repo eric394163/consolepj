@@ -26,6 +26,7 @@ public class MainProgramImplement implements MainProgram {
     private UpdateIncomeExpenseInterface updateIEManager;
     private DeleteIncomeExpenseInterface DeleteIEManager;
 
+    //파일 불러오기-저장 권기은 개발
     private FileService fileService = new FileServiceImp();
     private String fileName = "src/PJ_AccountBook/accountBookList.txt";
 
