@@ -1,9 +1,10 @@
-package PJ_AccountBook;
+package homework3;
 
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+<<<<<<< HEAD:TeamProject_folder/PJ_AccountBook/src/PJ_AccountBook/MainProgramImplement.java
 import PJ_AccountBook.DeleteIncomeExpense.DeleteIncomeExpenseInterface;
 import PJ_AccountBook.DeleteIncomeExpense.DeleteIncomeExpenseManager;
 import PJ_AccountBook.DisplayAccountBook.DisplayAccountBookInterface;
@@ -15,20 +16,21 @@ import PJ_AccountBook.UpdateIncomeExpense.UpdateIncomeExpenseManager;
 import PJ_AccountBook.service.FileService;
 import PJ_AccountBook.service.FileServiceImp;
 
+=======
+>>>>>>> 1cada1b2e90437f22fb2f467ed88cd6f3080133e:Personal_folder/DaSom/AccountBook/homework3/MainProgramImplement.java
 public class MainProgramImplement implements MainProgram {
 
     // 메인 화면 구현 클래스
 
-    private AccountBook myAccountBook;
-    private InputIncomeExpenseInterface InputIEManager;
-    private UpdateIncomeExpenseInterface UpdateIEManager;
+    private InputIncomeExpenseInterface inputIEManager;
+    private UpdateIncomeExpenseInterface updateIEManager;
     private DeleteIncomeExpenseInterface DeleteIEManager;
-    private DisplayAccountBookInterface DisplayACManager;
 
     private FileService fileService = new FileServiceImp();
     private String fileName = "src/PJ_AccountBook/accountBookList.txt";
 
     public MainProgramImplement() {
+<<<<<<< HEAD:TeamProject_folder/PJ_AccountBook/src/PJ_AccountBook/MainProgramImplement.java
         this.myAccountBook = new AccountBook();
 
         // 불러오기
@@ -40,9 +42,14 @@ public class MainProgramImplement implements MainProgram {
         this.UpdateIEManager = new UpdateIncomeExpenseManager(myAccountBook);
         this.DeleteIEManager = new DeleteIncomeExpenseManager(myAccountBook);
         this.DisplayACManager = new DisplayAccountBookManager(myAccountBook);
+=======
+        this.inputIEManager = new InputIncomeExpenseManager();
+        this.updateIEManager = new UpdateIncomeExpenseManager();
+        this.DeleteIEManager = new DeleteIncomeExpenseManager();
+>>>>>>> 1cada1b2e90437f22fb2f467ed88cd6f3080133e:Personal_folder/DaSom/AccountBook/homework3/MainProgramImplement.java
     }
 
-    private static Scanner sc = new Scanner(System.in);
+    private static Scanner scan = new Scanner(System.in);
 
     int EXIT = 5;
 
@@ -54,13 +61,16 @@ public class MainProgramImplement implements MainProgram {
             // 메뉴 출력
             printMainMenu();
             try {
+    
                 // 메뉴 선택
-                inputMainMenu = sc.nextInt();
+                inputMainMenu = scan.nextInt();
+                
                 // 메뉴 실행
                 runMainMenu(inputMainMenu);
+                
             } catch (InputMismatchException e) {
                 System.out.println("잘못된 메뉴입니다.");
-                sc.nextLine();
+                //scan.nextLine();
             }
         } while (inputMainMenu != EXIT);
 
@@ -78,8 +88,13 @@ public class MainProgramImplement implements MainProgram {
         System.out.println("1. 가계부 작성 ");
         System.out.println("2. 가계부 수정 ");
         System.out.println("3. 가계부 삭제 ");
+<<<<<<< HEAD:TeamProject_folder/PJ_AccountBook/src/PJ_AccountBook/MainProgramImplement.java
         System.out.println("4. 가계부 조회 ");
         System.out.println("5. 가계부 종료 ");
+=======
+        System.out.println("4. (-)");
+        System.out.println("5. 프로그램 종료 ");
+>>>>>>> 1cada1b2e90437f22fb2f467ed88cd6f3080133e:Personal_folder/DaSom/AccountBook/homework3/MainProgramImplement.java
         System.out.println("==================================");
         System.out.print("메뉴 선택  :");
     }
@@ -89,12 +104,12 @@ public class MainProgramImplement implements MainProgram {
         switch (inputMainMenu) {
             case 1:
                 // 수입 지출 추가
-                InputIEManager.inputIncomeExpenseRun();
+                inputIEManager.inputIncomeExpenseRun();
 
                 break;
             case 2:
                 // 가계부 수정
-                UpdateIEManager.UpdateIncomeExpenseRun();
+            	updateIEManager.UpdateIncomeExpenseRun();
                 break;
             case 3:
                 // 가계부 삭제
@@ -102,8 +117,7 @@ public class MainProgramImplement implements MainProgram {
 
                 break;
             case 4:
-                // 가계부 출력
-                DisplayACManager.displayAccountBookMainRun();
+                // 추가 기능
                 break;
             case 5:
                 // 프로그램 종료

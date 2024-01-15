@@ -1,4 +1,4 @@
-package PJ_AccountBook;
+package homework3;
 
 public interface MainProgram{
     //메인 화면  인터페이스
