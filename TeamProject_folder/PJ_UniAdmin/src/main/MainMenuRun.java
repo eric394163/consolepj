@@ -10,6 +10,8 @@ public interface MainMenuRun {
 
     public void studentManager();
 
+    public void departmentManager();
+
     public void lectureRegisManager();
 
     public void displayManager();
