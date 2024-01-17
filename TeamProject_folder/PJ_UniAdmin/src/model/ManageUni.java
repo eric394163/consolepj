@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ManageUni {
@@ -7,9 +8,20 @@ public class ManageUni {
     private List<Lecture> lectures;
     private List<Professor> professors;
     private List<Student> students;
+    private List<Department> departments;
 
-    public void addCourse(Course courses) {
-        this.courses.add(courses);
+    public ManageUni() {
+        this.departments = new ArrayList<>();
+    }
+
+    public void addDepartment(String inputDepartment) {
+        if (inputDepartment != null) {
+            this.departments.add(new Department(inputDepartment));
+            System.out.println(inputDepartment + " 추가 완료");
+        } else {
+            System.out.println("잘못된 입력");
+        }
+
     }
 
 }

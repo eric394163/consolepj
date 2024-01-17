@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import courseManage.CourseManage;
 import courseManage.CourseManageImp;
+import departmentManage.DepartmentManage;
+import departmentManage.DepartmentManageImp;
 import main.MainMenuRun;
 import main.MainMenuRunImp;
 import model.ManageUni;
@@ -21,6 +23,7 @@ public class MainProgramImp implements MainProgram {
     private MainMenuRun mr;
     private SelectMenu sm;
     private CourseManage cm;
+    private DepartmentManage dm;
     private int EXIT = 0;
 
     // 서비스는 필요할때마다 호출해서 써도 된다. ( 서비스 클래스에는 멤버변수가 없기에 의존성 문제 없음 )
@@ -30,7 +33,8 @@ public class MainProgramImp implements MainProgram {
         this.sm = new SelectMenuImp();
         this.ps = new PrintServiceImp();
         this.cm = new CourseManageImp();
-        this.mr = new MainMenuRunImp(manageUni, ps, sm, cm);
+        this.dm = new DepartmentManageImp();
+        this.mr = new MainMenuRunImp(manageUni, ps, sm, cm, dm);
 
     }
 
@@ -55,7 +59,7 @@ public class MainProgramImp implements MainProgram {
     }
 
     @Override
-    public void runMainMenu(int inputMainMenu) { //이것도 람다식으로 바꾸기
+    public void runMainMenu(int inputMainMenu) { // 이것도 람다식으로 바꾸기
         switch (inputMainMenu) {
             case 1:
                 mr.courseManager();
@@ -64,18 +68,21 @@ public class MainProgramImp implements MainProgram {
                 mr.lectureManager();
                 break;
             case 3:
-                mr.professorManager();
+                mr.departmentManager();
                 break;
             case 4:
-                mr.studentManager();
+                mr.professorManager();
                 break;
             case 5:
-                mr.lectureRegisManager();
+                mr.studentManager();
                 break;
             case 6:
-                mr.displayManager();
+                mr.lectureRegisManager();
                 break;
             case 7:
+                mr.displayManager();
+                break;
+            case 8:
 
                 break;
             default:

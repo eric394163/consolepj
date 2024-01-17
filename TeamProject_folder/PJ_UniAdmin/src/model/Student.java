@@ -6,10 +6,10 @@ public class Student {
     String stdName;
     int grade;
     int studentId;
-    String department;
+    Department department;
     List<Lecture> lectureList;
 
-    public Student(String stdName, int grade, int studentId, String department, List<Lecture> lectureList) {
+    public Student(String stdName, int grade, int studentId, Department department, List<Lecture> lectureList) {
         this.stdName = stdName;
         this.grade = grade;
         this.studentId = studentId;
