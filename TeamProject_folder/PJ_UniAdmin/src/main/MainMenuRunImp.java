@@ -7,6 +7,7 @@ import departmentManage.DepartmentManage;
 import model.ManageUni;
 import service.print.PrintService;
 import service.selectmenu.SelectMenu;
+import studentManage.StudentManage;
 
 public class MainMenuRunImp implements MainMenuRun {
 
@@ -16,13 +17,15 @@ public class MainMenuRunImp implements MainMenuRun {
     private ManageUni manageUni;
     private CourseManage cm;
     private DepartmentManage dm;
+    private StudentManage stm; // 학생 관리 클래스 추가
 
-    public MainMenuRunImp(ManageUni manageUni, PrintService ps, SelectMenu sm, CourseManage cm, DepartmentManage dm) {
+    public MainMenuRunImp(ManageUni manageUni, PrintService ps, SelectMenu sm, CourseManage cm, DepartmentManage dm, StudentManage stm) {
         this.manageUni = manageUni;
         this.ps = ps;
         this.sm = sm;
         this.cm = cm;
         this.dm = dm;
+        this.stm = stm;
     }
 
     @Override
@@ -49,7 +52,13 @@ public class MainMenuRunImp implements MainMenuRun {
 
     @Override
     public void studentManager() {
-
+    	System.out.println("===== 학생 관리 =====");
+        ps.printAddUpdDel();
+        int input = sc.nextInt();
+        sm.selectMenu(input,
+                () -> stm.addStudent(manageUni), 
+                () -> stm.updateStudent(manageUni), 
+                () -> stm.deleteStudent(manageUni));
     }
 
     @Override
