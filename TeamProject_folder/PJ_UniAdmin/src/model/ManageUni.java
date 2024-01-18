@@ -17,6 +17,7 @@ public class ManageUni {
     public ManageUni() {
         this.departments = new ArrayList<>();
         this.students = new ArrayList<Student>();
+        this.professors = new ArrayList<Professor>();
     }
 
     // 과
@@ -176,5 +177,44 @@ public class ManageUni {
             System.out.println("잘못된 입력");
         }
     }
+
+    
+    //교수 =====================================================================================================
+    
+    
+	public Professor createProf() {
+		//교수 이름, 교번, 연락처, 학과
+    	System.out.print("성명 : ");
+    	String profName = sc.next();
+    	System.out.print("교번 : ");
+    	int profNum = sc.nextInt();
+    	System.out.print("연락처 : ");
+    	String profPhoneNum = sc.next();
+    	System.out.print("학과 : ");
+        String profDepartment = sc.next();
+        
+        Department Dep = new Department(profDepartment);
+        List<Lecture> lectureList = new ArrayList<Lecture>(); // 새로운 수강 강좌 리스트 만들기
+	    
+        
+		Professor newProfessor = new Professor(profName, profPhoneNum, profDepartment, profNum, lectureList);
+		
+		return newProfessor;
+	}
+
+	public void addProfessor(Professor newProfessor) {
+		if (newProfessor != null) {
+            this.professors.add(newProfessor);
+            System.out.println(newProfessor.getProfName() + " 학생 추가 완료");
+        } else {
+            System.out.println("잘못된 입력입니다.");
+        }
+	}
+
+	public void printProfessor() {
+		System.out.println("=====교수 목록 출력=====");
+    	professors.stream().forEach((s)->System.out.println(s+"\n"));
+    	System.out.println("\n\n\n\n");
+	}
 
 }
