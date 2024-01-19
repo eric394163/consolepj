@@ -66,14 +66,10 @@ public class ManageUni {
     // 학생
     // =====================================================================================================================
     /* To-do
-     *  
-     * 1. 모든 입력값이 유효한지 확인하기
-     *  - 잘못 입력받았을 경우 다시 입력받는 코드 참고하기
-     *  - 메서드화 하기
-     * 2. 학생 정보 수정 기능
+     * 학생 정보 수정 기능
 	 * 	- 수강 정보 이전하기 (대입연산자 쓰면 될듯?)
 	 *  - 수강 신청 기록 이전 여부의 조건 (전과했을 때?)
-	 * 3. 학생 삭제 기능
+	 * 
      * */
     
     
@@ -86,23 +82,24 @@ public class ManageUni {
     		System.out.print("학번: ");
             studentId = sc.nextInt();
     	    sc.nextLine();
+    	    System.out.print("이름: ");
+    	    String stdName = sc.next();
+    	    System.out.print("학년: ");
+    	    int grade = sc.nextInt();
+    	    // 입력값이 유효한지 확인하기 (1~4)
+    	    sc.nextLine();
     	}catch(Exception e) {
     		System.out.println("잘못된 입력입니다. 다시 입력하세요: ");
+    		sc.nextLine();
     	}
 
 	    if(isDupStd(studentId)) {
 	    	 System.out.println("이미 존재하는 학번입니다. 다시 입력해주세요: ");
-	    		//  중복, 잘못된 입력 처리하기
-	    	 sc.next();
-	    	 studentId = sc.nextInt();
+	    	//  중복, 잘못된 입력 처리하기
+	    	 sc.nextLine();
 	    }
 	    
-    	System.out.print("이름: ");
-	    String stdName = sc.next();
-	    System.out.print("학년: ");
-	    int grade = sc.nextInt();
-	    // 입력값이 유효한지 확인하기 (1~4)
-	    sc.nextLine();
+    	
 	    System.out.print("학과: ");
 	    String departmentName = sc.next();
 	    // 입력값이 유효한지 확인하기 
