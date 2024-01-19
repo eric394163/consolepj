@@ -97,13 +97,13 @@ public class ManageUni {
 	    	 studentId = sc.nextInt();
 	    }
 	    
-    	System.out.println("이름: ");
+    	System.out.print("이름: ");
 	    String stdName = sc.next();
-	    System.out.println("학년: ");
+	    System.out.print("학년: ");
 	    int grade = sc.nextInt();
 	    // 입력값이 유효한지 확인하기 (1~4)
 	    sc.nextLine();
-	    System.out.println("학과: ");
+	    System.out.print("학과: ");
 	    String departmentName = sc.next();
 	    // 입력값이 유효한지 확인하기 
 //	    (학과가 이미 등록이 되어있는 건지 아닌지... 근데 이건 학과 부분 개발한거 가져오면 될듯?)
