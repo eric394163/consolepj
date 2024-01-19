@@ -22,7 +22,7 @@ public class ManageUni {
             this.departments.add(new Department(inputDepartment));
             System.out.println(inputDepartment + "과 추가 완료");
         } else {
-            System.out.println("잘못된 입력입니다.");
+            System.out.println("잘못된 입력.");
         }
     }
 
