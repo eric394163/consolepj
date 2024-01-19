@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Vocabulary_src</name>
+	<name>AccountBook</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,11 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-<<<<<<< HEAD
-			<id>1705279623551</id>
-=======
-			<id>1704960837189</id>
->>>>>>> develop
+			<id>1705279623539</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

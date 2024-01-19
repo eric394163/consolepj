@@ -12,7 +12,6 @@ public class UpdateIncomeExpenseManager implements UpdateIncomeExpenseInterface 
 	
 		@Override
 		public void UpdateIncomeExpenseRun() {
-			
 	        Scanner scan = new Scanner(System.in);
 	        List<Transaction> transactions = new ArrayList<>();
 
@@ -26,14 +25,21 @@ public class UpdateIncomeExpenseManager implements UpdateIncomeExpenseInterface 
 	        System.out.print("새로운 날짜 (yyyy-MM-dd): ");
 	        String date = scan.nextLine();
 
-	        System.out.print("새로운 내역 입력: ");
+	        System.out.print("새로운 내역 선택: ");
 	        String category = scan.nextLine();
+	        scan.nextLine(); // 버퍼 비우기
 	        
 	        //Transaction transaction = new Transaction();
 	    }
 
 		@Override
-		public void modifyTransaction(Transaction transaction) {}
+		public void modifyTransaction(Transaction transaction) {
+			// TODO Auto-generated method stub
+			
+		}
+
+
+		
 		
 	}
 	

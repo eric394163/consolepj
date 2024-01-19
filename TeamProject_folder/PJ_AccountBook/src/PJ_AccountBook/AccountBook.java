@@ -3,26 +3,23 @@ package PJ_AccountBook;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public class AccountBook{
-	
-	private List<IncomeExpense> incomeExpense;
+public class AccountBook {
+
+    private List<IncomeExpense> incomeExpense;
 
     public AccountBook() {
         this.incomeExpense = new ArrayList<>();
     }
-    
-    
+
     public AccountBook(List<IncomeExpense> list) {
-		if(list == null) {
-			list = new ArrayList<IncomeExpense>();
-		}
-		this.incomeExpense = list;
-	}
-    
+        if (list == null) {
+            list = new ArrayList<IncomeExpense>();
+        }
+        this.incomeExpense = list;
+    }
 
     // 가계부 리스트 길이 반환 메서드
     // =======================================================================================================================================
@@ -94,5 +91,51 @@ public class AccountBook{
         } else {
             System.out.println("유효하지 않은 인덱스");
         }
+    }
+
+    // 총 수입지출 조회 메서드 (AccountBook class에 totalSpent, totalIncome 변수를 선언하여 add를 할 때
+    // 마다 값이 증가하도록 하는 것이 더 효율적일듯!)
+    // 강인서 개발
+    // =======================================================================================================================================
+    public void printTotalIE() {
+        long totalIncome = 0, totalSpent = 0;
+        if (incomeExpense == null) {
+            System.out.println("가계부가 비어있습니다.");
+            return;
+        }
+
+        for (int i = 0; i < incomeExpense.size(); i++) {
+            if (incomeExpense.get(i).isIncomeOrExpense()) {
+                totalIncome += incomeExpense.get(i).amount;
+            } else {
+                totalSpent += incomeExpense.get(i).amount;
+            }
+        }
+        System.out.println("총 수입: " + totalIncome + "/ 총 지출: " + totalSpent);
+
+    }
+    // 날짜별 조회 메서드
+    // 강인서 개발
+    // =======================================================================================================================================
+
+    public void dateQuery(String enter) {
+
+        System.out.println(enter);
+
+        int count = (int) incomeExpense.stream()
+                .filter(w -> w.getDate().substring(0, enter.length()).equals(enter))
+                .count();
+
+        if (count == 0) {
+            System.out.println("해당되는 기록이 없습니다.");
+            return;
+        }
+
+        incomeExpense.stream()
+                .filter(w -> w.getDate().substring(0, enter.length()).equals(enter))
+                .forEach(w -> {
+                    System.out.println(w);
+                });
+
     }
 }
