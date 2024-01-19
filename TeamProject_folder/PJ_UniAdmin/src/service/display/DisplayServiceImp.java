@@ -16,8 +16,6 @@ public class DisplayServiceImp implements DisplayService {
         final int EXIT = 0;
 
         do {
-            System.out.println("======= 관리 (페이지 " + (currentPage + 1) + " / " + totalPages
-                    + ") ==========");
 
             if (selectModel == 1) { // 강좌
                 // manageUni.printDepartment(currentPage * pageSize, pageSize);
@@ -25,6 +23,7 @@ public class DisplayServiceImp implements DisplayService {
                 // manageUni.printDepartment(currentPage * pageSize, pageSize);
             } else if (selectModel == 3) { // 과
                 totalPages = (manageUni.returnDeptSize() + pageSize - 1) / pageSize;
+                print(currentPage, totalPages);
                 manageUni.printDepartment(currentPage * pageSize, pageSize);
             } else if (selectModel == 4) { // 교수
                 // manageUni.printDepartment(currentPage * pageSize, pageSize);
@@ -43,10 +42,15 @@ public class DisplayServiceImp implements DisplayService {
                 currentPage--;
             } else if (input == 2 && currentPage < totalPages - 1) {
                 currentPage++;
-            } else if (input == 3) { // 수정, 삭제 
+            } else if (input == 3) { // 수정, 삭제
                 methods[1].run();
-            } 
+            }
         } while (input != EXIT);
 
+    }
+
+    private void print(int currentPage, int totalPages) {
+        System.out.println("======= 관리 (페이지 " + (currentPage + 1) + " / " + totalPages
+                + ") ==========");
     }
 }
