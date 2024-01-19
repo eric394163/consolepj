@@ -24,8 +24,15 @@ public class Student {
     public Student(int studentId) {
     	this.studentId = studentId;
     }
+    
+    public Student(int studentId, String stdName,  int grade, Department dep) {
+    	this.studentId = studentId;
+    	this.stdName = stdName;
+    	this.grade = grade;
+    	this.department = dep;
+    }
 
-    // 학번이 같으면 같은 학생으로 인식하도록 equals Overriding... (근데 의미가 있나? 코드 가독성이 좋다는 건 있긴할듯)
+    // 학번이 같으면 같은 학생으로 인식하도록 equals Overriding... (getIndexOf 메서드를 사용하기 위해서)
     @Override
 	public boolean equals(Object obj) {
 		if (this == obj)
