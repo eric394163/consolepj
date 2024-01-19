@@ -6,11 +6,11 @@ public class Professor {
 
     String profName;
 
-    List<Lecture> lectureList;
+    List<Lecture> lectureLists;
 
-    public Professor(String profName, List<Lecture> lectureList) {
+    public Professor(String profName, List<Lecture> lectureLists) {
         this.profName = profName;
-        this.lectureList = lectureList;
+        this.lectureLists = lectureLists;
     }
 
 }
