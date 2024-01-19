@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+import java.util.Objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,10 +17,25 @@ public class Professor {
 
 	@Override
 	public String toString() {
-		return "Professor [profName=" + profName + ", profPhoneNum=" + profPhoneNum + ", profDepartment="
-				+ profDepartment + ", profNum=" + profNum + ", lectureList=" + lectureList + "]";
+		return "[교수 이름: " + profName + ", 연락처: " + profPhoneNum + ", 학과: "
+				+ profDepartment + ", 교번: " + profNum + ", 강의목록: " + lectureList + "]";
 	}
 
-    
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Professor other = (Professor) obj;
+		return profNum == other.profNum;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(profNum);
+	}
     
 }

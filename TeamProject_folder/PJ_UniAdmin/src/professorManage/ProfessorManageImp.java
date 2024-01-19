@@ -26,8 +26,14 @@ public class ProfessorManageImp implements ProfessorManage {
 
     @Override
     public void updateProfessor(ManageUni manageUni) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateProfessor'");
+        System.out.print("수정할 교수 교번 : ");
+        int profNum = sc.nextInt();
+        if(manageUni.isDupProf(profNum)) { //있으면
+        	
+        }else {							   //없으면
+        	System.out.println("등록되지 않은 교수입니다.");
+        }
+        
     }
 
     @Override

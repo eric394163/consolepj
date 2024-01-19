@@ -194,27 +194,44 @@ public class ManageUni {
         String profDepartment = sc.next();
         
         Department Dep = new Department(profDepartment);
-        List<Lecture> lectureList = new ArrayList<Lecture>(); // 새로운 수강 강좌 리스트 만들기
+        List<Lecture> lectureList = new ArrayList<Lecture>();
 	    
         
 		Professor newProfessor = new Professor(profName, profPhoneNum, profDepartment, profNum, lectureList);
 		
 		return newProfessor;
 	}
-
+	
+	//추가
 	public void addProfessor(Professor newProfessor) {
 		if (newProfessor != null) {
             this.professors.add(newProfessor);
-            System.out.println(newProfessor.getProfName() + " 학생 추가 완료");
+            System.out.println(newProfessor.getProfName() + " 교수 추가 완료");
         } else {
             System.out.println("잘못된 입력입니다.");
         }
 	}
-
+	
+	//교수 목록 출력
 	public void printProfessor() {
 		System.out.println("=====교수 목록 출력=====");
     	professors.stream().forEach((s)->System.out.println(s+"\n"));
-    	System.out.println("\n\n\n\n");
 	}
+	
+	// 이미 등록된 교수인지 확인
+    public boolean isDupProf(int profNum) {
+    	if(professors.size()==0) {
+    		return false;
+    	}
+    	 for (int i = 0; i < professors.size(); i++) {
+    		 Professor prof = professors.get(i);
+             if (prof.getProfNum() == profNum) { //문자열이 아니므로 == 비교
+            	 // 일치하는 교슈ㅜ 있음
+                 return true;
+             }
+         }
+    	 // 일치하는 교수 없음
+    	 return false;
+    }
 
 }
