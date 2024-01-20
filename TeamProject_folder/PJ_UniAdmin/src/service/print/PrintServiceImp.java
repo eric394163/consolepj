@@ -23,7 +23,32 @@ public class PrintServiceImp implements PrintService {
         System.out.println("2. 수정 ");
         System.out.println("3. 삭제 ");
         System.out.println("===================");
-        System.out.println("메뉴 선택 :");
+        System.out.print("메뉴 선택 :");
+    }
+
+    @Override
+    public void printBackNextExit() {
+        System.out.println("===================================");
+        System.out.println("[ 이전 : 1 ] [ 다음 : 2 ] [ 종료 : 0 ]");
+        System.out.println("===================================");
+        System.out.print("입력 : ");
+
+    }
+
+    @Override
+    public void printBackNextDeleteExit() {
+        System.out.println("================================================");
+        System.out.println("[ 이전 : 1 ] [ 다음 : 2 ] [ 삭제 : 3 ] [ 종료 : 0 ]");
+        System.out.println("================================================");
+        System.out.print("입력 : ");
+    }
+
+    @Override
+    public void printBackNextUpdateExit() {
+        System.out.println("================================================");
+        System.out.println("[ 이전 : 1 ] [ 다음 : 2 ] [ 수정 : 3 ] [ 종료 : 0 ]");
+        System.out.println("================================================");
+        System.out.print("입력 : ");
     }
 
 }

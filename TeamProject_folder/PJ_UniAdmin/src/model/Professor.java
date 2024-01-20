@@ -13,7 +13,12 @@ public class Professor {
     String profName, profPhoneNum, profDepartment; //이름, 연락처(000-0000-0000로 입력받아야 함), 학과
     int profNum; //교번
 
-    List<Lecture> lectureList;
+    List<Lecture> lectureLists;
+
+    public Professor(String profName, List<Lecture> lectureLists) {
+        this.profName = profName;
+        this.lectureLists = lectureLists;
+    }
 
 	@Override
 	public String toString() {
