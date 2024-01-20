@@ -17,6 +17,7 @@ public class ManageUni {
 	public ManageUni() {
 		this.departments = new ArrayList<>();
 		this.students = new ArrayList<Student>();
+    this.professors = new ArrayList<Professor>();
 	}
 
 	// 과
@@ -102,6 +103,7 @@ public class ManageUni {
 	 * - 모든 입력값이 유효한지 확인하기
 	 * 2. 학생 정보 수정 기능
 	 * - 수강 정보 이전하기 (대입연산자 쓰면 될듯?)
+
 	 * 3. 학생 삭제 기능
 	 */
 
@@ -204,5 +206,61 @@ public class ManageUni {
 			System.out.println("잘못된 입력");
 		}
 	}
+
+    
+    //교수 =====================================================================================================
+    
+    
+	public Professor createProf() {
+		//교수 이름, 교번, 연락처, 학과
+    	System.out.print("성명 : ");
+    	String profName = sc.next();
+    	System.out.print("교번 : ");
+    	int profNum = sc.nextInt();
+    	System.out.print("연락처 : ");
+    	String profPhoneNum = sc.next();
+    	System.out.print("학과 : ");
+        String profDepartment = sc.next();
+        
+        Department Dep = new Department(profDepartment);
+        List<Lecture> lectureList = new ArrayList<Lecture>();
+	    
+        
+		Professor newProfessor = new Professor(profName, profPhoneNum, profDepartment, profNum, lectureList);
+		
+		return newProfessor;
+	}
+	
+	//추가
+	public void addProfessor(Professor newProfessor) {
+		if (newProfessor != null) {
+            this.professors.add(newProfessor);
+            System.out.println(newProfessor.getProfName() + " 교수 추가 완료");
+        } else {
+            System.out.println("잘못된 입력입니다.");
+        }
+	}
+	
+	//교수 목록 출력
+	public void printProfessor() {
+		System.out.println("=====교수 목록 출력=====");
+    	professors.stream().forEach((s)->System.out.println(s+"\n"));
+	}
+	
+	// 이미 등록된 교수인지 확인
+    public boolean isDupProf(int profNum) {
+    	if(professors.size()==0) {
+    		return false;
+    	}
+    	 for (int i = 0; i < professors.size(); i++) {
+    		 Professor prof = professors.get(i);
+             if (prof.getProfNum() == profNum) { //문자열이 아니므로 == 비교
+            	 // 일치하는 교슈ㅜ 있음
+                 return true;
+             }
+         }
+    	 // 일치하는 교수 없음
+    	 return false;
+    }
 
 }
