@@ -5,7 +5,6 @@ import java.util.Scanner;
 import courseManage.CourseManage;
 import departmentManage.DepartmentManage;
 import model.ManageUni;
-import professorManage.ProfessorManage;
 import service.print.PrintService;
 import service.selectmenu.SelectMenu;
 import studentManage.StudentManage;
@@ -19,16 +18,14 @@ public class MainMenuRunImp implements MainMenuRun {
     private CourseManage cm;
     private DepartmentManage dm;
     private StudentManage stm; // 학생 관리 클래스 추가
-    private ProfessorManage pfm;
 
-    public MainMenuRunImp(ManageUni manageUni, PrintService ps, SelectMenu sm, CourseManage cm, DepartmentManage dm, StudentManage stm, ProfessorManage pfm) {
+    public MainMenuRunImp(ManageUni manageUni, PrintService ps, SelectMenu sm, CourseManage cm, DepartmentManage dm, StudentManage stm) {
         this.manageUni = manageUni;
         this.ps = ps;
         this.sm = sm;
         this.cm = cm;
         this.dm = dm;
         this.stm = stm;
-        this.pfm = pfm;
     }
 
     @Override
@@ -50,25 +47,18 @@ public class MainMenuRunImp implements MainMenuRun {
 
     @Override
     public void professorManager() {
-    	System.out.println("===== 교수 관리 =====");
-        ps.printAddUpdDel();
-        int input = sc.nextInt();
-        sm.selectMenu(input,
-                () -> pfm.addProfessor(manageUni), 
-                () -> pfm.updateProfessor(manageUni), 
-                () -> pfm.deleteProfessor(manageUni));
+
     }
 
     @Override
     public void studentManager() {
-        System.out.println("===== 학생 관리 =====");
+    	System.out.println("===== 학생 관리 =====");
         ps.printAddUpdDel();
         int input = sc.nextInt();
         sm.selectMenu(input,
-                () -> stm.addStudent(manageUni),
-                () -> stm.updateStudent(manageUni),
+                () -> stm.addStudent(manageUni), 
+                () -> stm.updateStudent(manageUni), 
                 () -> stm.deleteStudent(manageUni));
-
     }
 
     @Override
@@ -87,10 +77,9 @@ public class MainMenuRunImp implements MainMenuRun {
         ps.printAddUpdDel();
         int input = sc.nextInt();
         sm.selectMenu(input,
-                () -> dm.addDepartment(manageUni),
-                () -> dm.updateDepartment(manageUni),
+                () -> dm.addDepartment(manageUni), // 일단은 반환값 입력값이 없어도 되는 Runnable 함수형 인터페이스로 되어있음
+                () -> dm.updateDepartment(manageUni), // 반화값이나 입력값이 생길 시 이에 맞는 함수형 인터페이스로 수정
                 () -> dm.deleteDepartment(manageUni));
-
-    }
+    }// 람다식에는 일반 지역변수가 들어갈 수 없기에 final로 바꿔서 넣어야 함
 
 }
