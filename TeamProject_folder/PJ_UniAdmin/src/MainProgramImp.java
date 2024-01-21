@@ -8,6 +8,10 @@ import departmentManage.DepartmentManageImp;
 import main.MainMenuRun;
 import main.MainMenuRunImp;
 import model.ManageUni;
+import service.display.DisplayService;
+import service.display.DisplayServiceImp;
+import professorManage.ProfessorManage;
+import professorManage.ProfessorManageImp;
 import service.print.PrintService;
 import service.print.PrintServiceImp;
 import service.selectmenu.SelectMenu;
@@ -26,6 +30,7 @@ public class MainProgramImp implements MainProgram {
     private CourseManage cm;
     private DepartmentManage dm;
     private StudentManage stm; // 학생 관리 추가
+    private ProfessorManage pfm;
     private int EXIT = 0;
 
     // 서비스는 필요할때마다 호출해서 써도 된다. ( 서비스 클래스에는 멤버변수가 없기에 의존성 문제 없음 )
@@ -37,7 +42,8 @@ public class MainProgramImp implements MainProgram {
         this.cm = new CourseManageImp();
         this.dm = new DepartmentManageImp();
         this.stm = new StudentManageImp();
-        this.mr = new MainMenuRunImp(manageUni, ps, sm, cm, dm, stm);
+        this.pfm = new ProfessorManageImp();
+        this.mr = new MainMenuRunImp(manageUni, ps, sm, cm, dm, stm, pfm);
 
     }
 
