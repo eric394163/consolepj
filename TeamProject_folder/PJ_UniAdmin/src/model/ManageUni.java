@@ -233,8 +233,10 @@ public class ManageUni {
 	
 	//추가
 	public void addProfessor(Professor newProfessor) {
-		
-		if (newProfessor != null) {
+		if (isDupProf(newProfessor.getProfNum())) {
+			System.out.println("같은 교번의 교수가 존재합니다.");
+		}
+		else if (newProfessor != null) {
             this.professors.add(newProfessor);
             System.out.println(newProfessor.getProfName() + " 교수 추가 완료");
         } else {
