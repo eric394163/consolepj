@@ -17,7 +17,7 @@ public class ManageUni {
 	public ManageUni() {
 		this.departments = new ArrayList<>();
 		this.students = new ArrayList<Student>();
-    this.professors = new ArrayList<Professor>();
+		this.professors = new ArrayList<Professor>();
 	}
 
 	// 과
@@ -223,9 +223,9 @@ public class ManageUni {
         String profDepartment = sc.next();
         
         Department Dep = new Department(profDepartment);
+        departments.add(Dep);
         List<Lecture> lectureList = new ArrayList<Lecture>();
 	    
-        
 		Professor newProfessor = new Professor(profName, profPhoneNum, profDepartment, profNum, lectureList);
 		
 		return newProfessor;
@@ -233,6 +233,7 @@ public class ManageUni {
 	
 	//추가
 	public void addProfessor(Professor newProfessor) {
+		
 		if (newProfessor != null) {
             this.professors.add(newProfessor);
             System.out.println(newProfessor.getProfName() + " 교수 추가 완료");
@@ -240,6 +241,51 @@ public class ManageUni {
             System.out.println("잘못된 입력입니다.");
         }
 	}
+	
+	
+	//수정
+	public void updateProfessor() {
+        System.out.print("수정할 번호 입력 : ");
+		int inputNum = sc.nextInt() - 1;
+		Professor updateProfessor = professors.get(inputNum);
+		
+        if(!isDupProf(updateProfessor.getProfNum())) { //없으면
+        	System.out.println("등록되지 않은 교수입니다.");
+        	return;
+        }
+		//새로운 교수 이름, 교번, 연락처, 학과
+    	System.out.print("성명 : ");
+    	String profName = sc.next();
+    	System.out.print("연락처 : ");
+    	String profPhoneNum = sc.next();
+    	System.out.print("학과 : ");
+        String profDepartment = sc.next();
+        
+        Department Dep = new Department(profDepartment);
+        departments.add(Dep);
+        List<Lecture> lectureList = new ArrayList<Lecture>();
+        
+		professors.get(inputNum).setProfName(profName);
+		professors.get(inputNum).setProfPhoneNum(profPhoneNum);
+		professors.get(inputNum).setProfDepartment(profDepartment);
+	}
+	
+	
+	//삭제
+	public void deleteProfessor() {
+		System.out.print("삭제할 번호 입력 :");
+		int inputNum = sc.nextInt() - 1;
+		Professor deleteProfessor = professors.get(inputNum);
+
+		if(isDupProf(deleteProfessor.getProfNum())) { //있으면
+			professors.remove(inputNum);
+			System.out.println(deleteProfessor + "가 삭제 되었습니다.");
+			return;
+		} else {
+			System.out.println("잘못된 입력");
+		}
+	}
+	
 	
 	//교수 목록 출력
 	public void printProfessor() {
@@ -252,15 +298,38 @@ public class ManageUni {
     	if(professors.size()==0) {
     		return false;
     	}
-    	 for (int i = 0; i < professors.size(); i++) {
-    		 Professor prof = professors.get(i);
-             if (prof.getProfNum() == profNum) { //문자열이 아니므로 == 비교
-            	 // 일치하는 교슈ㅜ 있음
-                 return true;
-             }
-         }
-    	 // 일치하는 교수 없음
-    	 return false;
+		 for (int i = 0; i < professors.size(); i++) {
+			 Professor prof = professors.get(i);
+	         if (prof.getProfNum() == profNum) { //문자열이 아니므로 == 비교
+	        	 // 일치하는 교슈ㅜ 있음
+	             return true;
+	         }
+	     }
+		 // 일치하는 교수 없음
+		 System.out.println("일치하는 교수를 찾을 수 없습니다.");
+		 return false;
     }
+
+    
+    // 교수 리스트 길이 반화 메서드
+ 	public int returnProfSize() {
+ 		return professors.size();
+
+ 	}
+
+ 	// 교수 출력 메서드
+ 	public void printProfessor(int startIndex, int pageSize) {
+ 		if (professors.isEmpty()) {
+ 			System.out.println("비어있음");
+ 			return;
+ 		}
+
+ 		int endIndex = Math.min(startIndex + pageSize, professors.size());
+ 		for (int i = startIndex; i < endIndex; i++) {
+ 			Professor professor = professors.get(i);
+ 			System.out.println(
+ 					(i + 1) + "." + "|| " + professor.getProfNum() + " || " + professor.getProfName() + " || " + professor.getProfDepartment() + " || " + professor.getProfPhoneNum());
+ 		}
+ 	}
 
 }

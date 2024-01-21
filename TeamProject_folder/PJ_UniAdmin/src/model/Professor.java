@@ -19,11 +19,16 @@ public class Professor {
         this.profName = profName;
         this.lectureLists = lectureLists;
     }
+    
+
+	public Professor(int profNum) {
+		this.profNum = profNum;
+	}
 
 	@Override
 	public String toString() {
 		return "[교수 이름: " + profName + ", 연락처: " + profPhoneNum + ", 학과: "
-				+ profDepartment + ", 교번: " + profNum + ", 강의목록: " + lectureList + "]";
+				+ profDepartment + ", 교번: " + profNum + ", 강의목록: " + lectureLists + "]";
 	}
 
 	@Override
