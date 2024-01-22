@@ -30,6 +30,7 @@ public class StudentManageImp implements StudentManage {
         Student newStudent = manageUni.createStd();
         manageUni.addStudent(newStudent);
 //        manageUni.printStudent();
+
     }
 
     
@@ -41,8 +42,7 @@ public class StudentManageImp implements StudentManage {
     	}
         ds.Display(manageUni, selectModel,
                 () -> ps.printBackNextUpdateExit(),  
-                () -> manageUni.updateStudent()); 
-        
+                () -> manageUni.updateStudent());   
     }
 
     @Override
@@ -54,6 +54,7 @@ public class StudentManageImp implements StudentManage {
     	ds.Display(manageUni, selectModel,
                 () -> ps.printBackNextDeleteExit(),
                 () -> manageUni.deleteStudent());
+
     }
 
 }

@@ -26,9 +26,11 @@ public class DisplayServiceImp implements DisplayService {
                 print(currentPage, totalPages);
                 manageUni.printDepartment(currentPage * pageSize, pageSize);
             } else if (selectModel == 4) { // 교수
-                // manageUni.printDepartment(currentPage * pageSize, pageSize);
+            	totalPages = (manageUni.returnProfSize() + pageSize - 1) / pageSize;
+                print(currentPage, totalPages);
+                manageUni.printProfessor(currentPage * pageSize, pageSize);
             } else if (selectModel == 5) { // 학생
-            	totalPages = (manageUni.returnStdSize() + pageSize - 1) / pageSize;
+               totalPages = (manageUni.returnStdSize() + pageSize - 1) / pageSize;
                 print(currentPage, totalPages);
                 manageUni.printStudent(currentPage * pageSize, pageSize);
             } else if (selectModel == 6) { // 수강
