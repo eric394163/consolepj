@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -252,10 +253,9 @@ public class ManageUni {
 		}
 	}
 
+
     
     //교수 =====================================================================================================
-    
-    
 	public Professor createProf() {
 		//교수 이름, 교번, 연락처, 학과
     	System.out.print("성명 : ");
@@ -307,11 +307,13 @@ public class ManageUni {
     	String profPhoneNum = sc.next();
     	System.out.print("학과 : ");
         String profDepartment = sc.next();
+
         
         Department Dep = new Department(profDepartment);
         departments.add(Dep);
         List<Lecture> lectureList = new ArrayList<Lecture>();
         
+
 		professors.get(inputNum).setProfName(profName);
 		professors.get(inputNum).setProfPhoneNum(profPhoneNum);
 		professors.get(inputNum).setProfDepartment(profDepartment);

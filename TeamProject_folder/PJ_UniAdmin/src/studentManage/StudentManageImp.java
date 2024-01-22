@@ -6,50 +6,55 @@
 
 package studentManage;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-import model.Department;
-import model.Lecture;
 import model.ManageUni;
 import model.Student;
+import service.display.DisplayService;
+import service.display.DisplayServiceImp;
+import service.print.PrintService;
+import service.print.PrintServiceImp;
 
 public class StudentManageImp implements StudentManage {
     private Scanner sc = new Scanner(System.in);
-
+    PrintService ps = new PrintServiceImp();
+    DisplayService ds = new DisplayServiceImp();
     private final int selectModel = 5;
 
     @Override
     public void addStudent(ManageUni manageUni) {
+    	if(manageUni.returnDeptSize()<1) {
+    		System.out.println("학생을 추가하기 위해선 학과가 최소 1개 등록되어 있어야 합니다. 학과를 먼저 등록해주세요.");
+    		return;
+    	}
         Student newStudent = manageUni.createStd();
         manageUni.addStudent(newStudent);
-        manageUni.printStudent();
+//        manageUni.printStudent();
+
     }
 
+    
     @Override
     public void updateStudent(ManageUni manageUni) {
-        manageUni.printStudent();
-        System.out.print("수정할 학생 학번 입력 :");
-        int oldStudentId = sc.nextInt();
-        if (!manageUni.isDupStd(oldStudentId)) { // 등록되지 않은 학생일 경우
-            System.out.println("등록되지 않은 학생입니다.");
-            return; // 재입력 받는 코드 작성 필요함
-        }
-        Student newStudent = new Student(oldStudentId);
-
-        System.out.print("새로운 학생 정보 입력 :");
-        int inputUpdateStudent = sc.nextInt();
-
-        manageUni.updateStudent(oldStudentId, newStudent);
+    	if(manageUni.returnStdSize()<1) {
+    		System.out.println("등록되어있는 학생이 없습니다. 학생을 먼저 등록해주세요.");
+    		return;
+    	}
+        ds.Display(manageUni, selectModel,
+                () -> ps.printBackNextUpdateExit(),  
+                () -> manageUni.updateStudent());   
     }
 
     @Override
     public void deleteStudent(ManageUni manageUni) {
-        System.out.print("삭제할 학생 학번 입력 :");
-        String inputDeleteStudent = sc.next();
+    	if(manageUni.returnStdSize()<1) {
+    		System.out.println("등록되어있는 학생이 없습니다. 학생을 먼저 등록해주세요.");
+    		return;
+    	}
+    	ds.Display(manageUni, selectModel,
+                () -> ps.printBackNextDeleteExit(),
+                () -> manageUni.deleteStudent());
 
-        manageUni.deleteStudent(inputDeleteStudent);
     }
 
 }

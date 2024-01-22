@@ -30,7 +30,9 @@ public class DisplayServiceImp implements DisplayService {
                 print(currentPage, totalPages);
                 manageUni.printProfessor(currentPage * pageSize, pageSize);
             } else if (selectModel == 5) { // 학생
-                // manageUni.printDepartment(currentPage * pageSize, pageSize);
+               totalPages = (manageUni.returnStdSize() + pageSize - 1) / pageSize;
+                print(currentPage, totalPages);
+                manageUni.printStudent(currentPage * pageSize, pageSize);
             } else if (selectModel == 6) { // 수강
                 // manageUni.printDepartment(currentPage * pageSize, pageSize);
             } else if (selectModel == 7) { // 조회

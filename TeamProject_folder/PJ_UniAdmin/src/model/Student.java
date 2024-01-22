@@ -10,7 +10,6 @@ import java.util.Objects;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -54,7 +53,7 @@ public class Student {
 	@Override
 	public String toString() {
 		return "[학생 이름: " + stdName + ", 학년: " + grade + ", 학번: " + studentId + ", 학과: "
-				+ department.getDepartmentName() + "]\n수강 중인 강의: " + lectureListPrint() ;
+				+ department.getDepartmentName() + "]\n\t수강 중인 강의: " + lectureListPrint() +"\n" ;
 	}
 	
 	
