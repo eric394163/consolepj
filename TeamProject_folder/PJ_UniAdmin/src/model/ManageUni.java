@@ -20,6 +20,51 @@ public class ManageUni {
 		this.professors = new ArrayList<Professor>();
 	}
 
+
+
+
+
+//강좌추가
+    
+    public void addCourse(String inputCourse) {
+    	System.out.print("추가할 강좌의 이름 : ");
+    	String courseName = sc.next();
+    	
+    	System.out.print("추가할 강좌의 코드 : ");
+    	int courseCode = sc.nextInt();
+    	
+    	System.out.print("추가할 강좌의 시간 : ");
+    	int courseTime = sc.nextInt();
+    	
+    	System.out.print("추가할 강좌의 학점 : ");
+    	int gradePoint = sc.nextInt();
+    	
+    	Course cou = new Course();
+    	List<Course> //리스트에 저장?
+    	
+    	Course newCourse = new Course(courseName, courseCode, courseTime, gradePoint );
+    	
+/*    	if (inputCourse != null) {
+    		this.courses.add(new Course(inputCourse, 0, 0, 0));
+   		System.out.println(inputCourse + "강좌 추가 완료");
+   		}else {
+    		System.out.println("잘못된 입력입니다.");
+    	}
+    }
+*/    
+    
+    
+ //강좌삭제
+    
+    
+    
+    
+    
+ //강좌수정
+    
+    
+
+
 	// 과
 	// =====================================================================================================================
 	// 추가
@@ -311,8 +356,7 @@ public class ManageUni {
 		 System.out.println("일치하는 교수를 찾을 수 없습니다.");
 		 return false;
     }
-
-    
+      
     // 교수 리스트 길이 반화 메서드
  	public int returnProfSize() {
  		return professors.size();
