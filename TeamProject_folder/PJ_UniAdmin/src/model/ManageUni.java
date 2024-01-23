@@ -34,15 +34,16 @@ public class ManageUni {
 		int courseTime = sc.nextInt();
 	}
 
-
-
-
 	// 강의
 	// =====================================================================================================================
 	// 추가
 
 	public void addLecture(String lectureName, int lectureNum, String lectureProf, int setMidscore, int setFinalScore,
 			int setAttendanceScore, int setProjectScore) {
+
+	}
+
+	public void deleteLecture() {
 
 	}
 

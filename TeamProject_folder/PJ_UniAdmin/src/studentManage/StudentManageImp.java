@@ -23,35 +23,34 @@ public class StudentManageImp implements StudentManage {
 
     @Override
     public void addStudent(ManageUni manageUni) {
-    	if(manageUni.returnDeptSize()<1) {
-    		System.out.println("학생을 추가하기 위해선 학과가 최소 1개 등록되어 있어야 합니다. 학과를 먼저 등록해주세요.");
-    		return;
-    	}
+        if (manageUni.returnDeptSize() < 1) {
+            System.out.println("학생을 추가하기 위해선 학과가 최소 1개 등록되어 있어야 합니다. 학과를 먼저 등록해주세요.");
+            return;
+        }
         Student newStudent = manageUni.createStd();
         manageUni.addStudent(newStudent);
-//        manageUni.printStudent();
+        // manageUni.printStudent();
 
     }
 
-    
     @Override
     public void updateStudent(ManageUni manageUni) {
-    	if(manageUni.returnStdSize()<1) {
-    		System.out.println("등록되어있는 학생이 없습니다. 학생을 먼저 등록해주세요.");
-    		return;
-    	}
+        if (manageUni.returnStdSize() < 1) {
+            System.out.println("등록되어있는 학생이 없습니다. 학생을 먼저 등록해주세요.");
+            return;
+        }
         ds.Display(manageUni, selectModel,
-                () -> ps.printBackNextUpdateExit(),  
-                () -> manageUni.updateStudent());   
+                () -> ps.printBackNextUpdateExit(),
+                () -> manageUni.updateStudent());
     }
 
     @Override
     public void deleteStudent(ManageUni manageUni) {
-    	if(manageUni.returnStdSize()<1) {
-    		System.out.println("등록되어있는 학생이 없습니다. 학생을 먼저 등록해주세요.");
-    		return;
-    	}
-    	ds.Display(manageUni, selectModel,
+        if (manageUni.returnStdSize() < 1) {
+            System.out.println("등록되어있는 학생이 없습니다. 학생을 먼저 등록해주세요.");
+            return;
+        }
+        ds.Display(manageUni, selectModel,
                 () -> ps.printBackNextDeleteExit(),
                 () -> manageUni.deleteStudent());
 

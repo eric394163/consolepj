@@ -18,6 +18,8 @@ public class LectureManageImp implements LectureMange {
     DisplayService ds = new DisplayServiceImp();
     PrintService ps = new PrintServiceImp();
 
+    private final int selectModel = 2;
+
     @Override
     public void addLecture(ManageUni manageUni) {
         ds.Display(manageUni, 1,
@@ -52,8 +54,9 @@ public class LectureManageImp implements LectureMange {
 
     @Override
     public void deleteLecture(ManageUni manageUni) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteLecture'");
+        ds.Display(manageUni, selectModel,
+                () -> ps.printBackNextDeleteExit(),
+                () -> manageUni.deleteLecture());
     }
 
 }

@@ -33,9 +33,9 @@ public class ProfessorManageImp implements ProfessorManage {
 
     @Override
     public void updateProfessor(ManageUni manageUni) {
-    	ds.Display(manageUni, selectModel,
-                () -> ps.printBackNextUpdateExit(),  
-                () -> manageUni.updateProfessor()); 
+        ds.Display(manageUni, selectModel,
+                () -> ps.printBackNextUpdateExit(),
+                () -> manageUni.updateProfessor());
     }
 
     @Override
