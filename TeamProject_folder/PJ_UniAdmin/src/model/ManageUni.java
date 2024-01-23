@@ -76,8 +76,13 @@ public class ManageUni {
 	// 추가
 	public void addDepartment(String inputDepartment) {
 		if (inputDepartment != null) {
-			this.departments.add(new Department(inputDepartment));
-			System.out.println(inputDepartment + "과 추가 완료");
+			Department newDepartment = new Department(inputDepartment);
+			if (!departments.contains(newDepartment)) {
+				this.departments.add(newDepartment);
+				System.out.println(inputDepartment + "과 추가 완료");
+			} else {
+				System.out.println("중복된 과");
+			}
 		} else {
 			System.out.println("잘못된 입력.");
 		}
