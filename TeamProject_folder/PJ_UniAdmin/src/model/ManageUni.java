@@ -1,9 +1,9 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class ManageUni {
 	private Scanner sc = new Scanner(System.in);
@@ -32,30 +32,10 @@ public class ManageUni {
 
 		System.out.print("추가할 강좌의 시간 : ");
 		int courseTime = sc.nextInt();
-
-		System.out.print("추가할 강좌의 학점 : ");
-		int gradePoint = sc.nextInt();
-
-		// Course cou = new Course();
-		// List<Course> //리스트에 저장?
-
-		// Course newCourse = new Course(courseName, courseCode, courseTime, gradePoint
-		// );
-
-		/*
-		 * if (inputCourse != null) {
-		 * this.courses.add(new Course(inputCourse, 0, 0, 0));
-		 * System.out.println(inputCourse + "강좌 추가 완료");
-		 * }else {
-		 * System.out.println("잘못된 입력입니다.");
-		 * }
-		 * }
-		 */
 	}
 
-	// 강좌삭제
 
-	// 강좌수정
+
 
 	// 강의
 	// =====================================================================================================================
@@ -392,10 +372,42 @@ public class ManageUni {
 		// 교수 이름, 교번, 연락처, 학과
 		System.out.print("성명 : ");
 		String profName = sc.next();
-		System.out.print("교번 : ");
-		int profNum = sc.nextInt();
-		System.out.print("연락처 : ");
-		String profPhoneNum = sc.next();
+
+		int profNum = 0;
+		while (true) {
+			try {
+				System.out.print("교번: ");
+				profNum = sc.nextInt();
+				sc.nextLine();
+
+				if (profNum < 100000) {
+					System.out.println("교번은 6자리 이상이어야합니다. 다시 입력해주세요.");
+					continue;
+				}
+
+				// 중복 확인하기(중복이 아닐 경우 탈출)
+				if (!isDupProf(profNum)) {
+					break;
+				}
+				System.out.println("이미 존재하는 교번입니다. 다시 입력해주세요. ");
+
+			} catch (Exception e) {
+				System.out.println("잘못된 입력입니다.");
+				sc.nextLine();
+			}
+		}
+		String profPhoneNum = "";
+		String pnPattern = "010-\\d{4}\\-\\d{4}"; // 정규 표현식
+		while (true) {
+			System.out.print("연락처 [ 예 : 010-0000-0000 ] : ");
+			profPhoneNum = sc.nextLine();
+
+			if (Pattern.matches(pnPattern, profPhoneNum)) {
+				break;
+			} else {
+				System.out.println("잘못된 연락처 형식입니다. 다시 입력하세요");
+			}
+		}
 		System.out.print("학과 : ");
 		String profDepartment = sc.next();
 
@@ -410,9 +422,7 @@ public class ManageUni {
 
 	// 추가
 	public void addProfessor(Professor newProfessor) {
-		if (isDupProf(newProfessor.getProfNum())) {
-			System.out.println("같은 교번의 교수가 존재합니다.");
-		} else if (newProfessor != null) {
+		if (newProfessor != null) {
 			this.professors.add(newProfessor);
 			System.out.println(newProfessor.getProfName() + " 교수 추가 완료");
 		} else {
@@ -431,12 +441,29 @@ public class ManageUni {
 			return;
 		}
 		// 새로운 교수 이름, 교번, 연락처, 학과
+		System.out.println("=======수정 내용=======");
 		System.out.print("성명 : ");
 		String profName = sc.next();
-		System.out.print("연락처 : ");
-		String profPhoneNum = sc.next();
+		String profPhoneNum = "";
+		String pnPattern = "010-\\d{4}\\-\\d{4}"; // 정규 표현식
+		while (true) {
+			System.out.print("연락처 [ 예 : 010-0000-0000 ] : ");
+			sc.nextLine();
+			profPhoneNum = sc.nextLine();
+
+			if (Pattern.matches(pnPattern, profPhoneNum)) {
+				break;
+			} else {
+				System.out.println("잘못된 연락처 형식입니다. 다시 입력하세요");
+			}
+		}
 		System.out.print("학과 : ");
 		String profDepartment = sc.next();
+
+		if (!isDupProf(updateProfessor.getProfNum())) { // 없으면
+			System.out.println("등록되지 않은 교수입니다.");
+			return;
+		}
 
 		Department Dep = new Department(profDepartment);
 		departments.add(Dep);
@@ -481,15 +508,16 @@ public class ManageUni {
 			}
 		}
 		// 일치하는 교수 없음
-		System.out.println("일치하는 교수를 찾을 수 없습니다.");
+		// System.out.println("일치하는 교수를 찾을 수 없습니다.");
 		return false;
 	}
 
 	// 교수 리스트 길이 반화 메서드
 	public int returnProfSize() {
 		return professors.size();
-
 	}
+
+	// 교수 리스트 길이 반화 메서드
 
 	// 교수 출력 메서드
 	public void printProfessor(int startIndex, int pageSize) {
