@@ -19,11 +19,11 @@ import service.print.PrintServiceImp;
 
 public class ProfessorManageImp implements ProfessorManage {
 
-	DisplayService ds = new DisplayServiceImp();
-	PrintService ps = new PrintServiceImp();
-	private Scanner sc = new Scanner(System.in);
-	private final int selectModel = 4;
-	
+    DisplayService ds = new DisplayServiceImp();
+    PrintService ps = new PrintServiceImp();
+    private Scanner sc = new Scanner(System.in);
+    private final int selectModel = 4;
+
     @Override
     public void addProfessor(ManageUni manageUni) {
         Professor newProfessor = manageUni.createProf();
@@ -33,26 +33,26 @@ public class ProfessorManageImp implements ProfessorManage {
 
     @Override
     public void updateProfessor(ManageUni manageUni) {
-    	/*
-    	manageUni.printProfessor();
-        System.out.print("수정할 교수 교번 : ");
-        int profNum = sc.nextInt();
-        if(manageUni.isDupProf(profNum)) { //있으면
-        	manageUni.updateProfessor(profNum);
-        	manageUni.printProfessor();
-        }else {							   //없으면
-        	System.out.println("등록되지 않은 교수입니다.");
-        }
-        */
-    	
-    	ds.Display(manageUni, selectModel,
-                () -> ps.printBackNextUpdateExit(),  
-                () -> manageUni.updateProfessor()); 
+        /*
+         * manageUni.printProfessor();
+         * System.out.print("수정할 교수 교번 : ");
+         * int profNum = sc.nextInt();
+         * if(manageUni.isDupProf(profNum)) { //있으면
+         * manageUni.updateProfessor(profNum);
+         * manageUni.printProfessor();
+         * }else { //없으면
+         * System.out.println("등록되지 않은 교수입니다.");
+         * }
+         */
+
+        ds.Display(manageUni, selectModel,
+                () -> ps.printBackNextUpdateExit(),
+                () -> manageUni.updateProfessor());
     }
 
     @Override
     public void deleteProfessor(ManageUni manageUni) {
-    	ds.Display(manageUni, selectModel,
+        ds.Display(manageUni, selectModel,
                 () -> ps.printBackNextDeleteExit(),
                 () -> manageUni.deleteProfessor());
     }
