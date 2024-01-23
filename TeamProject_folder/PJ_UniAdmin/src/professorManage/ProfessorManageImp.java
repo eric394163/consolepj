@@ -33,21 +33,9 @@ public class ProfessorManageImp implements ProfessorManage {
 
     @Override
     public void updateProfessor(ManageUni manageUni) {
-        /*
-         * manageUni.printProfessor();
-         * System.out.print("수정할 교수 교번 : ");
-         * int profNum = sc.nextInt();
-         * if(manageUni.isDupProf(profNum)) { //있으면
-         * manageUni.updateProfessor(profNum);
-         * manageUni.printProfessor();
-         * }else { //없으면
-         * System.out.println("등록되지 않은 교수입니다.");
-         * }
-         */
-
-        ds.Display(manageUni, selectModel,
-                () -> ps.printBackNextUpdateExit(),
-                () -> manageUni.updateProfessor());
+    	ds.Display(manageUni, selectModel,
+                () -> ps.printBackNextUpdateExit(),  
+                () -> manageUni.updateProfessor()); 
     }
 
     @Override
