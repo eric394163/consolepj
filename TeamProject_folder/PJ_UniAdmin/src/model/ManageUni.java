@@ -36,10 +36,18 @@ public class ManageUni {
 		System.out.print("추가할 강좌의 학점 : ");
 		int gradePoint = sc.nextInt();
 
+<<<<<<< HEAD
 		Course cou = new Course();
 		// List<Course>; //리스트에 저장?
 
 		Course newCourse = new Course(courseName, courseCode, courseTime, gradePoint);
+=======
+		// Course cou = new Course();
+		// List<Course> //리스트에 저장?
+
+		// Course newCourse = new Course(courseName, courseCode, courseTime, gradePoint
+		// );
+>>>>>>> ksh_lecture_add
 
 		/*
 		 * if (inputCourse != null) {
@@ -55,6 +63,23 @@ public class ManageUni {
 	// 강좌삭제
 
 	// 강좌수정
+<<<<<<< HEAD
+=======
+
+	// 강의
+	// =====================================================================================================================
+	// 추가
+
+	public void addLecture(String lectureName, int lectureNum, String lectureProf, int setMidscore, int setFinalScore,
+			int setAttendanceScore, int setProjectScore) {
+
+	}
+
+	public int returnLectSize() {
+		return lectures.size();
+
+	}
+>>>>>>> ksh_lecture_add
 
 	// 과
 	// =====================================================================================================================
@@ -107,6 +132,14 @@ public class ManageUni {
 		} else {
 			System.out.println("잘못된 입력");
 		}
+	}
+
+	// 선택
+	public Department selectDepartment() {
+		System.out.print("선택할 번호 입력 :");
+		int inputNum = sc.nextInt() - 1;
+		Department selectDepartment = departments.get(inputNum);
+		return selectDepartment;
 	}
 
 	// 과 리스트 길이 반화 메서드
