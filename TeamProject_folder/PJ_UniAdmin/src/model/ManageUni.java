@@ -412,8 +412,6 @@ public class ManageUni {
                 System.out.println("잘못된 연락처 형식입니다. 다시 입력하세요");
             }
         }
-//    	System.out.print("연락처 : ");
-//    	String profPhoneNum = sc.next();
     	System.out.print("학과 : ");
         String profDepartment = sc.next();
         
@@ -448,10 +446,22 @@ public class ManageUni {
         	return;
         }
 		//새로운 교수 이름, 교번, 연락처, 학과
+        System.out.println("=======수정 내용=======");
     	System.out.print("성명 : ");
     	String profName = sc.next();
-    	System.out.print("연락처 : ");
-    	String profPhoneNum = sc.next();
+    	String profPhoneNum = "";
+        String pnPattern = "010-\\d{4}\\-\\d{4}"; // 정규 표현식
+        while (true) {
+            System.out.print("연락처 [ 예 : 010-0000-0000 ] : ");
+            sc.nextLine();
+            profPhoneNum = sc.nextLine();
+
+            if (Pattern.matches(pnPattern, profPhoneNum)) {
+                break;
+            } else {
+                System.out.println("잘못된 연락처 형식입니다. 다시 입력하세요");
+            }
+        }
     	System.out.print("학과 : ");
         String profDepartment = sc.next();
 
