@@ -20,17 +20,18 @@ public class DisplayServiceImp implements DisplayService {
             if (selectModel == 1) { // 강좌
                 // manageUni.printDepartment(currentPage * pageSize, pageSize);
             } else if (selectModel == 2) { // 강의
-                // manageUni.printDepartment(currentPage * pageSize, pageSize);
+                totalPages = (manageUni.returnLectSize() + pageSize - 1) / pageSize;
+                print(currentPage, totalPages);
             } else if (selectModel == 3) { // 과
                 totalPages = (manageUni.returnDeptSize() + pageSize - 1) / pageSize;
                 print(currentPage, totalPages);
                 manageUni.printDepartment(currentPage * pageSize, pageSize);
             } else if (selectModel == 4) { // 교수
-            	totalPages = (manageUni.returnProfSize() + pageSize - 1) / pageSize;
+                totalPages = (manageUni.returnProfSize() + pageSize - 1) / pageSize;
                 print(currentPage, totalPages);
                 manageUni.printProfessor(currentPage * pageSize, pageSize);
             } else if (selectModel == 5) { // 학생
-               totalPages = (manageUni.returnStdSize() + pageSize - 1) / pageSize;
+                totalPages = (manageUni.returnStdSize() + pageSize - 1) / pageSize;
                 print(currentPage, totalPages);
                 manageUni.printStudent(currentPage * pageSize, pageSize);
             } else if (selectModel == 6) { // 수강
@@ -54,7 +55,7 @@ public class DisplayServiceImp implements DisplayService {
     }
 
     private void print(int currentPage, int totalPages) {
-        System.out.println("======= 관리 (페이지 " + (currentPage + 1) + " / " + totalPages
+        System.out.println("======= (페이지 " + (currentPage + 1) + " / " + totalPages
                 + ") ==========");
     }
 }

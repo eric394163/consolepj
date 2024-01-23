@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import courseManage.CourseManage;
 import departmentManage.DepartmentManage;
+import lectureManage.LectureMange;
 import model.ManageUni;
 import professorManage.ProfessorManage;
 import service.print.PrintService;
@@ -20,8 +21,10 @@ public class MainMenuRunImp implements MainMenuRun {
     private DepartmentManage dm;
     private StudentManage stm; // 학생 관리 클래스 추가
     private ProfessorManage pfm;
+    private LectureMange lm;
 
-    public MainMenuRunImp(ManageUni manageUni, PrintService ps, SelectMenu sm, CourseManage cm, DepartmentManage dm, StudentManage stm, ProfessorManage pfm) {
+    public MainMenuRunImp(ManageUni manageUni, PrintService ps, SelectMenu sm, CourseManage cm, DepartmentManage dm,
+            StudentManage stm, ProfessorManage pfm, LectureMange lm) {
         this.manageUni = manageUni;
         this.ps = ps;
         this.sm = sm;
@@ -29,6 +32,7 @@ public class MainMenuRunImp implements MainMenuRun {
         this.dm = dm;
         this.stm = stm;
         this.pfm = pfm;
+        this.lm = lm;
     }
 
     @Override
@@ -45,17 +49,24 @@ public class MainMenuRunImp implements MainMenuRun {
 
     @Override
     public void lectureManager() {
+        System.out.println("===== 강의 관리 =====");
+        ps.printAddUpdDel();
+        int input = sc.nextInt();
+        sm.selectMenu(input,
+                () -> lm.addLecture(manageUni),
+                () -> lm.updateLecture(manageUni),
+                () -> lm.deleteLecture(manageUni));
 
     }
 
     @Override
     public void professorManager() {
-    	System.out.println("===== 교수 관리 =====");
+        System.out.println("===== 교수 관리 =====");
         ps.printAddUpdDel();
         int input = sc.nextInt();
         sm.selectMenu(input,
-                () -> pfm.addProfessor(manageUni), 
-                () -> pfm.updateProfessor(manageUni), 
+                () -> pfm.addProfessor(manageUni),
+                () -> pfm.updateProfessor(manageUni),
                 () -> pfm.deleteProfessor(manageUni));
     }
 
