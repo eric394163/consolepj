@@ -28,7 +28,7 @@ public class LectureManageImp implements LectureMange {
         System.out.print("교수 목록");
         ds.Display(manageUni, 4,
                 () -> ps.printBackNextExit());
-        Professor selectProf = manageUni.selectProf();
+        Professor selectProf = manageUni.selectProfessor();
         String profName = selectProf.getProfName();
         System.out.print("중간고사 점수 : ");
         int middleScore = sc.nextInt();

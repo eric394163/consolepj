@@ -36,18 +36,11 @@ public class ManageUni {
 		System.out.print("추가할 강좌의 학점 : ");
 		int gradePoint = sc.nextInt();
 
-<<<<<<< HEAD
-		Course cou = new Course();
-		// List<Course>; //리스트에 저장?
-
-		Course newCourse = new Course(courseName, courseCode, courseTime, gradePoint);
-=======
 		// Course cou = new Course();
 		// List<Course> //리스트에 저장?
 
 		// Course newCourse = new Course(courseName, courseCode, courseTime, gradePoint
 		// );
->>>>>>> ksh_lecture_add
 
 		/*
 		 * if (inputCourse != null) {
@@ -63,8 +56,6 @@ public class ManageUni {
 	// 강좌삭제
 
 	// 강좌수정
-<<<<<<< HEAD
-=======
 
 	// 강의
 	// =====================================================================================================================
@@ -79,7 +70,6 @@ public class ManageUni {
 		return lectures.size();
 
 	}
->>>>>>> ksh_lecture_add
 
 	// 과
 	// =====================================================================================================================
@@ -383,6 +373,14 @@ public class ManageUni {
 
 	}
 
+	// 학생 선택
+	public Student selectStudent() {
+		System.out.print("선택할 번호 입력 :");
+		int inputNum = sc.nextInt() - 1;
+		Student student = students.get(inputNum);
+		return student;
+	}
+
 	// 교수
 	// =====================================================================================================
 	public Professor createProf() {
@@ -502,6 +500,14 @@ public class ManageUni {
 					(i + 1) + "." + "|| " + professor.getProfNum() + " || " + professor.getProfName() + " || "
 							+ professor.getProfDepartment() + " || " + professor.getProfPhoneNum());
 		}
+	}
+
+	// 교수 선택
+	public Professor selectProfessor() {
+		System.out.print("선택할 번호 입력 :");
+		int inputNum = sc.nextInt() - 1;
+		Professor professor = professors.get(inputNum);
+		return professor;
 	}
 
 }
