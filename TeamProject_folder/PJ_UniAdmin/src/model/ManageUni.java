@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import service.display.DisplayService;
+import service.display.DisplayServiceImp;
+
 public class ManageUni {
 	private Scanner sc = new Scanner(System.in);
 	// 스캐너 추가했는데 별로인지?? (학생 개체 생성 코드 때문에)
@@ -19,6 +22,7 @@ public class ManageUni {
 		this.departments = new ArrayList<>();
 		this.students = new ArrayList<Student>();
 		this.professors = new ArrayList<Professor>();
+		this.lectures = new ArrayList<Lecture>();
 	}
 
 	// 강좌추가
@@ -40,11 +44,90 @@ public class ManageUni {
 
 	public void addLecture(String lectureName, int lectureNum, String lectureProf, int setMidscore, int setFinalScore,
 			int setAttendanceScore, int setProjectScore) {
+		if (lectureNum != 0) {
+			Lecture newLectrue = new Lecture(lectureName, lectureNum, lectureProf, setMidscore, setFinalScore,
+					setAttendanceScore, setProjectScore);
+			if (!lectures.contains(newLectrue)) {
+				this.lectures.add(newLectrue);
+				System.out.println(lectureName + "강의 추가 완료");
+			} else {
+				System.out.println("중복된 강의");
+			}
 
+		} else {
+			System.out.println("잘못된 입력.");
+		}
+	}
+
+	public void updateLecture() {
+		System.out.print("수정할 번호 입력 : ");
+		int inputNum = sc.nextInt() - 1;
+		Lecture updateLecture = lectures.get(inputNum);
+
+		// Course selectCourse = manageUni.selectCourse();
+		// String lectureName = selectCourse.getCourseName();
+		// int lectureNum = selectCourse.getCourseNum();
+		String lectureName = "임시수정";
+		int lectureNum = 152;
+		System.out.print("교수 이름 : ");
+		String profName = sc.next();
+		System.out.print("중간고사 점수 : ");
+		int middleScore = sc.nextInt();
+		System.out.print("기말고사 점수 : ");
+		int fianlScore = sc.nextInt();
+		System.out.print("출석 점수 : ");
+		int attendanceScore = sc.nextInt();
+		System.out.print("과제 점수: ");
+		int projectScore = sc.nextInt();
+		Lecture newLecture = new Lecture(profName, inputNum, profName, middleScore, fianlScore, attendanceScore,
+				projectScore);
+		if (lectures.get(inputNum) != null && newLecture != null) {
+			for (int i = 0; i < lectures.size(); i++) {
+				if (lectures.get(i).getLectureName().equals(updateLecture.getLectureName())) {
+					lectures.set(i, newLecture);
+					System.out.println(
+							updateLecture.getLectureName() + "가 " + newLecture.getLectureName() + "으로 수정되었습니다.");
+					return;
+				}
+			}
+			System.out.println(updateLecture.getLectureName() + "와 일치하는 강의를 찾을 수 없습니다.");
+		} else {
+			System.out.println("잘못된 입력");
+		}
 	}
 
 	public void deleteLecture() {
+		System.out.print("삭제할 번호 입력 :");
+		int inputNum = sc.nextInt() - 1;
+		Lecture deleteLecture = lectures.get(inputNum);
 
+		if (deleteLecture != null) {
+			for (int i = 0; i < departments.size(); i++) {
+				if (lectures.get(i).getLectureName().equals(deleteLecture.getLectureName())) {
+					lectures.remove(i);
+					System.out.println(deleteLecture.getLectureName() + "가 삭제 되었습니다.");
+					return;
+				}
+			}
+			System.out.println(deleteLecture.getLectureName() + "와 일치하는 과를 찾을 수 없습니다.");
+		} else {
+			System.out.println("잘못된 입력");
+		}
+
+	}
+
+	public void printLecture(int startIndex, int pageSize) {
+		if (departments.isEmpty()) {
+			System.out.println("비어있음");
+			return;
+		}
+
+		int endIndex = Math.min(startIndex + pageSize, lectures.size());
+		for (int i = startIndex; i < endIndex; i++) {
+			Lecture lecture = lectures.get(i);
+			System.out.println(
+					(i + 1) + "." + "||" + lecture.getLectureName());
+		}
 	}
 
 	public int returnLectSize() {

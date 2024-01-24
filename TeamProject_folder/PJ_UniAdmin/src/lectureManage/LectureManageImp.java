@@ -22,12 +22,14 @@ public class LectureManageImp implements LectureMange {
 
     @Override
     public void addLecture(ManageUni manageUni) {
-        ds.Display(manageUni, 1,
-                () -> ps.printBackNextExit());
-        Course selectCourse = manageUni.selectCourse();
-        String lectureName = selectCourse.getCourseName();
-        int lectureNum = selectCourse.getCourseNum();
-        System.out.print("교수 목록");
+        // ds.Display(manageUni, 1,
+        // () -> ps.printBackNextExit());
+        // Course selectCourse = manageUni.selectCourse();
+        // String lectureName = selectCourse.getCourseName();
+        // int lectureNum = selectCourse.getCourseNum();
+        String lectureName = "임시";
+        int lectureNum = 152;
+        System.out.println("교수 목록");
         ds.Display(manageUni, 4,
                 () -> ps.printBackNextExit());
         Professor selectProf = manageUni.selectProfessor();
@@ -41,15 +43,16 @@ public class LectureManageImp implements LectureMange {
         System.out.print("과제 점수: ");
         int projectScore = sc.nextInt();
 
-        manageUni.addLecture(lectureName, lectureNum, lectureName, middleScore, fianlScore, attendanceScore,
+        manageUni.addLecture(lectureName, lectureNum, profName, middleScore, fianlScore, attendanceScore,
                 projectScore);
 
     }
 
     @Override
     public void updateLecture(ManageUni manageUni) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateLecture'");
+        ds.Display(manageUni, selectModel,
+                () -> ps.printBackNextUpdateExit(),
+                () -> manageUni.updateLecture());
     }
 
     @Override
