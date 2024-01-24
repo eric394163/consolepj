@@ -452,57 +452,7 @@ public class ManageUni {
 
 	// 교수
 	// =====================================================================================================
-	public Professor createProf() {
-		// 교수 이름, 교번, 연락처, 학과
-		System.out.print("성명 : ");
-		String profName = sc.next();
-
-		int profNum = 0;
-		while (true) {
-			try {
-				System.out.print("교번: ");
-				profNum = sc.nextInt();
-				sc.nextLine();
-
-				if (profNum < 100000) {
-					System.out.println("교번은 6자리 이상이어야합니다. 다시 입력해주세요.");
-					continue;
-				}
-
-				// 중복 확인하기(중복이 아닐 경우 탈출)
-				if (!isDupProf(profNum)) {
-					break;
-				}
-				System.out.println("이미 존재하는 교번입니다. 다시 입력해주세요. ");
-
-			} catch (Exception e) {
-				System.out.println("잘못된 입력입니다.");
-				sc.nextLine();
-			}
-		}
-		String profPhoneNum = "";
-		String pnPattern = "010-\\d{4}\\-\\d{4}"; // 정규 표현식
-		while (true) {
-			System.out.print("연락처 [ 예 : 010-0000-0000 ] : ");
-			profPhoneNum = sc.nextLine();
-
-			if (Pattern.matches(pnPattern, profPhoneNum)) {
-				break;
-			} else {
-				System.out.println("잘못된 연락처 형식입니다. 다시 입력하세요");
-			}
-		}
-		System.out.print("학과 : ");
-		String profDepartment = sc.next();
-
-		Department Dep = new Department(profDepartment);
-		departments.add(Dep);
-		List<Lecture> lectureList = new ArrayList<Lecture>();
-
-		Professor newProfessor = new Professor(profName, profPhoneNum, profDepartment, profNum, lectureList);
-
-		return newProfessor;
-	}
+	
 
 	// 추가
 	public void addProfessor(Professor newProfessor) {
