@@ -31,7 +31,7 @@ public class PrintServiceImp implements PrintService {
         System.out.println("===================================");
         System.out.println("[ 이전 : 1 ] [ 다음 : 2 ] [ 종료 : 0 ]");
         System.out.println("===================================");
-        System.out.print("입력 : ");
+        System.out.print("선택 : ");
 
     }
 
@@ -40,7 +40,7 @@ public class PrintServiceImp implements PrintService {
         System.out.println("================================================");
         System.out.println("[ 이전 : 1 ] [ 다음 : 2 ] [ 삭제 : 3 ] [ 종료 : 0 ]");
         System.out.println("================================================");
-        System.out.print("입력 : ");
+        System.out.print("선택 : ");
     }
 
     @Override
@@ -48,7 +48,7 @@ public class PrintServiceImp implements PrintService {
         System.out.println("================================================");
         System.out.println("[ 이전 : 1 ] [ 다음 : 2 ] [ 수정 : 3 ] [ 종료 : 0 ]");
         System.out.println("================================================");
-        System.out.print("입력 : ");
+        System.out.print("선택 : ");
     }
 
 }

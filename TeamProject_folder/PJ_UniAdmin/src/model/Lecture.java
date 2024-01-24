@@ -20,6 +20,10 @@ public class Lecture {
     int stdAttendancescore;
     int stdProjectScore;
 
+    public String getLectureName() {
+        return lectureName;
+    }
+
     // 학생관련 생성자
     public Lecture(String lectureName, int stdMidscore, int stdFinalscore, int stdAttendancescore,
             int stdProjectScore) {
