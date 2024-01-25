@@ -1,5 +1,8 @@
 package model;
 
+import lombok.Data;
+
+@Data
 public class Course {
     String courseName; // 강좌 이름
     int courseCode; // 강좌 코드
@@ -12,5 +15,6 @@ public class Course {
         this.courseTime = courseTime;
         this.gradePoint = gradePoint;
     }
+    
 
 }

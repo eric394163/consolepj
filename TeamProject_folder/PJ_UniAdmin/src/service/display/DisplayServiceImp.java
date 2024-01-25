@@ -18,7 +18,7 @@ public class DisplayServiceImp implements DisplayService {
         do {
 
             if (selectModel == 1) { // 강좌
-                // manageUni.printDepartment(currentPage * pageSize, pageSize);
+                manageUni.printCourse(currentPage * pageSize, pageSize);
             } else if (selectModel == 2) { // 강의
                 totalPages = (manageUni.returnLectSize() + pageSize - 1) / pageSize;
                 print(currentPage, totalPages);
