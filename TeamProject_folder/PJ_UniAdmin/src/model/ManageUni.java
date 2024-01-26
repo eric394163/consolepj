@@ -19,25 +19,115 @@ public class ManageUni {
 	private List<Department> departments;
 
 	public ManageUni() {
+		this.courses = new ArrayList<Course>();
 		this.departments = new ArrayList<>();
 		this.students = new ArrayList<Student>();
 		this.professors = new ArrayList<Professor>();
 		this.lectures = new ArrayList<Lecture>();
 	}
-
+	// 강좌
+	// =====================================================================================================================
 	// 강좌추가
+	public void addCourse(String courseName, int courseCode, int courseTime, int gradePoint) {
+		if (courseCode != 0) {
+			Course newCourse = new Course(courseName, courseCode, courseTime, gradePoint);
+			if (!courses.contains(newCourse)) {
+				this.courses.add(newCourse);
+				System.out.println(courseName + "강좌 추가 완료");
+			} else {
+				System.out.println("중복된 강좌");
+			}
 
-	public void addCourse(String inputCourse) {
-		System.out.print("추가할 강좌의 이름 : ");
+		} else {
+			System.out.println("잘못된 입력.");
+		}
+	}
+	
+	// 강좌수정
+	public void updateCourse() {
+		System.out.print("수정할 번호 입력 : ");
+		int inputNum = sc.nextInt() - 1;
+		Course updateCourse = courses.get(inputNum);
+		
+		if (!isDupCourse(updateCourse.getCourseCode())) { // 없으면
+			System.out.println("등록되지 않은 강좌입니다.");
+			return;
+		}
+		// 수정 내용 입력
+		System.out.println("=======수정 내용=======");
+		System.out.print("강좌명 : ");
 		String courseName = sc.next();
-
-		System.out.print("추가할 강좌의 코드 : ");
+		
+		System.out.print("강좌 코드 : ");
 		int courseCode = sc.nextInt();
 
-		System.out.print("추가할 강좌의 시간 : ");
+		System.out.print("강좌 시간 : ");
 		int courseTime = sc.nextInt();
+		
+		System.out.print("강좌 학점 : ");
+		int gradePoint = sc.nextInt();
+
+		if (!isDupCourse(updateCourse.getCourseCode())) { // 없으면
+			System.out.println("등록되지 않은 교수입니다.");
+			return;
+		}
+
+		courses.get(inputNum).setCourseName(courseName);
+		courses.get(inputNum).setCourseCode(courseCode);
+		courses.get(inputNum).setCourseTime(courseTime);
+		courses.get(inputNum).setGradePoint(gradePoint);
+	}
+	
+	// 강좌삭제
+	public void deleteCourse() {
+		System.out.print("삭제할 번호 입력 :");
+		int inputNum = sc.nextInt() - 1;
+		Course deleteCourse = courses.get(inputNum);
+		
+		if (isDupCourse(deleteCourse.getCourseCode())) { // 있으면
+			courses.remove(inputNum);
+			System.out.println(deleteCourse + "가 삭제 되었습니다.");
+			return;
+		} else {
+			System.out.println("잘못된 입력");
+		}
+	}
+	
+	public void printCourse(int startIndex, int pageSize) {
+		if (courses.isEmpty()) {
+			System.out.println("비어있음");
+			return;
+		}
+
+		int endIndex = Math.min(startIndex + pageSize, courses.size());
+		for (int i = startIndex; i < endIndex; i++) {
+			Course course = courses.get(i);
+			System.out.println(
+					(i + 1) + "." + "|| " + course.getCourseName() + " || " + course.getCourseCode() + " || " + course.getCourseTime() + "시간 || " + course.getGradePoint() + "학점");
+		}
 	}
 
+	public int returnCourseSize() {
+		return courses.size();
+
+	}
+	
+	public boolean isDupCourse(int courseCode) {
+		if (returnCourseSize() == 0) {
+			return false;
+		}
+		for (int i = 0; i < returnCourseSize(); i++) {
+			Course course = courses.get(i);
+			if (course.getCourseCode() == courseCode) { // 문자열이 아니므로 == 비교
+				// 일치하는 강좌 있음
+				return true;
+			}
+		}
+		// 일치하는 강좌 없음
+		// System.out.println("일치하는 강좌를 찾을 수 없습니다.");
+		return false;
+	}
+	
 	// 강의
 	// =====================================================================================================================
 	// 추가
@@ -452,57 +542,7 @@ public class ManageUni {
 
 	// 교수
 	// =====================================================================================================
-	public Professor createProf() {
-		// 교수 이름, 교번, 연락처, 학과
-		System.out.print("성명 : ");
-		String profName = sc.next();
-
-		int profNum = 0;
-		while (true) {
-			try {
-				System.out.print("교번: ");
-				profNum = sc.nextInt();
-				sc.nextLine();
-
-				if (profNum < 100000) {
-					System.out.println("교번은 6자리 이상이어야합니다. 다시 입력해주세요.");
-					continue;
-				}
-
-				// 중복 확인하기(중복이 아닐 경우 탈출)
-				if (!isDupProf(profNum)) {
-					break;
-				}
-				System.out.println("이미 존재하는 교번입니다. 다시 입력해주세요. ");
-
-			} catch (Exception e) {
-				System.out.println("잘못된 입력입니다.");
-				sc.nextLine();
-			}
-		}
-		String profPhoneNum = "";
-		String pnPattern = "010-\\d{4}\\-\\d{4}"; // 정규 표현식
-		while (true) {
-			System.out.print("연락처 [ 예 : 010-0000-0000 ] : ");
-			profPhoneNum = sc.nextLine();
-
-			if (Pattern.matches(pnPattern, profPhoneNum)) {
-				break;
-			} else {
-				System.out.println("잘못된 연락처 형식입니다. 다시 입력하세요");
-			}
-		}
-		System.out.print("학과 : ");
-		String profDepartment = sc.next();
-
-		Department Dep = new Department(profDepartment);
-		departments.add(Dep);
-		List<Lecture> lectureList = new ArrayList<Lecture>();
-
-		Professor newProfessor = new Professor(profName, profPhoneNum, profDepartment, profNum, lectureList);
-
-		return newProfessor;
-	}
+	
 
 	// 추가
 	public void addProfessor(Professor newProfessor) {
@@ -596,12 +636,11 @@ public class ManageUni {
 		return false;
 	}
 
-	// 교수 리스트 길이 반화 메서드
+	// 교수 리스트 길이 반환 메서드
 	public int returnProfSize() {
 		return professors.size();
 	}
 
-	// 교수 리스트 길이 반화 메서드
 
 	// 교수 출력 메서드
 	public void printProfessor(int startIndex, int pageSize) {
