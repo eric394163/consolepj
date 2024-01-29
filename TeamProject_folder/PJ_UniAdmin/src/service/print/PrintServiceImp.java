@@ -10,9 +10,7 @@ public class PrintServiceImp implements PrintService {
         System.out.println("3. 과 관리 ");
         System.out.println("4. 교수 관리 ");
         System.out.println("5. 학생 관리 ");
-        System.out.println("6. 수강 관리 ");
-        System.out.println("7. 조회 ");
-        System.out.println("8. 종료 ");
+        System.out.println("6. 종료 ");
         System.out.println("==================================");
         System.out.print("메뉴 선택  :");
     }

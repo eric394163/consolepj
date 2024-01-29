@@ -32,7 +32,7 @@ public class MainProgramImp implements MainProgram {
     private StudentManage stm; // 학생 관리 추가
     private ProfessorManage pfm;
     private LectureMange lm;
-    private int EXIT = 0;
+    private int EXIT = 6;
 
     // 서비스는 필요할때마다 호출해서 써도 된다. ( 서비스 클래스에는 멤버변수가 없기에 의존성 문제 없음 )
     public MainProgramImp() {
@@ -87,13 +87,8 @@ public class MainProgramImp implements MainProgram {
             case 5:
                 mr.studentManager();
                 break;
+
             case 6:
-                mr.lectureRegisManager();
-                break;
-            case 7:
-                mr.displayManager();
-                break;
-            case 8:
 
                 break;
             default:
