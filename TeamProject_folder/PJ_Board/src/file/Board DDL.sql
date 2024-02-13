@@ -31,14 +31,14 @@ CREATE TABLE `post` (
 	`p_date`	date not NULL,
 	`p_view`	int default 0 not NULL,
 	`p_b_num`	int NOT NULL,
-	`p_u_id`	varchar(13) NOT NULL,
+	`p_u_id`	varchar(13) NOT NULL
 );
 
 DROP TABLE IF EXISTS `category`;
 
 CREATE TABLE `category` (
 	`c_num`	int auto_increment NOT NULL primary key,
-	`c_name`	varchar(20) not null unique,
+	`c_name`	varchar(20) not null unique
 );
 
 DROP TABLE IF EXISTS `reply`;
@@ -48,7 +48,7 @@ CREATE TABLE `reply` (
 	`r_content`	text not NULL,
 	`r_date`	date not NULL,
 	`r_u_id`	varchar(13) NOT NULL,
-	`r_p_num`	int NOT NULL,
+	`r_p_num`	int NOT NULL
 );
 
 ALTER TABLE `Board` ADD CONSTRAINT `FK_category_TO_Board_1` FOREIGN KEY (
