@@ -9,13 +9,15 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import db.LoginDB;
+import model.User;
 
 public class LoginServiceImp implements LoginService {
 
     private LoginDB logindb;
+    private User user;
 
     public LoginServiceImp() {
-        String resource = "src/config/mybatis-config.xml";
+        String resource = "config/mybatis-config.xml";
         InputStream inputStream;
         SqlSession session;
         try {
@@ -28,6 +30,12 @@ public class LoginServiceImp implements LoginService {
         }
     }
 
-    
+    public boolean validateLogin(String userId, String userPw) {
+        user = logindb.findUserById(userId);
+        if (user != null && user.getUPw().equals(userPw)) {
 
+            return true;
+        }
+        return false;
+    }
 }
