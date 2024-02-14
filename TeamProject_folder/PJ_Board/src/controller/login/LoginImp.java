@@ -33,6 +33,14 @@ public class LoginImp implements Login {
                 break;
             }
 
+            if (ls.validateLogin(inputId, inputPw)) {
+                System.out.println("로그인성공");
+                break;
+            } else {
+                System.out.println("로그인 실패");
+                continue;
+            }
+
         }
 
     }
