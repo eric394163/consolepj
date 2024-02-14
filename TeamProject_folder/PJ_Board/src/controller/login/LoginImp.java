@@ -2,8 +2,12 @@ package controller.login;
 
 import java.util.Scanner;
 
+import service.login.LoginService;
+import service.login.LoginServiceImp;
+
 public class LoginImp implements Login {
     private Scanner sc = new Scanner(System.in);
+    private LoginService ls = new LoginServiceImp();
 
     @Override
     public void run() {
@@ -17,15 +21,19 @@ public class LoginImp implements Login {
             if (inputId.equals("1")) {
                 continue;
             }
+            if (inputId.equals("0")) {
+                break;
+            }
             System.out.print("비밀번호 입력 :");
             inputPw = sc.next();
             if (inputPw.equals("1")) {
                 continue;
             }
-
-
-            //로그인이 성공하면 break로 뒤로가기 
+            if (inputId.equals("0")) {
+                break;
+            }
 
         }
+
     }
 }
