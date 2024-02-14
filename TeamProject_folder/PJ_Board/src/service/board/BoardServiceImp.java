@@ -1,4 +1,4 @@
-package service.category;
+package service.board;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,14 +9,15 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import db.BoardDB;
 import db.CategoryDB;
-import model.Category;
+import model.Board;
 
-public class CategoryServiceImp implements CategoryService {
+public class BoardServiceImp implements BoardService {
 	
-	private CategoryDB categorydb;
+	private BoardDB boarddb;
 	
-	public CategoryServiceImp(){
+	public BoardServiceImp(){
 		String resource = "src/config/mybatis-config.xml";
 		
 		InputStream inputStream;
@@ -26,17 +27,16 @@ public class CategoryServiceImp implements CategoryService {
 			inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			session = sessionFactory.openSession(true);
-			categorydb = session.getMapper(CategoryDB.class);
+			boarddb = session.getMapper(BoardDB.class);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		
 	}
-	
 	@Override
-	public ArrayList<Category> selectCategory() {
-		return categorydb.selectCategory();
+	public ArrayList<Board> selectBoard(int c_num) {
+		return boarddb.selectBoard(c_num);
 	}
-	
+
 }

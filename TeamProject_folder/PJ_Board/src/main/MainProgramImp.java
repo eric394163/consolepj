@@ -2,8 +2,8 @@ package main;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import controller.board.BoardPage;
-import controller.board.BoardPageImp;
+import controller.board.BoardListPage;
+import controller.board.BoardListPageImp;
 import controller.login.LoginPage;
 import controller.login.LoginPageImp;
 import controller.mypage.MyPage;
@@ -17,7 +17,7 @@ public class MainProgramImp implements MainProgram {
     private SelectMenu sm = new SelectMenuImp();
 
     private LoginPage loginpage = new LoginPageImp();
-    private BoardPage board = new BoardPageImp();
+    private BoardListPage board = new BoardListPageImp();
     private MyPage mypage = new MyPageImp();
 
     private final int EXIT = 0;
