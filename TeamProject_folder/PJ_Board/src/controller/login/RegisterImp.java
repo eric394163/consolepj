@@ -17,6 +17,9 @@ public class RegisterImp implements Register {
 	    	
 	    	System.out.print("본명 입력 : ");
 	    	String name = sc.next();
+	    	if(name.equals("0")) {
+	    		return;
+	    	}
 	    	System.out.print("아이디 입력 : ");
 	    	
 	    	System.out.print("비밀번호 입력 : ");
