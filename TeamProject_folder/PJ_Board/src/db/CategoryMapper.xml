@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="src.db.BoarDB">
+	<!-- 
+	# 게시판 관리 프로그램에 필요한 쿼리문
+
+	# 카테고리 조회		=====================================
+	# c_num 오름차순(등록순)
+	SELECT CONCAT("---", c_name, "---") as "카테고리 명" FROM category	# 카테고리명 양 옆에 '--'를 붙여서 카테고리명 처럼 보이게 함...
+		ORDER BY c_num ASC;
+	    
+	 -->
+
+
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="src.db.BoarDB">
+	<!-- 
+	# 게시판 관리 프로그램에 필요한 쿼리문
+	
+	# 게시글 조회		=====================================
+	# 전체 게시글 조회 (등록 날짜 순서대로)
+	SELECT p_title as "제목", p_u_id as 작성자, p_date as 작성일, p_view as 조회수
+		FROM post
+	    JOIN board ON p_b_num = b_num
+	    ORDER BY p_date;
+	
+	# 특정 카테고리와 게시판의 게시글 조회 (자유 게시판)
+	SELECT p_title as "제목", p_u_id as 작성자, p_date as 작성일, p_view as 조회수
+		FROM 
+			(SELECT * FROM board
+	        WHERE b_name = "자유 게시판") as bo_sub
+	    JOIN post ON p_b_num = b_num
+	    ORDER BY p_date;
+	 -->
+
+
+</mapper>

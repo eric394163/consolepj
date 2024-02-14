@@ -19,6 +19,7 @@ public class BoardPageImp implements BoardPage {
         // 반복
         do {
             // 카테고리와 해당 카테고리 게시판 보여주기
+        	// 일단 mybatis 작동 확인을 위해 카테고리만 출력해보겠음!
 
             try {
                 // 카테고리 이름과 해당 카테고리 번호 입력
