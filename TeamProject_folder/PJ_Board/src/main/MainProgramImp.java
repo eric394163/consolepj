@@ -9,8 +9,9 @@ import controller.admin.CategoryManagePage;
 import controller.admin.CategoryManagePageImp;
 import controller.admin.UserManagePage;
 import controller.admin.UserManagePageImp;
-import controller.board.BoardPage;
 import controller.board.BoardPageImp;
+import controller.board.BoardListPage;
+import controller.board.BoardListPageImp;
 import controller.login.LoginPage;
 import controller.login.LoginPageImp;
 import controller.mypage.MyPage;
@@ -26,7 +27,7 @@ public class MainProgramImp implements MainProgram {
     private SelectMenu sm = new SelectMenuImp();
 
     private LoginPage loginpage;
-    private BoardPage board;
+    private BoardListPage board;
     private MyPage mypage;
     private UserManager uManager;
     private CategoryManagePage cmPage = new CategoryManagePageImp();
@@ -40,7 +41,7 @@ public class MainProgramImp implements MainProgram {
     public MainProgramImp() {
         this.uManager = new UserManager();
         this.mypage = new MyPageImp(uManager);
-        this.board = new BoardPageImp(uManager);
+        this.board = new BoardListPageImp(uManager);
         this.loginpage = new LoginPageImp(uManager);
 
     }

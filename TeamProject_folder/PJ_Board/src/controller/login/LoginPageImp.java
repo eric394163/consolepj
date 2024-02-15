@@ -43,6 +43,7 @@ public class LoginPageImp implements LoginPage {
                 if (input == 0) {
                     break;
                 }
+                sc.nextLine();
                 // 메뉴 실행
                 sm.selectMenu(input,
                         () -> login.run(),

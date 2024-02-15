@@ -14,5 +14,29 @@
         SET c_name = #{newCategoryName}
         WHERE c_name = #{oldCategoryName};
     </update>
+	<!-- 
+	# 게시판 관리 프로그램에 필요한 쿼리문
+
+	# 카테고리 조회		=====================================
+	# c_num 오름차순(등록순)
+	SELECT CONCAT("===", c_name, "===") as "카테고리 명" FROM category	# 카테고리명 양 옆에 '==='를 붙여서 카테고리명 처럼 보이게 함...
+		ORDER BY c_num ASC;
+	    
+	 -->
+	 <select id ="selectCategory" resultType="model.Category">
+	 	select * from category order by c_num
+	 </select>
+	 
+	 <!--  
+	 <select id ="isCategory" resultType="">
+	 	select * from category where c_name = #{c_name}
+	 </select>
+	 -->
+	 
+	 <!--  
+	 <select id="getCategoryList" resultType="model.category"> 
+		 select c_name from category where c_num = #{c_num}
+	 </select>
+	-->
 
 </mapper>

@@ -7,7 +7,7 @@ import manager.UserManager;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
-public class BoardPageImp implements BoardPage {
+public class BoardPageImp implements BoardListPage {
 
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
