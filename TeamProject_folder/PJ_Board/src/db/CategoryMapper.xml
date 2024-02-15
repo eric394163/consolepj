@@ -4,6 +4,15 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="db.CategoryDB">
     <insert id="addCategory" parameterType="String" >
-        INSERT INTO category(c_name) VALUE(#{categoryName});
+        INSERT INTO category(c_name) VALUE(#{categoryName})
     </insert>
+    <select id="getAllCategory" resultType="model.Category">
+        SELECT * FROM category
+    </select>
+    <update id="updateCategory" parameterType="map" >
+        UPDATE category
+        SET c_name = #{newCategoryName}
+        WHERE c_name = #{oldCategoryName};
+    </update>
+
 </mapper>

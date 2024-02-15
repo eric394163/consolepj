@@ -11,7 +11,7 @@ public class CategoryManagePageImp implements CategoryManagePage {
 
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
-    private CategoryManage cm = new CategoryManageImp();
+    private CategoryManage cm;
 
     @Override
     public void run() {

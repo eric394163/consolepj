@@ -2,8 +2,7 @@ package service.category;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -11,15 +10,13 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import db.CategoryDB;
-
 import model.Category;
 
-public class CategoryManageServiceImp implements CategoryManageService {
+public class CategoryServiceImp implements CategoryService {
 
     private CategoryDB categoryDB;
-    private Category category;
 
-    public CategoryManageServiceImp() {
+    public CategoryServiceImp() {
         String resource = "config/mybatis-config.xml";
         InputStream inputStream;
         SqlSession session;
@@ -34,23 +31,8 @@ public class CategoryManageServiceImp implements CategoryManageService {
     }
 
     @Override
-    public void add(String inputCategoryName) {
-
-        categoryDB.addCategory(inputCategoryName);
-    }
-
-    @Override
-    public void delete() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-
-    @Override
-    public void update(String inputCategoryName, String inputUpdateCategoryName) {
-        Map<String, Object> params = new HashMap<>();
-        params.put("oldCategoryName", inputCategoryName);
-        params.put("newCategoryName", inputUpdateCategoryName);
-        categoryDB.updateCategory(params);
+    public List<Category> getAllCategory() {
+        return categoryDB.getAllCategory();
     }
 
 }

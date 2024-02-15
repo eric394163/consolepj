@@ -42,19 +42,19 @@ public class MainProgramImp implements MainProgram {
         this.mypage = new MyPageImp(uManager);
         this.board = new BoardPageImp(uManager);
         this.loginpage = new LoginPageImp(uManager);
+
     }
 
     @Override
     public void mainRun() {
-        user = uManager.getCurrentUser();
         int input = 0;
         // 반복
         do {
-
+            user = uManager.getCurrentUser();
+            System.out.println(user);
             if (user != null && user.getUAdmin() == 1) {
                 printAdminMenu();
             } else {
-
                 printUserMenu();
             }
 
@@ -86,7 +86,7 @@ public class MainProgramImp implements MainProgram {
     }
 
     private void printAdminMenu() {
-        System.out.println("========== 게시판 프로그램 ==========");
+        System.out.println("============ 관리자 메뉴 ============");
         System.out.println("1. 카테고리 관리");
         System.out.println("2. 게시판 관리"); // 해당 게시판에서 공시사항 작성하기
         System.out.println("3. 회원 관리");
@@ -97,7 +97,7 @@ public class MainProgramImp implements MainProgram {
     }
 
     private void printUserMenu() {
-        System.out.println("============ 관리자 메뉴 ============");
+        System.out.println("========== 게시판 프로그램 ==========");
         System.out.println("1. 로그인");
         System.out.println("2. 게시판");
         System.out.println("3. 마이페이지");
