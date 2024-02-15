@@ -2,6 +2,13 @@ package main;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import controller.admin.BoardManagePage;
+import controller.admin.BoardManagePageImp;
+import controller.admin.CategoryManagePage;
+import controller.admin.CategoryManagePageImp;
+import controller.admin.UserManagePage;
+import controller.admin.UserManagePageImp;
 import controller.board.BoardPage;
 import controller.board.BoardPageImp;
 import controller.login.LoginPage;
@@ -22,6 +29,9 @@ public class MainProgramImp implements MainProgram {
     private BoardPage board;
     private MyPage mypage;
     private UserManager uManager;
+    private CategoryManagePage cmPage = new CategoryManagePageImp();
+    private BoardManagePage bmPage = new BoardManagePageImp();
+    private UserManagePage umPage = new UserManagePageImp();
 
     private User user;
 
@@ -36,53 +46,62 @@ public class MainProgramImp implements MainProgram {
 
     @Override
     public void mainRun() {
+        user = uManager.getCurrentUser();
         int input = 0;
         // 반복
         do {
-            // 메뉴 출력
-            // 만약 일반 유저이면
-            System.out.println(uManager.getCurrentUser());
-            System.out.println("========== 게시판 프로그램 ==========");
-            System.out.println("1. 로그인");
-            System.out.println("2. 게시판");
-            System.out.println("3. 마이페이지");
-            System.out.println("4. 로그아웃");
-            System.out.println("0. 프로그램 종료");
-            System.out.println("====================================");
-            System.out.print("입력 :");
 
-            // 관리자이면
-            // System.out.println("========== 게시판 프로그램 ==========");
-            // System.out.println("1. 카테고리 관리");
-            // System.out.println("2. 게시판 관리"); //해당 게시판에서 공시사항 작성하기
-            // System.out.println("3. 회원 관리");
-            // System.out.println("4. 로그아웃");
-            // System.out.println("0. 프로그램 종료");
-            // System.out.println("====================================");
-            // System.out.print("입력 :");
+            if (user.getUAdmin() == 0) {
+                printUserMenu();
+            } else {
+                printAdminMenu();
+            }
 
             try {
                 // 메뉴 선택
                 input = sc.nextInt();
 
-                // 일반 유저이면
-                sm.selectMenu(input,
-                        () -> loginpage.run(),
-                        () -> board.run(),
-                        () -> mypage.run()); // 로그아웃 메서드 추가
+                if (user.getUAdmin() == 0) {
+                    sm.selectMenu(input,
+                            () -> loginpage.run(),
+                            () -> board.run(),
+                            () -> mypage.run()); // 로그아웃 메서드 추가
+                } else {
+                    sm.selectMenu(input,
+                            () -> cmPage.run(),
+                            () -> bmPage.run(),
+                            () -> umPage.run());
 
-                // 관리자이면
-                // sm.selectMenu(input,
-                // () -> 카테고리관리.run(),
-                // () -> 게시판관리.run(),
-                // () -> 회원관리.run());
-                // //로그아웃 메서드
+                }
+
             } catch (InputMismatchException e) {
                 System.out.println("잘못된 메뉴입니다.");
                 sc.nextLine();
             }
         } while (input != EXIT);
 
+    }
+
+    private void printAdminMenu() {
+        System.out.println("========== 게시판 프로그램 ==========");
+        System.out.println("1. 카테고리 관리");
+        System.out.println("2. 게시판 관리"); // 해당 게시판에서 공시사항 작성하기
+        System.out.println("3. 회원 관리");
+        System.out.println("4. 로그아웃");
+        System.out.println("0. 프로그램 종료");
+        System.out.println("====================================");
+        System.out.print("입력 :");
+    }
+
+    private void printUserMenu() {
+        System.out.println("========== 게시판 프로그램 ==========");
+        System.out.println("1. 로그인");
+        System.out.println("2. 게시판");
+        System.out.println("3. 마이페이지");
+        System.out.println("4. 로그아웃");
+        System.out.println("0. 프로그램 종료");
+        System.out.println("====================================");
+        System.out.print("입력 :");
     }
 
 }

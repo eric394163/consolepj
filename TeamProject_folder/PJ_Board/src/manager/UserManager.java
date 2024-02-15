@@ -9,7 +9,7 @@ public class UserManager {
     public UserManager() {
     }
 
-    public static UserManager getInstance() {
+    public static UserManager getUserManager() {
         if (userManager == null) {
             userManager = new UserManager();
         }
