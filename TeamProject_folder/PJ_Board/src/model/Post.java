@@ -36,6 +36,12 @@ public class Post {
 	public String getP_u_id() {
 		return p_u_id;
 	}
+	
+	@Override 
+	public String toString(){
+		// (게시글 제목) + (작성자) + [(댓글 갯수)] + 작성잘짜 + 조회수
+		return p_title + "\t" + p_u_id + "\t" + p_date + "\t" + p_view;
+	}
 
     
 }

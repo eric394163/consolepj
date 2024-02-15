@@ -6,7 +6,20 @@ select * from user;
 -- "이모 저모" 게시판의 게시글
 INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "오늘 먹은 거 자랑", "오늘 아침 삼겹살 점심 햄버거 저녁 소곱창 먹었음\n(사진)\n(사진)\n(사진)\n\n번개모임 하길 잘한듯~!", "2024-01-23", "qwerty123");	
 INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "소곱창 먹기 번개모임 후기", "아 요새 계속 소곱창 먹고 싶었는데 같이 먹을 사람이 없어서 이 카페 사람들이랑 모였다\n역시 소곱창은 사람이 많아야 존마탱!\n(사진)\n(사진)\n(사진)\n(사진)\n(사진)", "2024-01-23", "qwerty123");	
-INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "연남동 맛집 공유", "1. 연어무한리필집\n(사진)\n가격: 1인당 23000원\n맛: 맛있음\n짧은 후기: 얼어붙은 경제 속 안식처\n\n2. 돈부리\n(사진)\n가격: 좀 비쌈\n맛: 기대 이상\n짧은 후기: 웨이팅 좀 있어서 일찍 가야함\n\n", "2024-02-10", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "연남동 맛집 공유", "1. 연어무한리필집\n(사진)\n가격: 1인당 23000원\n맛: 맛있음\n짧은 후기: 얼어붙은 경제 속 안식처\n\n2. 돈부리\n(사진)\n가격: 좀 비쌈\n맛: 기대 이상\n짧은 후기: 웨이팅 좀 있어서 일찍 가야함\n\n", "2024-02-10", "qwerty123");
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 1", "자유 게시판 TEST 1", "2024-01-23", "qwerty123");
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 2", "자유 게시판 TEST 2", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 3", "자유 게시판 TEST 3", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 4", "자유 게시판 TEST 4", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 5", "자유 게시판 TEST 5", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 6", "자유 게시판 TEST 6", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 7", "자유 게시판 TEST 7", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 8", "자유 게시판 TEST 8", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 9", "자유 게시판 TEST 9", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 10", "자유 게시판 TEST 10", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 11", "자유 게시판 TEST 11", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 12", "자유 게시판 TEST 12", "2024-01-23", "qwerty123");	
+INSERT INTO post(p_b_num, p_title, p_content, p_date, p_u_id) VALUE(1, "자유 게시판 TEST 13", "자유 게시판 TEST 13", "2024-01-23", "qwerty123");	
 
 -- "취미 게시판" 카테고리
 -- "뜨개질" 게시판의 게시글
