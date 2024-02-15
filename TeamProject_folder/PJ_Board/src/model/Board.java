@@ -1,27 +1,21 @@
 package model;
 
 public class Board {
-    private int bNum; // 게시판 번호
-    private String bName; // 게시판 이름
-    private int bCNum; // 속한 카테고리 번호
+    private int b_num; // 게시판 번호
+    private String b_name; // 게시판 이름
+    private int b_c_num; // 속한 카테고리 번호
+    
+    public Board(){}
     
 	public int getbNum() {
-		return bNum;
+		return b_num;
 	}
-	public void setbNum(int bNum) {
-		this.bNum = bNum;
-	}
+
 	public String getbName() {
-		return bName;
+		return b_name;
 	}
-	public void setbName(String bName) {
-		this.bName = bName;
-	}
-	public int getbCNum() {
-		return bCNum;
-	}
-	public void setbCNum(int bCNum) {
-		this.bCNum = bCNum;
+	int getbCNum() {
+		return b_c_num;
 	}
 
   

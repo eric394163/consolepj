@@ -35,6 +35,7 @@ public class LoginPageImp implements LoginPage {
             try {
                 // 메뉴 선택
                 input = sc.nextInt();
+                sc.nextLine();
                 // 메뉴 실행
                 sm.selectMenu(input,
                         () -> login.run(),

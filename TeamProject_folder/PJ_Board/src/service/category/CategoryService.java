@@ -6,4 +6,6 @@ import model.Category;
 
 public interface CategoryService {
 	public ArrayList<Category> selectCategory();
+	
+//	public boolean isCategory(String categoryInput);
 }

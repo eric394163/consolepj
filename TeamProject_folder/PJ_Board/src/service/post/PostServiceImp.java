@@ -1,4 +1,4 @@
-package service.category;
+package service.post;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,14 +9,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import db.CategoryDB;
-import model.Category;
+import db.PostDB;
+import model.Post;
 
-public class CategoryServiceImp implements CategoryService {
+public class PostServiceImp implements PostService {
 	
-	private CategoryDB categorydb;
+	private PostDB postdb;
 	
-	public CategoryServiceImp(){
+	public PostServiceImp(){
 		String resource = "config/mybatis-config.xml";
 		
 		InputStream inputStream;
@@ -26,7 +26,7 @@ public class CategoryServiceImp implements CategoryService {
 			inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			session = sessionFactory.openSession(true);
-			categorydb = session.getMapper(CategoryDB.class);
+			postdb = session.getMapper(PostDB.class);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -34,15 +34,12 @@ public class CategoryServiceImp implements CategoryService {
 		
 	}
 	
+
 	@Override
-	public ArrayList<Category> selectCategory() {
-		return categorydb.selectCategory();
+	public ArrayList<Post> selectPostList(int selectedBnum) {
+		return postdb.selectPostList(selectedBnum);
 	}
-//
-//	@Override
-//	public boolean isCategory(String categoryInput) {
-//		// TODO Auto-generated method stub
-//		return categorydb.isCategory(categoryInput);
-//	}
+
+
 	
 }

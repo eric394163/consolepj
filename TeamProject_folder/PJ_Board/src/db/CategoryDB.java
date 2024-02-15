@@ -10,5 +10,7 @@ public interface CategoryDB {
 	
 	// 카테고리 목록을 리턴하는 메서드
 	ArrayList<Category> selectCategory();
+
+	boolean isCategory(@Param("c_name")String c_num);
 	
 }

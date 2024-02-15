@@ -18,7 +18,7 @@ public class BoardServiceImp implements BoardService {
 	private BoardDB boarddb;
 	
 	public BoardServiceImp(){
-		String resource = "src/config/mybatis-config.xml";
+		String resource = "config/mybatis-config.xml";
 		
 		InputStream inputStream;
 		SqlSession session;
@@ -38,5 +38,9 @@ public class BoardServiceImp implements BoardService {
 	public ArrayList<Board> selectBoard(int c_num) {
 		return boarddb.selectBoard(c_num);
 	}
+//	@Override
+//	public boolean isBoard(String categoryInput) {
+//		return boarddb.isBoard(categoryInput);
+//	}
 
 }
