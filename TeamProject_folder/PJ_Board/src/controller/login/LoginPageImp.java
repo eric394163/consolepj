@@ -3,6 +3,7 @@ package controller.login;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import manager.UserManager;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -10,12 +11,16 @@ public class LoginPageImp implements LoginPage {
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
 
-    private Login login = new LoginImp();
-    private Register register = new RegisterImp();
-    private FindID findid = new FindIDImp();
-    private FindPW findpw = new FindPWImp();
+    private Login login;
+    private Register register;
+    private FindID findid;
+    private FindPW findpw;
 
     private final int EXIT = 0;
+
+    public LoginPageImp(UserManager uManager) {
+        this.login = new LoginImp(uManager);
+    }
 
     @Override
     public void run() {
@@ -35,6 +40,9 @@ public class LoginPageImp implements LoginPage {
             try {
                 // 메뉴 선택
                 input = sc.nextInt();
+                if (input == 0) {
+                    break;
+                }
                 // 메뉴 실행
                 sm.selectMenu(input,
                         () -> login.run(),

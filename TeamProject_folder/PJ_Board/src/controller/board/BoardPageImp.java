@@ -3,6 +3,7 @@ package controller.board;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import manager.UserManager;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -12,6 +13,10 @@ public class BoardPageImp implements BoardPage {
     private SelectMenu sm = new SelectMenuImp();
 
     private final int EXIT = 0;
+
+    public BoardPageImp(UserManager uManager) {
+        //TODO Auto-generated constructor stub
+    }
 
     @Override
     public void run() {
