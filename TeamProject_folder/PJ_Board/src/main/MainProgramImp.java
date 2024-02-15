@@ -8,6 +8,8 @@ import controller.login.LoginPage;
 import controller.login.LoginPageImp;
 import controller.mypage.MyPage;
 import controller.mypage.MyPageImp;
+import manager.UserManager;
+import model.User;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -16,14 +18,20 @@ public class MainProgramImp implements MainProgram {
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
 
-    private LoginPage loginpage = new LoginPageImp();
-    private BoardPage board = new BoardPageImp();
-    private MyPage mypage = new MyPageImp();
+    private LoginPage loginpage;
+    private BoardPage board;
+    private MyPage mypage;
+    private UserManager uManager;
+
+    private User user;
 
     private final int EXIT = 0;
 
     public MainProgramImp() {
-
+        this.uManager = new UserManager();
+        this.mypage = new MyPageImp(uManager);
+        this.board = new BoardPageImp(uManager);
+        this.loginpage = new LoginPageImp(uManager);
     }
 
     @Override
@@ -33,6 +41,7 @@ public class MainProgramImp implements MainProgram {
         do {
             // 메뉴 출력
             // 만약 일반 유저이면
+            System.out.println(uManager.getCurrentUser());
             System.out.println("========== 게시판 프로그램 ==========");
             System.out.println("1. 로그인");
             System.out.println("2. 게시판");
@@ -61,7 +70,6 @@ public class MainProgramImp implements MainProgram {
                         () -> loginpage.run(),
                         () -> board.run(),
                         () -> mypage.run()); // 로그아웃 메서드 추가
-                
 
                 // 관리자이면
                 // sm.selectMenu(input,
