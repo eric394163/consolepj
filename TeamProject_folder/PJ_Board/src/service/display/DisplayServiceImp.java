@@ -26,7 +26,7 @@ public class DisplayServiceImp implements DisplayService {
                 currentPage--;
             } else if (input == 2 && currentPage < totalPages - 1) {
                 currentPage++;
-            } else if (input == 3) { // 수정, 삭제
+            } else if (input == 3) { // 조회
                 methods[1].run();
             }
         } while (input != EXIT);
