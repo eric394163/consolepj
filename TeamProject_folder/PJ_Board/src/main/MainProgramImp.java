@@ -51,26 +51,29 @@ public class MainProgramImp implements MainProgram {
         // 반복
         do {
 
-            if (user.getUAdmin() == 0) {
-                printUserMenu();
-            } else {
+            if (user != null && user.getUAdmin() == 1) {
                 printAdminMenu();
+            } else {
+
+                printUserMenu();
             }
 
             try {
                 // 메뉴 선택
                 input = sc.nextInt();
 
-                if (user.getUAdmin() == 0) {
-                    sm.selectMenu(input,
-                            () -> loginpage.run(),
-                            () -> board.run(),
-                            () -> mypage.run()); // 로그아웃 메서드 추가
-                } else {
+                if (user != null && user.getUAdmin() == 1) {
+
                     sm.selectMenu(input,
                             () -> cmPage.run(),
                             () -> bmPage.run(),
                             () -> umPage.run());
+
+                } else {
+                    sm.selectMenu(input,
+                            () -> loginpage.run(),
+                            () -> board.run(),
+                            () -> mypage.run()); // 로그아웃 메서드 추가
 
                 }
 
@@ -94,7 +97,7 @@ public class MainProgramImp implements MainProgram {
     }
 
     private void printUserMenu() {
-        System.out.println("========== 게시판 프로그램 ==========");
+        System.out.println("============ 관리자 메뉴 ============");
         System.out.println("1. 로그인");
         System.out.println("2. 게시판");
         System.out.println("3. 마이페이지");
