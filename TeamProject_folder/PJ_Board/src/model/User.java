@@ -14,4 +14,24 @@ public class User {
     private int uAdmin; // 관리자 여부
     private int uTry; // 로그인 시도 횟수
 
+    
+    
+    
+    //아이디 중복확인
+    public User(String uId) {
+    	this.uId = uId;
+    }
+
+
+
+
+	public User(String uId, String uPw, String uMail, String uPhone, String uName) {
+		this.uId = uId;
+		this.uPw = uPw;
+		this.uMail = uMail;
+		this.uPhone = uPhone;
+		this.uName = uName;
+	}
+    
+    
 }
