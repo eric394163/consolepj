@@ -1,9 +1,10 @@
 package service.category;
 
 public interface CategoryManageService {
-    void add();
+    void add(String inputCategoryName);
 
     void update();
 
     void delete();
+
 }

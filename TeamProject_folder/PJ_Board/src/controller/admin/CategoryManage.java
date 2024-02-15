@@ -1,9 +1,9 @@
 package controller.admin;
 
 public interface CategoryManage {
-    public void Add();
+    public void add();
 
-    public void Update();
+    public void update();
 
-    public void Delete();
+    public void delete();
 }

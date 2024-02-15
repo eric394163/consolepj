@@ -3,6 +3,7 @@ package controller.admin;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -16,7 +17,7 @@ public class CategoryManagePageImp implements CategoryManagePage {
     public void run() {
         int input = 0;
         // 반복
-        while(true){
+        while (true) {
             // 메뉴 출력
             System.out.println("============ 카테고리관리 ============");
             System.out.println("1. 카테고리 등록");
@@ -34,13 +35,13 @@ public class CategoryManagePageImp implements CategoryManagePage {
                 }
                 // 메뉴 실행
                 sm.selectMenu(input,
-                        () -> cm.Add(),
-                        () -> cm.Update(),
-                        () -> cm.Delete());
+                        () -> cm.add(),
+                        () -> cm.update(),
+                        () -> cm.delete());
             } catch (InputMismatchException e) {
                 System.out.println("잘못된 메뉴입니다.");
                 sc.nextLine();
             }
-        }   
+        }
     }
 }
