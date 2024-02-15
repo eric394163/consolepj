@@ -13,5 +13,6 @@ public class User {
     private String uName; // 사용자 이름
     private int uAdmin; // 관리자 여부
     private int uTry; // 로그인 시도 횟수
+    private boolean uStatement = false;
 
 }

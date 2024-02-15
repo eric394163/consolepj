@@ -39,5 +39,4 @@ public class Category {
 		return Objects.hash(c_name);
 	}
 
-   
 }

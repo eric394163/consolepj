@@ -1,38 +1,28 @@
-package controller.login;
+package controller.admin;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import manager.UserManager;
+
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
-public class LoginPageImp implements LoginPage {
+public class CategoryManagePageImp implements CategoryManagePage {
+
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
-
-    private Login login;
-    private Register register;
-    private FindID findid;
-    private FindPW findpw;
-
-    private final int EXIT = 0;
-
-    public LoginPageImp(UserManager uManager) {
-        this.login = new LoginImp(uManager);
-    }
+    private CategoryManage cm;
 
     @Override
     public void run() {
         int input = 0;
         // 반복
-        do {
+        while (true) {
             // 메뉴 출력
-            System.out.println("============== 로그인 ==============");
-            System.out.println("1. 로그인");
-            System.out.println("2. 회원가입");
-            System.out.println("3. 아이디찾기");
-            System.out.println("4. 비밀번호찾기");
+            System.out.println("============ 카테고리관리 ============");
+            System.out.println("1. 카테고리 등록");
+            System.out.println("2. 카테고리 수정");
+            System.out.println("3. 카테고리 삭제");
             System.out.println("0. 뒤로가기");
             System.out.println("====================================");
             System.out.print("입력 :");
@@ -43,19 +33,15 @@ public class LoginPageImp implements LoginPage {
                 if (input == 0) {
                     break;
                 }
-                sc.nextLine();
                 // 메뉴 실행
                 sm.selectMenu(input,
-                        () -> login.run(),
-                        () -> register.run(),
-                        () -> findid.run(),
-                        () -> findpw.run());
+                        () -> cm.add(),
+                        () -> cm.update(),
+                        () -> cm.delete());
             } catch (InputMismatchException e) {
                 System.out.println("잘못된 메뉴입니다.");
                 sc.nextLine();
             }
-        } while (input != EXIT);
-
+        }
     }
-
 }
