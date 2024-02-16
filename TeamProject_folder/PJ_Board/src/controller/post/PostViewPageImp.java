@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import manager.UserManager;
 import model.Board;
 import model.Category;
 import service.board.BoardService;
@@ -19,6 +20,10 @@ public class PostViewPageImp implements PostViewPage {
     private SelectMenu sm = new SelectMenuImp();
 
     private final int EXIT = 0;
+
+	public PostViewPageImp(UserManager uManager, int selectedPnum) {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void run() {

@@ -9,7 +9,6 @@ import controller.admin.CategoryManagePage;
 import controller.admin.CategoryManagePageImp;
 import controller.admin.UserManagePage;
 import controller.admin.UserManagePageImp;
-import controller.board.BoardPageImp;
 import controller.board.BoardListPage;
 import controller.board.BoardListPageImp;
 import controller.login.LoginPage;

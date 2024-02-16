@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import manager.UserManager;
 import model.Board;
 import model.Category;
 import service.board.BoardService;
@@ -19,11 +20,17 @@ public class PostInsertPageImp implements PostInsertPage {
     private SelectMenu sm = new SelectMenuImp();
 
     private final int EXIT = 0;
+    
+ 
+	public PostInsertPageImp(UserManager uManager, int bNum) {
+		
+	}
+
 
 	@Override
 	public void run() {
 		int input = -1;
-		System.out.println("게시글 조회 구현 예정");
+		System.out.println("게시글 작성 구현 예정");
 		
 		do {
 			try{

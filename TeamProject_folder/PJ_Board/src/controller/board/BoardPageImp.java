@@ -20,6 +20,7 @@ public class BoardPageImp implements BoardListPage {
 
     @Override
     public void run() {
+    	System.out.println("게시글 조회 구현 예정");
         int input = 0;
         // 반복
         do {

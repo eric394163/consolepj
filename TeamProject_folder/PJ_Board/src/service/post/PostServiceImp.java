@@ -35,9 +35,21 @@ public class PostServiceImp implements PostService {
 	}
 	
 
+//	@Override
+//	public ArrayList<Post> selectPostList(int selectedBnum) {
+//		
+//	}
+
+
 	@Override
-	public ArrayList<Post> selectPostList(int selectedBnum) {
-		return postdb.selectPostList(selectedBnum);
+	public ArrayList<Post> selectPostList(int selectedBnum, int start, int size) {
+		return postdb.selectPostList(selectedBnum, start, size);
+	}
+
+
+	@Override
+	public int countPostList(int selectedBnum) {
+		return postdb.countPostList(selectedBnum);
 	}
 
 

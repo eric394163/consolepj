@@ -23,18 +23,20 @@ public class BoardListPageImp implements BoardListPage {
 	private SelectMenu sm = new SelectMenuImp();
 	private CategoryService categoryService = new CategoryServiceImp();
 	private BoardService boardService = new BoardServiceImp();
-	private PostListPage postList = new PostListPageImp();
+	private PostListPage postList;
 	private List<Category> categoryList;
 	private ArrayList<Board> boardList;
+	private UserManager uManager;
 
 	private final int EXIT = 0;
 
 	public BoardListPageImp(UserManager uManager) {
-		
+		this.uManager = uManager;
 	}
 
 	@Override
 	public void run() {
+		postList= new PostListPageImp(uManager);
 
 		// int input = 0;
 

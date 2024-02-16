@@ -24,7 +24,11 @@
 	 
 	 <select id="selectPostList" resultType="model.Post">
 	 	select * from post where p_b_num = #{p_b_num}
+	 	order by p_date
+	 	LIMIT #{start}, #{size};
 	 </select>
 
-
+	<select id="countPostList" resultType="int">
+		select count(p_num) from post where p_b_num = #{p_b_num}
+	</select>
 </mapper>
