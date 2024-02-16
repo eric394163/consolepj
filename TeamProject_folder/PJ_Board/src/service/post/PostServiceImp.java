@@ -58,4 +58,11 @@ public class PostServiceImp implements PostService {
 		return postdb.getPostBoard(p_num);
 	}
 
+	
+	
+	@Override
+	public boolean insertPost(Post post) {
+		return postdb.insertPost(post);
+	}
+
 }
