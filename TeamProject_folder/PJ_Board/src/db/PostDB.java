@@ -16,4 +16,6 @@ public interface PostDB {
     Post getPost(@Param("p_num") int p_num);
 
     String getPostBoard(@Param("p_b_num") int p_b_num);
+
+	boolean insertPost(@Param("post")Post post);
 }

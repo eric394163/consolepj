@@ -15,4 +15,9 @@ public interface PostService {
 
 	public String getPostBoard(int p_num);
 
+	
+	
+	
+	public boolean insertPost(Post post);
+
 }

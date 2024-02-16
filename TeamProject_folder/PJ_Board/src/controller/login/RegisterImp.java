@@ -28,6 +28,7 @@ public class RegisterImp implements Register {
     }
 
 	private User inputUser() {
+		System.out.println("=========== 회원 가입 ===========");
     	System.out.println("[처음부터 입력하려면 1을 입력하세요.]");
     	System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
 		while(true) {
