@@ -15,12 +15,12 @@ public class BoardPageImp implements BoardListPage {
     private final int EXIT = 0;
 
     public BoardPageImp(UserManager uManager) {
-        //TODO Auto-generated constructor stub
+        // TODO Auto-generated constructor stub
     }
 
     @Override
     public void run() {
-    	System.out.println("게시글 조회 구현 예정");
+        System.out.println("게시글 조회 구현 예정");
         int input = 0;
         // 반복
         do {

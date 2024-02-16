@@ -16,31 +16,29 @@ import service.selectmenu.SelectMenuImp;
 
 public class PostInsertPageImp implements PostInsertPage {
 
-    private Scanner sc = new Scanner(System.in);
-    private SelectMenu sm = new SelectMenuImp();
+	private Scanner sc = new Scanner(System.in);
+	private SelectMenu sm = new SelectMenuImp();
 
-    private final int EXIT = 0;
-    
- 
+	private final int EXIT = 0;
+
 	public PostInsertPageImp(UserManager uManager, int bNum) {
-		
-	}
 
+	}
 
 	@Override
 	public void run() {
 		int input = -1;
 		System.out.println("게시글 작성 구현 예정");
-		
+
 		do {
-			try{
-				
-			}catch(InputMismatchException e) {
-				
+			try {
+
+			} catch (InputMismatchException e) {
+
 			}
-			
-		}while(input != EXIT);
-		
+
+		} while (input != EXIT);
+
 	}
 
 }

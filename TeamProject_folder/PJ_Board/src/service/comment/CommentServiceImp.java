@@ -1,23 +1,23 @@
-package service.login;
+package service.comment;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import db.RegisterDB;
-import model.User;
+import db.CommentDB;
+import model.Comment;
 
-public class RegisterServiceImp implements RegisterService {
+public class CommentServiceImp implements CommentService {
 
-    private RegisterDB registerDb;
-    private User user;
+    CommentDB commentdb;
 
-    public RegisterServiceImp() {
+    public CommentServiceImp() {
         String resource = "config/mybatis-config.xml";
         InputStream inputStream;
         SqlSession session;
@@ -25,23 +25,18 @@ public class RegisterServiceImp implements RegisterService {
             inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             session = sessionFactory.openSession(true);
-            registerDb = session.getMapper(RegisterDB.class);
+            commentdb = session.getMapper(CommentDB.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public boolean insertUser(User user) {
-        if (user == null || user.getU_id() == null) {
-            return false;
-        }
-        return registerDb.insertUser(user);
-    }
+    public List<Comment> getComment(int selectedPnum) {
 
-    @Override
-    public int getUser(String id) {
-        return registerDb.selectUser(id);
+        List<Comment> commentList = commentdb.getComment(selectedPnum);
+        return commentList;
+
     }
 
 }
