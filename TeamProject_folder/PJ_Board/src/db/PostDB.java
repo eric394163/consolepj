@@ -20,4 +20,6 @@ public interface PostDB {
 	boolean insertPost(@Param("post")Post post);
 
 	boolean deletePost(@Param("p_num")int p_num);
+
+	boolean updatePost(@Param("newPost")Post newPost);
 }

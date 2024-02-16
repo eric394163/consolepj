@@ -2,6 +2,7 @@ package controller.post;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 import manager.UserManager;
 
@@ -69,6 +70,13 @@ public class PostViewPageImp implements PostViewPage {
 					
 				} else if (input == 2) {
 					//게시글 수정
+					Post newPost = updatePost(post, user);
+					if(ps.updatePost(newPost)) {
+						System.out.println("게시글 수정이 완료되었습니다.");
+					}else {
+						System.out.println("게시글 수정을 실패하였습니다.");
+					}
+					
 					
 				} else if (input == 0) {
 					break;
@@ -80,6 +88,71 @@ public class PostViewPageImp implements PostViewPage {
 			}
 
 		}
+	}
+
+	private Post updatePost(Post post, User user) {
+		System.out.println("========== 게시글 수정 ==========");
+		System.out.println("[처음부터 입력하려면 1을 입력하세요.]");
+    	System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
+    	
+    	while(true) {
+    		System.out.println("==============================");
+    		//제목
+    		String regexTitle = "^.{1,50}$";
+    		String title = null;
+    		
+    		do {
+    			sc.nextLine();
+    			System.out.println("기존 제목 : " + post.getP_title());
+    			System.out.print("수정 제목 : ");
+    			title = sc.nextLine();
+        		if(title.equals("0")) {
+    	    		return null;
+    	    	}
+    	    	if(title.equals("1")) {
+    	    		break;
+    	    	}
+    	    	if(!Pattern.matches(regexTitle, title)) {
+					System.out.println("1자 이상, 50자 이하의 제목을 입력해주세요.");
+				}
+    		}while(!Pattern.matches(regexTitle, title));
+    		if(title.equals("1")) {
+	    		continue;
+	    	}
+    		
+    		//내용
+    		String regexContent = "^.{1,1000}$";
+    		String content = null;
+    		
+    		do {
+    			System.out.println("기존 내용 : " + post.getP_content());
+    			System.out.print("수정 내용 : ");
+    			content = sc.nextLine();
+        		if(content.equals("0")) {
+    	    		return null;
+    	    	}
+    	    	if(content.equals("1")) {
+    	    		break;
+    	    	}
+    	    	if(!Pattern.matches(regexContent, content)) {
+					System.out.println("1자 이상, 1000자 이하의 내용을 입력해주세요.");
+				}
+    		}while(!Pattern.matches(regexContent, content));
+    		if(content.equals("1")) {
+	    		continue;
+	    	}
+    		
+//    		//게시일
+//    		//현재 날짜 구하기
+//    		LocalDate now = LocalDate.now();
+//    		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//    		String formatedNow = now.format(formatter);
+    		
+    		
+    		Post newPost = new Post(post.getP_num(), title, content);
+    		
+    		return newPost;
+    	}
 	}
 
 	private void displayComment(List<Comment> commentList) {
