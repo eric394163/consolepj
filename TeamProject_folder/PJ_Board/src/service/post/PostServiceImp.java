@@ -47,5 +47,11 @@ public class PostServiceImp implements PostService {
 	}
 
 
+	@Override
+	public int countPostList(int selectedBnum) {
+		return postdb.countPostList(selectedBnum);
+	}
+
+
 	
 }

@@ -9,4 +9,6 @@ public interface PostService {
 
 	public ArrayList<Post> selectPostList(int selectedBnum, int startNum, int size);
 
+	public int countPostList(int selectedBnum);
+
 }

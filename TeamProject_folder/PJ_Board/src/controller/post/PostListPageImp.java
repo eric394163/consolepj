@@ -20,9 +20,11 @@ public class PostListPageImp implements PostListPage {
     private PostViewPage postViewPage;
     private UserManager uManager;
     private ArrayList<Post> postList;
+    private int postListSize;
 
     private final int EXIT = 0;
     private final int PAGE_SIZE = 5;
+    private int startNum = 0;
     
     public PostListPageImp(UserManager uManager) {
         this.uManager = uManager;
@@ -31,7 +33,11 @@ public class PostListPageImp implements PostListPage {
 	@Override
 	public void run(int selectedBnum, String cateName, String boardName) {
 		int input = -1;
-		int startNum = 0;
+		
+		// 게시글의 전체 갯수 구하기
+		postListSize = postService.countPostList(selectedBnum);
+//		System.out.println(postListSize);
+		
 		String info = "["+cateName+" 카테고리] ["+boardName+"]";
 		
 		// 게시글 목록을 출력하는 메서드
@@ -48,8 +54,8 @@ public class PostListPageImp implements PostListPage {
 				if(input != 0) {
 					// 선택한 메뉴에 따른 화면 출력하기
 					sm.selectMenu(input, 
-							()-> System.out.println("이전 구현 예정"),
-							()-> System.out.println("다음 구현 예정"),
+							()-> changePage(selectedBnum, info, -5),
+							()-> changePage(selectedBnum, info, 5),
 							()-> selectPost(),
 							()-> newPost(selectedBnum));
 				}
@@ -64,6 +70,19 @@ public class PostListPageImp implements PostListPage {
 		
 	}
 	
+	private void changePage(int bNum, String info, int i) {
+		// 맨 앞 페이지에서 앞으로 가려 하거나, 맨 뒤 페이지에서 뒤로 가려 할 때
+		if((startNum==0 && i<0) || (startNum>postListSize-1) && i>0) {
+			printPostList(bNum, info, startNum, PAGE_SIZE);
+//			System.out.println("시작페이지: "+startNum);
+			return;
+		}
+		startNum += i;
+		printPostList(bNum, info, startNum, PAGE_SIZE);
+		
+		
+	}
+
 	private void newPost(int bNum) {
 		postInsertPage = new PostInsertPageImp(uManager, bNum);
 		postInsertPage.run();
