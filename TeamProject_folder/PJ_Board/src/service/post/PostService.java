@@ -11,4 +11,8 @@ public interface PostService {
 
 	public int countPostList(int selectedBnum);
 
+	public Post getPost(int p_num);
+
+	public String getPostBoard(int p_num);
+
 }

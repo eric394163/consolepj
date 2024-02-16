@@ -9,7 +9,11 @@ import model.Post;
 
 public interface PostDB {
 
-	ArrayList<Post> selectPostList(@Param("p_b_num")int p_b_num, @Param("start")int start, @Param("size")int size);
+    ArrayList<Post> selectPostList(@Param("p_b_num") int p_b_num, @Param("start") int start, @Param("size") int size);
 
-	 int countPostList(@Param("p_b_num")int p_b_num);
+    int countPostList(@Param("p_b_num") int p_b_num);
+
+    Post getPost(@Param("p_num") int p_num);
+
+    String getPostBoard(@Param("p_b_num") int p_b_num);
 }

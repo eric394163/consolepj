@@ -13,15 +13,15 @@ import db.PostDB;
 import model.Post;
 
 public class PostServiceImp implements PostService {
-	
+
 	private PostDB postdb;
-	
-	public PostServiceImp(){
+
+	public PostServiceImp() {
 		String resource = "config/mybatis-config.xml";
-		
+
 		InputStream inputStream;
 		SqlSession session;
-		
+
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
@@ -30,28 +30,32 @@ public class PostServiceImp implements PostService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
+
 	}
-	
 
-//	@Override
-//	public ArrayList<Post> selectPostList(int selectedBnum) {
-//		
-//	}
-
+	// @Override
+	// public ArrayList<Post> selectPostList(int selectedBnum) {
+	//
+	// }
 
 	@Override
 	public ArrayList<Post> selectPostList(int selectedBnum, int start, int size) {
 		return postdb.selectPostList(selectedBnum, start, size);
 	}
 
-
 	@Override
 	public int countPostList(int selectedBnum) {
 		return postdb.countPostList(selectedBnum);
 	}
 
+	@Override
+	public Post getPost(int p_num) {
+		return postdb.getPost(p_num);
+	}
 
-	
+	@Override
+	public String getPostBoard(int p_num) {
+		return postdb.getPostBoard(p_num);
+	}
+
 }

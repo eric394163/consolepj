@@ -56,7 +56,7 @@ public class PostListPageImp implements PostListPage {
 					sm.selectMenu(input, 
 							()-> changePage(selectedBnum, info, -5),
 							()-> changePage(selectedBnum, info, 5),
-							()-> selectPost(),
+							()-> selectPost(boardName),
 							()-> newPost(selectedBnum));
 				}
 
@@ -89,7 +89,7 @@ public class PostListPageImp implements PostListPage {
 	}
 
 	// 게시글 조회하기
-	private void selectPost() {
+	private void selectPost(String boardName) {
 		int selectedPidx = -1;		// 유저가 선택한 게시글 번호
 		
 		do {
@@ -111,7 +111,7 @@ public class PostListPageImp implements PostListPage {
 				// 선택한 게시글의 고유번호 추출
 				int selectedPnum = postList.get(selectedPidx-1).getP_num();
 //				System.out.println(selectedPnum);
-				postViewPage  = new PostViewPageImp(uManager, selectedPnum);
+				postViewPage  = new PostViewPageImp(uManager, selectedPnum, boardName);
 				postViewPage.run();
 			}
 			
