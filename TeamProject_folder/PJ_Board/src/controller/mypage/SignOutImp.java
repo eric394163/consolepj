@@ -9,20 +9,19 @@ import manager.UserManager;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
-public class MyPageImp implements MyPage {
+public class SignOutImp implements SignOut {
 
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
 
     private MyAccount myaccount = new MyAccountImp();
     private MyComment mycomment = new MyCommentImp();
-    private SignOut signout;
     private MyPost mypost = new MyPostImp();
     private UserManager uManager;
 
     private final int EXIT = 0;
 
-    public MyPageImp(UserManager uManager) {
+    public SignOutImp(UserManager uManager) {
        this.uManager = uManager;
     }
 
@@ -44,6 +43,7 @@ public class MyPageImp implements MyPage {
             System.out.println("2. 내 글 보기");
             System.out.println("3. 내 댓글 보기");
             System.out.println("4. 회원 탈퇴");
+            System.out.println("0. 뒤로가기");
             System.out.println("====================================");
             System.out.print("입력 :");
 
@@ -84,18 +84,10 @@ public class MyPageImp implements MyPage {
 		if(i == 1) {
 			myaccount.run(uManager);
 		}else { 
-			// 회원 탈퇴 기능
+			// 회원 탈퇴 페이지
 			
-			System.out.println("회원 탈퇴를 하시겠습니까?\n(탈퇴 시 게시글과 댓글이 모두 삭제됩니다.)");
+			System.out.println("회원 탈퇴를 하시겠습니까?");
 			System.out.print("예(Y) / 아니오(N): ");
-			char tmp = sc.next().charAt(0);
-			if(tmp == 'y' || tmp == 'Y') {
-				// 회원 탈퇴 기능 시작
-				signout = new SignOutImp(uManager);
-			}else {
-				System.out.println("\n\n\n회원 탈퇴를 취소했습니다.");
-				return;
-			}
 		}
 		
 	}

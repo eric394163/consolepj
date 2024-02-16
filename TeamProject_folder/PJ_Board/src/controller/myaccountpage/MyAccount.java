@@ -1,7 +1,9 @@
 package controller.myaccountpage;
 
+import manager.UserManager;
+
 public interface MyAccount {
 
-    Object run();
+    void run(UserManager uManager);
     
 }
