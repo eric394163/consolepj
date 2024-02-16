@@ -57,30 +57,31 @@ public class RegisterImp implements Register {
 			// 아이디 정규표현식
 			String regexId = "^[a-zA-Z][0-9a-zA-Z]{7,12}$";
 			String id = null;
-			int userList = 0;
+			int userId = 0;
 			do {
 				System.out.print("아이디 입력 : ");
 				id = sc.next();
-				if (id.equals("0")) {
-					return null;
+				if(id.equals("0")) {
+		    		return null;
+		    	}
+		    	if(id.equals("1")) {
+		    		break;
+		    	}
+				userId = registerService.getUserId(id);
+		    	if(userId == 1) {
+		    		System.out.println("중복된 아이디입니다.");
+		    	}
+				if(!Pattern.matches(regexId, id)) {
+					System.out.println
+					("아이디는 영문자 대소문자, 숫자 포함하여 8~13자를 생성해주세요.");
 				}
-				if (id.equals("1")) {
-					break;
-				}
-				userList = registerService.getUser(id);
-				if (userList == 1) {
-					System.out.println("중복된 아이디입니다.");
-				}
-				if (!Pattern.matches(regexId, id)) {
-					System.out.println("아이디는 영문자 대소문자, 숫자 포함하여 8~13자를 생성해주세요.");
-				}
-			} while (userList == 1 || !Pattern.matches(regexId, id));
-			if (id.equals("1")) {
-				continue;
-			}
-
-			// 비밀번호
-			// 비밀번호 정규표현식
+			}while(userId == 1 || !Pattern.matches(regexId, id));
+			if(id.equals("1")) {
+	    		continue;
+	    	}
+			
+			//비밀번호
+			//비밀번호 정규표현식
 			String regexPw = "^.*(?=^.{8,20}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$";
 			String pw = null;
 			do {
@@ -123,46 +124,55 @@ public class RegisterImp implements Register {
 			// 이메일 정규표현식
 			String regexEmail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 			String email = null;
+			int userEmail = 0;
 			do {
 				System.out.print("이메일 입력 : ");
 				email = sc.next();
-				if (email.equals("0")) {
-					return null;
-				}
-				if (email.equals("1")) {
-					break;
-				}
-				if (!Pattern.matches(regexEmail, email)) {
+				if(email.equals("0")) {
+		    		return null;
+		    	}
+		    	if(email.equals("1")) {
+		    		break;
+		    	}
+		    	userEmail = registerService.getUserEmail(email);
+		    	if(userEmail == 1) {
+		    		System.out.println("중복된 이메일입니다.");
+		    	}
+		    	if(!Pattern.matches(regexEmail, email)) {
 					System.out.println("이메일은 xxxx@xxx.xxx 형식으로 입력해주세요.");
 				}
-
-			} while (!Pattern.matches(regexEmail, email));
-			if (email.equals("1")) {
-				continue;
-			}
-
-			// 전화번호
-			// 전화번호 정규표현식
+				
+			}while(userEmail == 1 || !Pattern.matches(regexEmail, email));
+			if(email.equals("1")) {
+	    		continue;
+	    	}
+			
+			//전화번호
+			//전화번호 정규표현식
 			String regexPhoneNum = "^010-[0-9]{4}-[0-9]{4}$";
 			String phoneNum = null;
-			sc.nextLine();
-			do {
+			int userPhoneNum = 0;
+			do {			
 				System.out.print("전화번호 입력(010-XXXX-XXXX) : ");
 				phoneNum = sc.next();
-				if (phoneNum.equals("0")) {
-					return null;
-				}
-				if (phoneNum.equals("1")) {
-					break;
-				}
-				if (!Pattern.matches(regexPhoneNum, phoneNum)) {
+				if(phoneNum.equals("0")) {
+		    		return null;
+		    	}
+		    	if(phoneNum.equals("1")) {
+		    		break;
+		    	}
+		    	userPhoneNum = registerService.getUserPhoneNum(phoneNum);
+		    	if(userPhoneNum == 1) {
+		    		System.out.println("중복된 전화번호입니다.");
+		    	}
+				if(!Pattern.matches(regexPhoneNum, phoneNum)) {
 					System.out.println("전화번호는 010-XXXX-XXXX 형식으로 입력해주세요.");
 				}
-			} while (!Pattern.matches(regexPhoneNum, phoneNum));
-			if (phoneNum.equals("1")) {
-				continue;
-			}
-
+			}while(userPhoneNum == 1 || !Pattern.matches(regexPhoneNum, phoneNum));
+			if(phoneNum.equals("1")) {
+	    		continue;
+	    	}
+			
 			User user = new User(id, pw, email, phoneNum, name);
 			return user;
 		}

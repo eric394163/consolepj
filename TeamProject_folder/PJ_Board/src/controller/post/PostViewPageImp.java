@@ -107,7 +107,7 @@ public class PostViewPageImp implements PostViewPage {
 
 	}
 
-	public void printComments(int startIndex, int pageSize, List<Comment> commentList) {
+	private void printComments(int startIndex, int pageSize, List<Comment> commentList) {
 		if (commentList.isEmpty()) {
 			System.out.println("댓글 없음");
 			return;
