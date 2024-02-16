@@ -11,6 +11,6 @@ public interface RegisterDB {
 
 	boolean insertUser(@Param("user")User user);
 
-	ArrayList<User> selectUser();
+	int selectUser(String id);
 	
 }

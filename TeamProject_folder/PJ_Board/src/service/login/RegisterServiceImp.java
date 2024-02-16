@@ -33,15 +33,15 @@ public class RegisterServiceImp implements RegisterService {
     
     @Override
 	public boolean insertUser(User user) {
-		if(user == null || user.getUId() == null) {
+		if(user == null || user.getU_id() == null) {
 			return false;
 		}
 		return registerDb.insertUser(user);
 	}
     
     @Override
-	public ArrayList<User> getUser() {
-		return registerDb.selectUser();
+	public int getUser(String id) {
+		return registerDb.selectUser(id);
 	}
 	
 }

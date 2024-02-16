@@ -16,6 +16,7 @@
   </environments>
   <mappers>
     <mapper resource="db/LoginMapper.xml"/>
+    <mapper resource="db/RegisterMapper.xml"/>
     <!-- <mapper resource="경로/Mapper명2.xml"/> -->
   </mappers>
 </configuration>
