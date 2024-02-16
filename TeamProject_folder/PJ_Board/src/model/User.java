@@ -13,6 +13,7 @@ public class User {
     private String u_name; // 사용자 이름
     private int u_admin; // 관리자 여부
     private int u_try; // 로그인 시도 횟수
+    private boolean uStatement = false;
     
     //아이디 중복확인
     public User(String uId) {

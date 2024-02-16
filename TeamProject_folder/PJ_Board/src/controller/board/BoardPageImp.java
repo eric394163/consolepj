@@ -3,18 +3,24 @@ package controller.board;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import manager.UserManager;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
-public class BoardPageImp implements BoardPage {
+public class BoardPageImp implements BoardListPage {
 
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
 
     private final int EXIT = 0;
 
+    public BoardPageImp(UserManager uManager) {
+        //TODO Auto-generated constructor stub
+    }
+
     @Override
     public void run() {
+    	System.out.println("게시글 조회 구현 예정");
         int input = 0;
         // 반복
         do {

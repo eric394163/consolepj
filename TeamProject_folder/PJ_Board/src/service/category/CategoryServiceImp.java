@@ -1,22 +1,22 @@
-package service.login;
+package service.category;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import db.LoginDB;
-import model.User;
+import db.CategoryDB;
+import model.Category;
 
-public class LoginServiceImp implements LoginService {
+public class CategoryServiceImp implements CategoryService {
 
-    private LoginDB logindb;
-    private User user;
+    private CategoryDB categoryDB;
 
-    public LoginServiceImp() {
+    public CategoryServiceImp() {
         String resource = "config/mybatis-config.xml";
         InputStream inputStream;
         SqlSession session;
@@ -24,22 +24,15 @@ public class LoginServiceImp implements LoginService {
             inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             session = sessionFactory.openSession(true);
-            logindb = session.getMapper(LoginDB.class);
+            categoryDB = session.getMapper(CategoryDB.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public boolean validateLogin(String userId, String userPw) {
-        user = logindb.findUserById(userId);
-        if (user != null && user.getU_Pw().equals(userPw)) {
-
-            return true;
-        }
-        return false;
+    @Override
+    public List<Category> getAllCategory() {
+        return categoryDB.getAllCategory();
     }
 
-    public User getUser(String userId) {
-        return user = logindb.findUserById(userId);
-    }
 }

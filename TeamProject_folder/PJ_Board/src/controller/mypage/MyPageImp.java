@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import controller.myaccountpage.MyAccount;
 import controller.myaccountpage.MyAccountImp;
+import manager.UserManager;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -18,6 +19,10 @@ public class MyPageImp implements MyPage {
     private MyPost mypost = new MyPostImp();
 
     private final int EXIT = 0;
+
+    public MyPageImp(UserManager uManager) {
+        //TODO Auto-generated constructor stub
+    }
 
     @Override
     public void run() {
