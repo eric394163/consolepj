@@ -77,6 +77,9 @@ public class BoardListPageImp implements BoardListPage {
 		Category selectedCate = inputCategory();
 		// 게시판 입력받기
 		Board selectedBoard = inputBoard(selectedCate.getCNum());
+		if(selectedBoard == null) {
+			return;
+		}
 
 		// 선택된 게시판의 고유번호, 카테고리 이름, 게시판 이름을 넘겨주기
 		postList.run(selectedBoard.getbNum(), selectedCate.getC_name(), selectedBoard.getbName());
@@ -144,13 +147,16 @@ public class BoardListPageImp implements BoardListPage {
 			try {
 				// 존재할 경우, 해당 게시판의 고유 게시판 번호 리턴
 				// System.out.println(boardList.get(boardInput));
+				if(boardInput == -1) {
+					break;
+				}
 				return boardList.get(boardInput);
 
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("\n해당 게시판 번호가 존재하지 않습니다. 다시 입력해주세요.");
 			}
 
-		} while (boardInput != EXIT - 1);
+		} while (boardInput != EXIT);
 
 		return null;
 	}
