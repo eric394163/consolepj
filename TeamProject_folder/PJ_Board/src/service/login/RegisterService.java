@@ -7,5 +7,7 @@ import model.User;
 public interface RegisterService {
 
 	boolean insertUser(User user);
-	int getUser(String id);
+	int getUserId(String id);
+	int getUserEmail(String email);
+	int getUserPhoneNum(String phoneNum);
 }

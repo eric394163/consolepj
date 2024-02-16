@@ -40,8 +40,18 @@ public class RegisterServiceImp implements RegisterService {
 	}
     
     @Override
-	public int getUser(String id) {
-		return registerDb.selectUser(id);
+	public int getUserId(String id) {
+		return registerDb.selectUserId(id);
+	}
+
+	@Override
+	public int getUserEmail(String email) {
+		return registerDb.selectUserEmail(email);
+	}
+
+	@Override
+	public int getUserPhoneNum(String phoneNum) {
+		return registerDb.selectUserPhoneNum(phoneNum);
 	}
 	
 }
