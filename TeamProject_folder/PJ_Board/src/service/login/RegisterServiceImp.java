@@ -2,21 +2,22 @@ package service.login;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import db.LoginDB;
+import db.RegisterDB;
 import model.User;
 
-public class LoginServiceImp implements LoginService {
+public class RegisterServiceImp implements RegisterService {
 
-    private LoginDB logindb;
+	private RegisterDB registerDb;
     private User user;
 
-    public LoginServiceImp() {
+    public RegisterServiceImp() {
         String resource = "config/mybatis-config.xml";
         InputStream inputStream;
         SqlSession session;
@@ -24,22 +25,33 @@ public class LoginServiceImp implements LoginService {
             inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             session = sessionFactory.openSession(true);
-            logindb = session.getMapper(LoginDB.class);
+            registerDb = session.getMapper(RegisterDB.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+    
+    @Override
+	public boolean insertUser(User user) {
+		if(user == null || user.getU_id() == null) {
+			return false;
+		}
+		return registerDb.insertUser(user);
+	}
+    
+    @Override
+	public int getUserId(String id) {
+		return registerDb.selectUserId(id);
+	}
 
-    public boolean validateLogin(String userId, String userPw) {
-        user = logindb.findUserById(userId);
-        if (user != null && user.getU_pw().equals(userPw)) {
+	@Override
+	public int getUserEmail(String email) {
+		return registerDb.selectUserEmail(email);
+	}
 
-            return true;
-        }
-        return false;
-    }
-
-    public User getUser(String userId) {
-        return user = logindb.findUserById(userId);
-    }
+	@Override
+	public int getUserPhoneNum(String phoneNum) {
+		return registerDb.selectUserPhoneNum(phoneNum);
+	}
+	
 }

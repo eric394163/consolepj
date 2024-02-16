@@ -12,7 +12,7 @@ public class LoginPageImp implements LoginPage {
     private SelectMenu sm = new SelectMenuImp();
 
     private Login login;
-    private Register register;
+    private Register register = new RegisterImp();
     private FindID findid;
     private FindPW findpw;
 
