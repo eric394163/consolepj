@@ -70,4 +70,9 @@ public class PostServiceImp implements PostService {
 		return postdb.deletePost(p_num);
 	}
 
+	@Override
+	public boolean updatePost(Post newPost) {
+		return postdb.updatePost(newPost);
+	}
+
 }
