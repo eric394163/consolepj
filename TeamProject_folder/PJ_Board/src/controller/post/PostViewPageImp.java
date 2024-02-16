@@ -52,7 +52,7 @@ public class PostViewPageImp implements PostViewPage {
 
 			displayComment(commentList);
 
-			if (user != null && user.isUStatement() == true && user.getU_Id().equals(post.getP_u_id())) {
+			if (user != null && user.isUStatement() == true && user.getU_id().equals(post.getP_u_id())) {
 				System.out.println("===================================");
 				System.out.println("[ 게시글 삭제 : 1 ]  [ 게시글 수정: 2 ] [ 종료 : 0 ]");
 				System.out.println("===================================");
@@ -61,10 +61,15 @@ public class PostViewPageImp implements PostViewPage {
 
 				if (input == 1) {
 					//게시글 삭제
-
+					if(ps.deletePost(post.getP_num())) {
+						System.out.println("게시글 삭제가 완료되었습니다.");
+					}else {
+						System.out.println("게시글 삭제를 실패하였습니다.");
+					}
+					
 				} else if (input == 2) {
 					//게시글 수정
-
+					
 				} else if (input == 0) {
 					break;
 					

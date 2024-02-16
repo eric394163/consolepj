@@ -14,17 +14,17 @@
         <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/BOARD"/>
         <property name="username" value="root"/>
-        <property name="password" value="kshi1122@@"/>
+        <property name="password" value="root"/>
       </dataSource>
     </environment>
   </environments>
   <mappers>
     <mapper resource="db/LoginMapper.xml"/>
+    <mapper resource="db/RegisterMapper.xml"/>
     <mapper resource="db/BoardMapper.xml"/>
     <mapper resource="db/CategoryMapper.xml"/>
     <mapper resource="db/PostMapper.xml"/>
     <mapper resource="db/CommentMapper.xml"/>
-    <mapper resource="db/RegisterMapper.xml"/>
     <!-- mapper resource="경로/Mapper명2.xml" -->
   </mappers>
 </configuration>
