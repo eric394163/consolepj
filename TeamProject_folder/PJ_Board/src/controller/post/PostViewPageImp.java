@@ -26,6 +26,7 @@ public class PostViewPageImp implements PostViewPage {
 	private PostService ps = new PostServiceImp();
 	private String boardName;
 
+
 	private final int EXIT = 0;
 
 	public PostViewPageImp(UserManager uManager, int selectedPnum, String boardName) {
@@ -37,6 +38,7 @@ public class PostViewPageImp implements PostViewPage {
 	@Override
 	public void run() {
 		Post post = ps.getPost(selectedPnum);
+		Comment comment = 
 		System.out.println("===============================");
 		System.out.println("제목 : " + post.getP_title());
 		System.out.println("게시판 : " + boardName);
