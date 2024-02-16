@@ -15,4 +15,6 @@ public class User {
     private int u_Try; // 로그인 시도 횟수
     private boolean uStatement = false;
 
+    
+
 }

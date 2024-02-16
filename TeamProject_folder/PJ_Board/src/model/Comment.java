@@ -2,6 +2,11 @@ package model;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@AllArgsConstructor
+@Data
 public class Comment {
     private int com_Num; // 댓글 번호
     private String com_Content; // 댓글 내용

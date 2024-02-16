@@ -2,6 +2,8 @@ package service.comment;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -9,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import db.CommentDB;
+import model.Comment;
 
 public class CommentServiceImp implements CommentService {
 
@@ -28,5 +31,12 @@ public class CommentServiceImp implements CommentService {
         }
     }
 
-    
+    @Override
+    public List<Comment> getComment(int selectedPnum) {
+
+        List<Comment> commentList = commentdb.getComment(selectedPnum);
+        return commentList;
+
+    }
+
 }
