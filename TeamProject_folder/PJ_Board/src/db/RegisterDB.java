@@ -11,6 +11,10 @@ public interface RegisterDB {
 
 	boolean insertUser(@Param("user")User user);
 
-	int selectUser(String id);
+	int selectUserId(String id);
+
+	int selectUserEmail(String email);
+
+	int selectUserPhoneNum(String phoneNum);
 	
 }
