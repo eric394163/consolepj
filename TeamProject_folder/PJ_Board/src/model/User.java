@@ -6,13 +6,26 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class User {
-    private String u_Id; // 사용자 ID
-    private String u_Pw; // 사용자 비밀번호
-    private String u_Mail; // 사용자 이메일
-    private String u_Phone; // 사용자 전화번호
-    private String u_Name; // 사용자 이름
-    private int u_Admin; // 관리자 여부
-    private int u_Try; // 로그인 시도 횟수
+    private String u_id; // 사용자 ID
+    private String u_pw; // 사용자 비밀번호
+    private String u_mail; // 사용자 이메일
+    private String u_phone; // 사용자 전화번호
+    private String u_name; // 사용자 이름
+    private int u_admin; // 관리자 여부
+    private int u_try; // 로그인 시도 횟수
     private boolean uStatement = false;
+    
+    //아이디 중복확인
+    public User(String uId) {
+    	this.u_id = uId;
+    }
 
+	public User(String uId, String uPw, String uMail, String uPhone, String uName) {
+		this.u_id = uId;
+		this.u_pw = uPw;
+		this.u_mail = uMail;
+		this.u_phone = uPhone;
+		this.u_name = uName;
+	}
+    
 }

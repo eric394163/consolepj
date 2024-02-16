@@ -20,6 +20,7 @@
   </environments>
   <mappers>
     <mapper resource="db/LoginMapper.xml"/>
+    <mapper resource="db/RegisterMapper.xml"/>
     <mapper resource="db/BoardMapper.xml"/>
     <mapper resource="db/CategoryMapper.xml"/>
     <mapper resource="db/PostMapper.xml"/>
