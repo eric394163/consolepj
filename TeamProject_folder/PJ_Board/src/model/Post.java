@@ -43,5 +43,19 @@ public class Post {
 		return p_title + "\t" + p_u_id + "\t" + p_date + "\t" + p_view;
 	}
 
+	public Post(String p_title, String p_content, int p_b_Num, String p_u_id) {
+		this.p_title = p_title;
+		this.p_content = p_content;
+		this.p_b_Num = p_b_Num;
+		this.p_u_id = p_u_id;
+	}
+
+	public Post(int p_num, String p_title, String p_content) {
+		this.p_num = p_num;
+		this.p_title = p_title;
+		this.p_content = p_content;
+	}
+
     
+	
 }

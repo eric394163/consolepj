@@ -1,5 +1,5 @@
 # 게시글 생성		=======================================================
-INSERT INTO user values("qwerty123", "abcd1234", "qwerty@naver.com", "010-1234-0987", "홍길동", 0, 0);
+INSERT INTO user values("qwerty123", "abcd1234", "qwerty@naver.com", "010-1234-0987", "홍길동", 0, 0, 0);
 select * from user;
 
 -- "자유 게시판" 카테고리

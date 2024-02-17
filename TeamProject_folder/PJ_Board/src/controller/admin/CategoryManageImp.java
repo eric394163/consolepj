@@ -28,6 +28,7 @@ public class CategoryManageImp implements CategoryManage {
 
     @Override
     public void update() {
+        
     }
 
     @Override

@@ -1,22 +1,23 @@
-package service.login;
+package service.comment;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import db.LoginDB;
-import model.User;
+import db.CommentDB;
+import model.Comment;
 
-public class LoginServiceImp implements LoginService {
+public class CommentServiceImp implements CommentService {
 
-    private LoginDB logindb;
-    private User user;
+    CommentDB commentdb;
 
-    public LoginServiceImp() {
+    public CommentServiceImp() {
         String resource = "config/mybatis-config.xml";
         InputStream inputStream;
         SqlSession session;
@@ -24,22 +25,18 @@ public class LoginServiceImp implements LoginService {
             inputStream = Resources.getResourceAsStream(resource);
             SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             session = sessionFactory.openSession(true);
-            logindb = session.getMapper(LoginDB.class);
+            commentdb = session.getMapper(CommentDB.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public boolean validateLogin(String userId, String userPw) {
-        user = logindb.findUserById(userId);
-        if (user != null && user.getU_pw().equals(userPw)) {
+    @Override
+    public List<Comment> getComment(int selectedPnum) {
 
-            return true;
-        }
-        return false;
+        List<Comment> commentList = commentdb.getComment(selectedPnum);
+        return commentList;
+
     }
 
-    public User getUser(String userId) {
-        return user = logindb.findUserById(userId);
-    }
 }
