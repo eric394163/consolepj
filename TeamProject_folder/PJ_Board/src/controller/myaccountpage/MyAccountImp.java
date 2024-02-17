@@ -24,6 +24,7 @@ public class MyAccountImp implements MyAccount{
             System.out.println("2. 이메일 변경");
             System.out.println("3. 전화번호 변경");
             System.out.println("4. 이름 변경");
+            System.out.println("0. 뒤로가기");
             System.out.println("====================================");
             System.out.print("입력 :");
 
@@ -33,7 +34,7 @@ public class MyAccountImp implements MyAccount{
                 // 메뉴 실행
                 sm.selectMenu(input,
                         () -> changePw(),
-                        () -> changeMail(),
+                        () -> changeEmail(),
                         () -> changePhone(),
                         () -> changeName());
                 // () -> mypage.run()); 회원 탈퇴 메서드
@@ -43,5 +44,33 @@ public class MyAccountImp implements MyAccount{
             }
         } while (input != EXIT);
     }
+
+	private void changeName() {
+		// TODO Auto-generated method stub
+		return;
+	}
+
+	private void changePhone() {
+		System.out.println("전화번호 변경 구현 예정");
+		return;
+	}
+
+	private void changeEmail() {
+		System.out.println("이메일 변경 구현 예정");
+		return;
+	}
+
+	private void changePw() {
+		System.out.println("비밀번호 변경 구현 예정");
+		return;
+	}
+
+
+    
+    
+    
+    
+    
+    
     
 }

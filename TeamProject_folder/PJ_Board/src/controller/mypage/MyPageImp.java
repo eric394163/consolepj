@@ -73,8 +73,10 @@ public class MyPageImp implements MyPage {
 			
 			if(tmpPw.equals(uManager.getCurrentUser().getU_Pw())) {
 				System.out.println("비밀번호가 일치합니다.");
+				System.out.println("\n\n\n\n\n");
 				break;
 			}
+			System.out.println("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 		}while(input != EXIT);
 		
 		
@@ -92,6 +94,7 @@ public class MyPageImp implements MyPage {
 			if(tmp == 'y' || tmp == 'Y') {
 				// 회원 탈퇴 기능 시작
 				signout = new SignOutImp(uManager);
+				signout.run();
 			}else {
 				System.out.println("\n\n\n회원 탈퇴를 취소했습니다.");
 				return;
