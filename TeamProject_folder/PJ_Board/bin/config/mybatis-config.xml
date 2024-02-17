@@ -25,6 +25,8 @@
     <mapper resource="db/CategoryMapper.xml"/>
     <mapper resource="db/PostMapper.xml"/>
     <mapper resource="db/CommentMapper.xml"/>
+    <mapper resource="db/UserInfoMapper.xml"/>
+    
     <!-- mapper resource="경로/Mapper명2.xml" -->
   </mappers>
 </configuration>

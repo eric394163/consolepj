@@ -14,7 +14,7 @@ public class SignOutImp implements SignOut {
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
 
-    private MyAccount myaccount = new MyAccountImp();
+    private MyAccount myaccount;
     private MyComment mycomment = new MyCommentImp();
     private MyPost mypost = new MyPostImp();
     private UserManager uManager;
@@ -71,7 +71,7 @@ public class SignOutImp implements SignOut {
 			System.out.print("비밀번호 입력: ");
 			String tmpPw = sc.next();
 			
-			if(tmpPw.equals(uManager.getCurrentUser().getU_Pw())) {
+			if(tmpPw.equals(uManager.getCurrentUser().getU_pw())) {
 				System.out.println("비밀번호가 일치합니다.");
 				break;
 			}
@@ -82,7 +82,8 @@ public class SignOutImp implements SignOut {
 		
 		// 계정 정보 변경 페이지
 		if(i == 1) {
-			myaccount.run(uManager);
+			myaccount = new MyAccountImp(uManager);
+			myaccount.run();
 		}else { 
 			// 회원 탈퇴 페이지
 			

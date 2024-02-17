@@ -14,7 +14,7 @@ public class MyPageImp implements MyPage {
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
 
-    private MyAccount myaccount = new MyAccountImp();
+    private MyAccount myaccount;
     private MyComment mycomment = new MyCommentImp();
     private SignOut signout;
     private MyPost mypost = new MyPostImp();
@@ -71,7 +71,7 @@ public class MyPageImp implements MyPage {
 			System.out.print("비밀번호 입력: ");
 			String tmpPw = sc.next();
 			
-			if(tmpPw.equals(uManager.getCurrentUser().getU_Pw())) {
+			if(tmpPw.equals(uManager.getCurrentUser().getU_pw())) {
 				System.out.println("비밀번호가 일치합니다.");
 				System.out.println("\n\n\n\n\n");
 				break;
@@ -84,7 +84,8 @@ public class MyPageImp implements MyPage {
 		
 		// 계정 정보 변경 페이지
 		if(i == 1) {
-			myaccount.run(uManager);
+			myaccount = new MyAccountImp(uManager);
+			myaccount.run();
 		}else { 
 			// 회원 탈퇴 기능
 			
