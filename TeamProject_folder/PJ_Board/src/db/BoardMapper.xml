@@ -3,6 +3,11 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="db.BoardDB">
+
+	<insert id="addBoard">
+        INSERT INTO board(b_name, b_c_num) VALUE(#{board.b_name}, #{board.b_c_num})
+    </insert>
+    
 	<!-- 
 	# 게시판 관리 프로그램에 필요한 쿼리문
 
