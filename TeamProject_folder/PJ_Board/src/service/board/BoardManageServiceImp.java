@@ -41,10 +41,14 @@ public class BoardManageServiceImp implements BoardManageService {
 		return boardDB.addBoard(board);
     }
 
+	@Override
+	public void deletePosts(int b_num) {
+		boardDB.deletePosts(b_num);
+	}
+    
     @Override
-    public void delete() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    public boolean delete(int b_num) {
+    	return boardDB.deleteBoard(b_num);
     }
 
     @Override
@@ -54,5 +58,12 @@ public class BoardManageServiceImp implements BoardManageService {
         params.put("newCategoryName", inputUpdateBoardName);
         boardDB.updateBoard(params);
     }
+
+	@Override
+	public boolean update(Board newBoard) {
+		return boardDB.updateBoard(newBoard);
+	}
+
+
 
 }

@@ -23,7 +23,9 @@ public class BoardManageImp implements BoardManage {
 
     
     private CategoryService categoryService = new CategoryServiceImp();
+	private BoardService boardService = new BoardServiceImp();
     private List<Category> categoryList;
+    private ArrayList<Board> boardList;
     
     
     private Scanner sc = new Scanner(System.in);
@@ -38,9 +40,7 @@ public class BoardManageImp implements BoardManage {
 		// 카테고리 입력받기
 		Category selectedCate = inputCategory();
 		
-		
-		
-        System.out.print("추가할 게시판 명 : ");
+		System.out.print("추가할 게시판 명 : ");
         String inputBoardName = sc.next();
         Board board = new Board(inputBoardName, selectedCate.getC_num());
         if(bms.add(board)) {
@@ -118,12 +118,84 @@ public class BoardManageImp implements BoardManage {
 
 	@Override
     public void update() {
-        
+		// 카테고리-게시판 출력
+		boardPrint();
+		
+		// 카테고리 입력받기
+		Category selectedCate = inputCategory();
+		
+		// 게시판 입력받기
+		System.out.print("수정할 게시판 번호 입력: ");
+		Board selectedBoard = inputBoard(selectedCate.getCNum());
+		
+		if(selectedBoard == null) {
+			return;
+		}
+		
+		System.out.print("수정할 게시판 명 : ");
+		String newBoardName = sc.nextLine();
+		
+		Board newBoard = new Board(selectedBoard.getB_num(), newBoardName);
+		
+		if(bms.update(newBoard)) {
+        	System.out.println("게시판 수정이 완료되었습니다.");
+        }else {
+			System.out.println("게시판 수정을 실패하였습니다.");
+		}
+		
     }
 
     @Override
     public void delete() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Delete'");
+    	// 카테고리-게시판 출력
+		boardPrint();
+		
+		// 카테고리 입력받기
+		Category selectedCate = inputCategory();
+		
+		// 게시판 입력받기
+		System.out.print("삭제할 게시판 번호 입력: ");
+		Board selectedBoard = inputBoard(selectedCate.getCNum());
+		if(selectedBoard == null) {
+			return;
+		}
+		bms.deletePosts(selectedBoard.getB_num());
+		if(bms.delete(selectedBoard.getB_num())) {
+        	System.out.println("게시판 삭제가 완료되었습니다.");
+        }else {
+			System.out.println("게시판 삭제를 실패하였습니다.");
+		}
     }
+    
+    // 게시판을 입력받는 메서드
+ 	private Board inputBoard(int cNum) {
+ 		int boardInput = -1;
+ 		boardList = boardService.selectBoard(cNum);
+
+ 		do {
+
+ 			try {
+ 				boardInput = sc.nextInt() - 1;
+ 				sc.nextLine();
+
+ 			} catch (InputMismatchException e) {
+ 				System.out.println("잘못된 입력입니다. 다시 입력해주세요");
+ 			}
+
+ 			try {
+ 				// 존재할 경우, 해당 게시판의 고유 게시판 번호 리턴
+ 				// System.out.println(boardList.get(boardInput));
+ 				if(boardInput == -1) {
+ 					break;
+ 				}
+ 				return boardList.get(boardInput);
+
+ 			} catch (IndexOutOfBoundsException e) {
+ 				System.out.println("\n해당 게시판 번호가 존재하지 않습니다. 다시 입력해주세요.");
+ 			}
+
+ 		} while (boardInput != EXIT);
+
+ 		return null;
+ 	}
 }

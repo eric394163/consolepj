@@ -28,4 +28,11 @@ public class Board {
 		this.b_c_num = b_c_num;
 	}
 
+	public Board(int b_num, String b_name) {
+		this.b_num = b_num;
+		this.b_name = b_name;
+	}
+	
+	
+
 }

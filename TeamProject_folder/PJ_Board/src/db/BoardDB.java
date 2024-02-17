@@ -16,5 +16,11 @@ public interface BoardDB {
 
 	boolean addBoard(@Param("board")Board board);
 
+	boolean deleteBoard(@Param("b_num")int b_num);
+
+	void deletePosts(@Param("b_num")int b_num);
+
+	boolean updateBoard(@Param("board")Board newBoard);
+
 //	boolean isBoard(@Param("b_name")String b_name);
 }
