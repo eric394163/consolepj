@@ -52,7 +52,7 @@ public class MainProgramImp implements MainProgram {
         do {
             user = uManager.getCurrentUser();
             System.out.println(user);
-            if (user != null && user.getU_Admin() == 1) {
+            if (user != null && user.getU_admin() == 1) {
                 printAdminMenu();
             } else {
                 printUserMenu();
@@ -62,7 +62,7 @@ public class MainProgramImp implements MainProgram {
                 // 메뉴 선택
                 input = sc.nextInt();
 
-                if (user != null && user.getU_Admin() == 1) {
+                if (user != null && user.getU_admin() == 1) {
 
                     sm.selectMenu(input,
                             () -> cmPage.run(),
