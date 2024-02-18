@@ -22,21 +22,27 @@
 	    ORDER BY p_date;
 	 -->
 	 
-	 <select id="selectPostList" resultType="model.Post">
-	 	select * from post where p_b_num = #{p_b_num}
-	 	order by p_date
-	 	LIMIT #{start}, #{size};
-	 </select>
+	<select id="selectPostList" resultType="model.Post">
+		select * from post where p_b_num = #{p_b_num}
+		order by p_date
+		LIMIT #{start}, #{size};
+	</select>
 
 	<select id="countPostList" resultType="int">
 		select count(p_num) from post where p_b_num = #{p_b_num}
 	</select>
-  <select id="getPost" resultType="model.Post">
+  	<select id="getPost" resultType="model.Post">
 		select * from post where p_num = #{p_num}
 	</select>
-  <select id="getPostCategory" resultType="String">
+  	<select id="getPostCategory" resultType="String">
 		select b_name from post 
-    join board on p_b_num = b_num 
-    where b_num = #{p_b_num}
+	    join board on p_b_num = b_num 
+	    where b_num = #{p_b_num}
 	</select>
+	
+	<!-- 게시글 작성 -->
+	<insert id="insertPost">
+		insert into post(p_title, p_content, p_date, p_b_num, p_u_id)
+		values(#{post.p_title}, #{post.p_content}, now(), #{post.p_b_Num}, #{post.p_u_id});
+	</insert>
 </mapper>

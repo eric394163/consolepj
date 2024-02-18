@@ -50,9 +50,11 @@ public class CategoryManageImp implements CategoryManage {
                 break;
             }
         }
+        if (selectedCategory != null && updateCategory != null) {
+            cms.update(selectedCategory, updateCategory);
+            System.out.println(selectedCategory + "가 " + updateCategory + "로 수정되었습니다.");
+        }
 
-        cms.update(selectedCategory, updateCategory);
-        System.out.println(selectedCategory + "가 " + updateCategory + "로 수정되었습니다.");
     }
 
     @Override
