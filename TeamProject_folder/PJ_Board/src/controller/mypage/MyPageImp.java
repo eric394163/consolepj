@@ -6,6 +6,7 @@ import java.util.Scanner;
 import controller.myaccountpage.MyAccount;
 import controller.myaccountpage.MyAccountImp;
 import manager.UserManager;
+import model.User;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -19,13 +20,20 @@ public class MyPageImp implements MyPage {
     private MyPost mypost = new MyPostImp();
 
     private final int EXIT = 0;
+	private UserManager uManager;
+	private User user;
 
     public MyPageImp(UserManager uManager) {
-        //TODO Auto-generated constructor stub
+    	this.uManager = uManager;
+		this.user = uManager.getCurrentUser();
     }
 
     @Override
     public void run() {
+    	if(user == null || user.isUStatement() == false) {
+    		System.out.println("로그인이 필요합니다.");
+    		return;
+    	}
         int input = 0;
         // 반복
         do {
@@ -35,6 +43,7 @@ public class MyPageImp implements MyPage {
             System.out.println("2. 내 글 보기");
             System.out.println("3. 내 댓글 보기");
             System.out.println("4. 회원 탈퇴");
+            System.out.println("0. 뒤로가기");
             System.out.println("====================================");
             System.out.print("입력 :");
 
