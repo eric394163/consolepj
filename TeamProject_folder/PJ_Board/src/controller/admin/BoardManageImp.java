@@ -34,11 +34,18 @@ public class BoardManageImp implements BoardManage {
     
 	@Override
     public void add() {
+		System.out.println("============= 게시판 등록 =============");
 		// 카테고리-게시판 출력
 		boardPrint();
 		
+		System.out.println("====================================");
+		System.out.println("[이전으로 돌아가려면 0을 입력하세요]");
+		
 		// 카테고리 입력받기
 		Category selectedCate = inputCategory();
+		if(selectedCate == null) {
+			return;
+		}
 		
 		System.out.print("추가할 게시판 명 : ");
         String inputBoardName = sc.next();
@@ -56,10 +63,12 @@ public class BoardManageImp implements BoardManage {
 
 		do {
 			try {
-
 				// 카테고리 이름과 해당 카테고리 번호 입력
 				System.out.print("카테고리 이름 입력: ");
 				categoryInput = sc.nextLine();
+				if(categoryInput.equals("0")) {
+					break;
+				}
 
 			} catch (InputMismatchException e) {
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요");
@@ -118,11 +127,20 @@ public class BoardManageImp implements BoardManage {
 
 	@Override
     public void update() {
+		System.out.println("============= 게시판 수정 =============");
+		
 		// 카테고리-게시판 출력
 		boardPrint();
 		
+		System.out.println("====================================");
+		System.out.println("[이전으로 돌아가려면 0을 입력하세요]");
+		
 		// 카테고리 입력받기
 		Category selectedCate = inputCategory();
+		
+		if(selectedCate == null) {
+			return;
+		}
 		
 		// 게시판 입력받기
 		System.out.print("수정할 게시판 번호 입력: ");
@@ -134,6 +152,7 @@ public class BoardManageImp implements BoardManage {
 		
 		System.out.print("수정할 게시판 명 : ");
 		String newBoardName = sc.nextLine();
+		sc.nextLine();
 		
 		Board newBoard = new Board(selectedBoard.getB_num(), newBoardName);
 		
@@ -147,11 +166,20 @@ public class BoardManageImp implements BoardManage {
 
     @Override
     public void delete() {
+    	System.out.println("============= 게시판 삭제 =============");
+    	
     	// 카테고리-게시판 출력
 		boardPrint();
 		
+		System.out.println("====================================");
+		System.out.println("[이전으로 돌아가려면 0을 입력하세요]");
+		
 		// 카테고리 입력받기
 		Category selectedCate = inputCategory();
+		
+		if(selectedCate == null) {
+			return;
+		}
 		
 		// 게시판 입력받기
 		System.out.print("삭제할 게시판 번호 입력: ");
@@ -176,7 +204,8 @@ public class BoardManageImp implements BoardManage {
 
  			try {
  				boardInput = sc.nextInt() - 1;
- 				sc.nextLine();
+ 				//sc.nextLine();
+
 
  			} catch (InputMismatchException e) {
  				System.out.println("잘못된 입력입니다. 다시 입력해주세요");
