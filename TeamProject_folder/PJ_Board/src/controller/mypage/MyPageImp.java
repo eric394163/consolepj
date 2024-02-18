@@ -6,6 +6,7 @@ import java.util.Scanner;
 import controller.myaccountpage.MyAccount;
 import controller.myaccountpage.MyAccountImp;
 import manager.UserManager;
+import model.User;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -21,6 +22,7 @@ public class MyPageImp implements MyPage {
     private UserManager uManager;
 
     private final int EXIT = 0;
+    private int input = 0;
 
     public MyPageImp(UserManager uManager) {
        this.uManager = uManager;
@@ -28,7 +30,7 @@ public class MyPageImp implements MyPage {
 
     @Override
     public void run() {
-        int input = 0;
+        input = -1;
         
         // 로그인을 하지 않았을 경우
         if(uManager.getCurrentUser() == null) {
@@ -69,7 +71,7 @@ public class MyPageImp implements MyPage {
     }
 
 	private void isAuthorized(int i) {
-		int input = -1;
+		int inputAuth = -1;
 		
 		do {
 			System.out.print("비밀번호 입력: ");
@@ -81,7 +83,7 @@ public class MyPageImp implements MyPage {
 				break;
 			}
 			System.out.println("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
-		}while(input != EXIT);
+		}while(inputAuth != EXIT);
 		
 		
 		// 비밀번호 입력하고 일치하는지 확인한 후에 기능에 접근할 수 있도록 해야함.
@@ -101,12 +103,15 @@ public class MyPageImp implements MyPage {
 				// 회원 탈퇴 기능 시작
 				signout = new SignOutImp(uManager);
 				signout.run();
+				// 회원 탈퇴 후 마이페이지 화면을 자동으로 빠져나감.
+				input = 0;
+				
+				uManager.setCurrentUser(null);
 			}else {
 				System.out.println("\n\n\n회원 탈퇴를 취소했습니다.");
-				return;
+				
 			}
 		}
-		
 	}
 
 }

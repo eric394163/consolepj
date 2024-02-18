@@ -10,5 +10,11 @@ public interface UserInfoService {
 
 	public boolean updateEmail(String u_id, String email);
 
+	public boolean deleteUser(String uID);
+
+	public boolean deletePostByUser(String uID);
+
+//	public boolean deleteCommentByUser(String uID);
+
 //	public boolean isBoard(String categoryInput);
 }

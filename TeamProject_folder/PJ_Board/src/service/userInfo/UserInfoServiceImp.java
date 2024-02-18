@@ -57,5 +57,21 @@ public class UserInfoServiceImp implements UserInfoService {
 		return userinfodb.updateEmail(u_id, email);
 	}
 
+	@Override
+	public boolean deleteUser(String u_id) {
+		return  userinfodb.deleteUser(u_id);
+	}
+
+	@Override
+	public boolean deletePostByUser(String u_id) {
+		return  userinfodb.deletePostByUser(u_id);
+		
+	}
+
+//	@Override
+//	public boolean deleteCommentByUser(String u_id) {// TODO Auto-generated method stub
+//		return  userinfodb.deleteCommentByUser(u_id);
+//	}
+
 
 }

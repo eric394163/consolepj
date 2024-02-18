@@ -13,4 +13,10 @@ public interface UserInfoDB {
 
 	boolean updateEmail(@Param("u_id")String u_id,  @Param("u_mail")String u_mail);
 
+	boolean deleteUser(@Param("u_id")String u_id);
+
+	boolean deletePostByUser(@Param("u_id")String u_id);
+
+//	boolean deleteCommentByUser(@Param("u_id")String u_id);
+
 }
