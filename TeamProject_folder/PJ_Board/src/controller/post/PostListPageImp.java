@@ -33,28 +33,18 @@ public class PostListPageImp implements PostListPage {
 	@Override
 	public void run(int selectedBnum, String cateName, String boardName) {
 		int input = -1;
+    
+		// 게시글의 전체 갯수 구하기
+		postListSize = postService.countPostList(selectedBnum);
+//		System.out.println(postListSize);
 		
-//		// 게시글의 전체 갯수 구하기
-//		postListSize = postService.countPostList(selectedBnum);
-////		System.out.println(postListSize);
-//		
-//		String info = "["+cateName+" 카테고리] ["+boardName+"]";
-//		
-//		// 게시글 목록을 출력하는 메서드
-//		printPostList(selectedBnum, info, startNum, PAGE_SIZE);
+		String info = "["+cateName+" 카테고리] ["+boardName+"]";
 		
 		// 메뉴 선택하기
 		do {
+			// 게시글 목록을 출력하는 메서드
+			printPostList(selectedBnum, info, startNum, PAGE_SIZE);
 			try{
-				// 게시글의 전체 갯수 구하기
-				postListSize = postService.countPostList(selectedBnum);
-//				System.out.println(postListSize);
-				
-				String info = "["+cateName+" 카테고리] ["+boardName+"]";
-				
-				// 게시글 목록을 출력하는 메서드
-				printPostList(selectedBnum, info, startNum, PAGE_SIZE);
-				
 				// 메뉴 입력받기
 				System.out.print("메뉴 입력: ");
 				input = sc.nextInt();
@@ -112,11 +102,15 @@ public class PostListPageImp implements PostListPage {
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
 			
 			}
+
 			
-			if(selectedPidx < 1 || selectedPidx>PAGE_SIZE) {
+			if(selectedPidx < 0 || selectedPidx>PAGE_SIZE) {
 				System.out.println("유효한 수를 입력하세요.");
-			}else {
-				
+			}else if(selectedPidx == EXIT) {
+				System.out.println("\n\n\n\n");
+				break;
+			}
+			else {
 				// 선택한 게시글의 고유번호 추출
 				int selectedPnum = postList.get(selectedPidx-1).getP_num();
 //				System.out.println(selectedPnum);
@@ -124,7 +118,7 @@ public class PostListPageImp implements PostListPage {
 				postViewPage.run();
 			}
 			
-		}while(selectedPidx != 0);
+		}while(true);
 	}
 
 	private void printPostList(int bNum, String info, int startNum, int size) {
