@@ -6,37 +6,27 @@ import java.util.Scanner;
 import controller.myaccountpage.MyAccount;
 import controller.myaccountpage.MyAccountImp;
 import manager.UserManager;
-import model.User;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
-public class MyPageImp implements MyPage {
+public class SignOutImp implements SignOut {
 
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
 
     private MyAccount myaccount;
     private MyComment mycomment = new MyCommentImp();
-    private SignOut signout;
     private MyPost mypost = new MyPostImp();
     private UserManager uManager;
 
     private final int EXIT = 0;
-	private UserManager uManager;
-	private User user;
 
-    public MyPageImp(UserManager uManager) {
-    	this.uManager = uManager;
-		this.user = uManager.getCurrentUser();
+    public SignOutImp(UserManager uManager) {
+       this.uManager = uManager;
     }
 
     @Override
     public void run() {
-		this.user = uManager.getCurrentUser();
-    	if(user == null || user.isUStatement() == false) {
-    		System.out.println("로그인이 필요합니다.");
-    		return;
-    	}
         int input = 0;
         
         // 로그인을 하지 않았을 경우
@@ -60,9 +50,6 @@ public class MyPageImp implements MyPage {
             try {
                 // 메뉴 선택
                 input = sc.nextInt();
-                if(input==0) {
-                	return;
-                }
                 // 메뉴 실행
                 sm.selectMenu(input,
                         () -> isAuthorized(1),
@@ -86,10 +73,8 @@ public class MyPageImp implements MyPage {
 			
 			if(tmpPw.equals(uManager.getCurrentUser().getU_pw())) {
 				System.out.println("비밀번호가 일치합니다.");
-				System.out.println("\n\n\n\n\n");
 				break;
 			}
-			System.out.println("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
 		}while(input != EXIT);
 		
 		
@@ -99,21 +84,11 @@ public class MyPageImp implements MyPage {
 		if(i == 1) {
 			myaccount = new MyAccountImp(uManager);
 			myaccount.run();
-			System.out.println(uManager.getCurrentUser());
 		}else { 
-			// 회원 탈퇴 기능
+			// 회원 탈퇴 페이지
 			
-			System.out.println("회원 탈퇴를 하시겠습니까?\n(탈퇴 시 게시글과 댓글이 모두 삭제됩니다.)");
+			System.out.println("회원 탈퇴를 하시겠습니까?");
 			System.out.print("예(Y) / 아니오(N): ");
-			char tmp = sc.next().charAt(0);
-			if(tmp == 'y' || tmp == 'Y') {
-				// 회원 탈퇴 기능 시작
-				signout = new SignOutImp(uManager);
-				signout.run();
-			}else {
-				System.out.println("\n\n\n회원 탈퇴를 취소했습니다.");
-				return;
-			}
 		}
 		
 	}

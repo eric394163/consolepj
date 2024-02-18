@@ -2,6 +2,6 @@ package controller.myaccountpage;
 
 public interface MyAccount {
 
-    Object run();
+    void run();
     
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="db.UserInfoDB">
+	<update id="updatePw">
+		UPDATE user SET u_pw = #{u_pw} WHERE u_id = #{u_id}
+	</update>
+	<update id="updateName">
+		UPDATE user SET u_name = #{u_name} WHERE u_id = #{u_id}
+	</update>
+	<update id="updatePhone">
+		UPDATE user SET u_phone = #{u_phone} WHERE u_id = #{u_id}
+	</update>
+	<update id="updateEmail">
+		UPDATE user SET u_mail = #{u_mail} WHERE u_id = #{u_id}
+	</update>
+</mapper>
