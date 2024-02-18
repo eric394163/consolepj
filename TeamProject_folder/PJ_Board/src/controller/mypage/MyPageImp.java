@@ -30,6 +30,7 @@ public class MyPageImp implements MyPage {
 
     @Override
     public void run() {
+		this.user = uManager.getCurrentUser();
     	if(user == null || user.isUStatement() == false) {
     		System.out.println("로그인이 필요합니다.");
     		return;
