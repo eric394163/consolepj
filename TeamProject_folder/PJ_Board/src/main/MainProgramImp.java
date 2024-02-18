@@ -17,6 +17,8 @@ import controller.mypage.MyPage;
 import controller.mypage.MyPageImp;
 import manager.UserManager;
 import model.User;
+import service.login.LogoutService;
+import service.login.LogoutServiceImp;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -32,6 +34,7 @@ public class MainProgramImp implements MainProgram {
     private CategoryManagePage cmPage = new CategoryManagePageImp();
     private BoardManagePage bmPage = new BoardManagePageImp();
     private UserManagePage umPage = new UserManagePageImp();
+    private LogoutService logout;
 
     private User user;
 
@@ -42,6 +45,7 @@ public class MainProgramImp implements MainProgram {
         this.mypage = new MyPageImp(uManager);
         this.board = new BoardListPageImp(uManager);
         this.loginpage = new LoginPageImp(uManager);
+        this.logout = new LogoutServiceImp(uManager);
 
     }
 
@@ -69,19 +73,22 @@ public class MainProgramImp implements MainProgram {
                     sm.selectMenu(input,
                             () -> cmPage.run(),
                             () -> bmPage.run(),
-                            () -> umPage.run());
+                            () -> umPage.run(),
+                            () -> logout.run());
 
                 } else if (user != null && user.getU_admin() == 0) {
                 	
                 	sm.selectMenu(input,
                             () -> board.run(),
-                            () -> mypage.run());// 로그아웃 메서드 추가
+                            () -> mypage.run(),
+                            () -> logout.run());// 로그아웃 메서드 추가
 
                 } else {
                     sm.selectMenu(input,
                             () -> loginpage.run(),
                             () -> board.run(),
-                            () -> mypage.run()); // 로그아웃 메서드 추가
+                            () -> mypage.run(),
+                            () -> logout.run()); // 로그아웃 메서드 추가
 
                 }
 

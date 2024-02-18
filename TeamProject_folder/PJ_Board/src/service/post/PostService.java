@@ -24,4 +24,6 @@ public interface PostService {
 
 	public boolean updatePost(Post newPost);
 
+    public void updatePostview(int selectedPnum, int view);
+
 }

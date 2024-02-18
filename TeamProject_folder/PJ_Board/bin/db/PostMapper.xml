@@ -62,4 +62,12 @@
 		WHERE
 			p_num = #{newPost.p_num}
 	</update>
+
+	<update id="updatePostView">
+		UPDATE post
+		SET 
+		    p_view = #{view}
+		WHERE
+			p_num = #{p_num}
+	</update>
 </mapper>

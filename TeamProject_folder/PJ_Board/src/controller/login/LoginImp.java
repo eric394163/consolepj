@@ -23,6 +23,10 @@ public class LoginImp implements Login {
 
         // 반복
         while (true) {
+
+            System.out.println("[처음부터 입력하려면 1을 입력하세요.]");
+            System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
+
             System.out.print("아이디 입력 :");
             inputId = sc.next();
             if (inputId.equals("1")) {

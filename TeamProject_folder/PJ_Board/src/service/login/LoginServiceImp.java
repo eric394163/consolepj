@@ -42,4 +42,6 @@ public class LoginServiceImp implements LoginService {
     public User getUser(String userId) {
         return user = logindb.findUserById(userId);
     }
+
+
 }

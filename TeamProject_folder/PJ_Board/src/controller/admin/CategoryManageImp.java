@@ -31,6 +31,10 @@ public class CategoryManageImp implements CategoryManage {
         String updateCategory = "";
 
         while (true) {
+
+            System.out.println("[처음부터 입력하려면 1을 입력하세요.]");
+            System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
+
             System.out.print("수정할 카테고리 명 : ");
             sc.nextLine();
             selectedCategory = sc.nextLine();
@@ -47,18 +51,41 @@ public class CategoryManageImp implements CategoryManage {
                 continue;
             }
             if (updateCategory.equals("0")) {
-                break;
+                return;
             }
-        }
-        if (selectedCategory != null && updateCategory != null) {
-            cms.update(selectedCategory, updateCategory);
-            System.out.println(selectedCategory + "가 " + updateCategory + "로 수정되었습니다.");
+            if (selectedCategory != null && updateCategory != null) {
+                cms.update(selectedCategory, updateCategory);
+                System.out.println(selectedCategory + "가 " + updateCategory + "로 수정되었습니다.");
+                return;
+            }
         }
 
     }
 
     @Override
     public void delete() {
+
+        List<Category> categoryList = cs.getAllCategory();
+        displayCategory(categoryList);
+
+        String selectedCategory = "";
+
+        while (true) {
+
+            System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
+
+            System.out.print("삭제할 카테고리 명 : ");
+            sc.nextLine();
+            selectedCategory = sc.nextLine();
+            if (selectedCategory.equals("0")) {
+                return;
+            }
+            if (selectedCategory != null) {
+                cms.delete(selectedCategory);
+                System.out.println(selectedCategory + "가 삭제되었습니다.");
+                return;
+            }
+        }
 
     }
 
