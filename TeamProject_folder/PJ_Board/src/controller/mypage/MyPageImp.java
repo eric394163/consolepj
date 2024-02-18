@@ -6,7 +6,6 @@ import java.util.Scanner;
 import controller.myaccountpage.MyAccount;
 import controller.myaccountpage.MyAccountImp;
 import manager.UserManager;
-import model.User;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
