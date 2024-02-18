@@ -27,5 +27,13 @@ public class User {
 		this.u_phone = uPhone;
 		this.u_name = uName;
 	}
+
+	@Override
+	public String toString() {
+		return "User [u_id=" + u_id + ", u_pw=" + u_pw + ", u_mail=" + u_mail + ", u_phone=" + u_phone + ", u_name="
+				+ u_name + ", u_admin=" + u_admin + ", u_try=" + u_try + ", uStatement=" + uStatement + "]";
+	}
+	
+	
     
 }

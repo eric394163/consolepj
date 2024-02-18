@@ -96,11 +96,11 @@ public class MyPageImp implements MyPage {
 			// 회원 탈퇴 기능
 			
 			System.out.println("회원 탈퇴를 하시겠습니까?\n(탈퇴 시 게시글과 댓글이 모두 삭제됩니다.)");
-			System.out.print("예(Y) / 아니오(N): ");
+			System.out.print("예(Y) / 아니오(아무 키): ");
 			char tmp = sc.next().charAt(0);
 			if(tmp == 'y' || tmp == 'Y') {
 				// 회원 탈퇴 기능 시작
-				signout = new SignOutImp(uManager);
+				signout = new SignOutImp(uManager.getCurrentUser().getU_id());
 				signout.run();
 				// 회원 탈퇴 후 마이페이지 화면을 자동으로 빠져나감.
 				input = 0;

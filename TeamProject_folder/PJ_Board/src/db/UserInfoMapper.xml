@@ -25,5 +25,8 @@
 	<update id="deleteCommentByUser">
 		DELETE FROM comment WHERE c_u_id = #{u_id};
 	</update>
-	 -->	
+	 -->
+	 <select id="selectUserList" resultType="model.User">
+		SELECT * FROM user WHERE u_admin != 1;
+	</select>	
 </mapper>

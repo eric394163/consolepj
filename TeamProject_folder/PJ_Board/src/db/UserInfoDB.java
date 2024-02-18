@@ -1,6 +1,10 @@
 package db;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Param;
+
+import model.User;
 
 
 public interface UserInfoDB {
@@ -16,6 +20,8 @@ public interface UserInfoDB {
 	boolean deleteUser(@Param("u_id")String u_id);
 
 	boolean deletePostByUser(@Param("u_id")String u_id);
+
+	ArrayList<User> selectUserList();
 
 //	boolean deleteCommentByUser(@Param("u_id")String u_id);
 

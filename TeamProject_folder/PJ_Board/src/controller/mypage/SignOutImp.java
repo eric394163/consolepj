@@ -1,21 +1,19 @@
 package controller.mypage;
 
-import manager.UserManager;
 import service.userInfo.UserInfoService;
 import service.userInfo.UserInfoServiceImp;
 
 public class SignOutImp implements SignOut {
 
-    private UserManager uManager;
+    private String u_id;
     private UserInfoService userinfoService = new UserInfoServiceImp();
 
-    public SignOutImp(UserManager uManager) {
-       this.uManager = uManager;
+    public SignOutImp(String string) {
+       this.u_id = string;
     }
 
     @Override
     public void run() {
-        String uID = uManager.getCurrentUser().getU_id();
        
 //        if(userinfoService.deleteCommentByUser(uID)) {
 //        	System.out.println("댓글 삭제가 완료되었습니다.");
@@ -24,13 +22,13 @@ public class SignOutImp implements SignOut {
 //        }
         System.out.println("댓글 삭제 기능 미구현");
         
-        if(userinfoService.deletePostByUser(uID)) {
+        if(userinfoService.deletePostByUser(u_id)) {
         	System.out.println("게시글 삭제가 완료되었습니다.");
         }else {
         	System.out.println("게식르 삭제 중 오류 발생");
         }
         
-        if(userinfoService.deleteUser(uID)) {
+        if(userinfoService.deleteUser(u_id)) {
         	System.out.println("회원탈퇴가 완료되었습니다.");
         	return;
         }else {

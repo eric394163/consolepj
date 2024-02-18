@@ -13,6 +13,7 @@ import db.BoardDB;
 import db.CategoryDB;
 import db.UserInfoDB;
 import model.Board;
+import model.User;
 
 public class UserInfoServiceImp implements UserInfoService {
 	
@@ -66,6 +67,11 @@ public class UserInfoServiceImp implements UserInfoService {
 	public boolean deletePostByUser(String u_id) {
 		return  userinfodb.deletePostByUser(u_id);
 		
+	}
+
+	@Override
+	public ArrayList<User> selectUserList() {
+		return  userinfodb.selectUserList();
 	}
 
 //	@Override

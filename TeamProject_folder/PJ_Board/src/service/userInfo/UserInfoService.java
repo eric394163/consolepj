@@ -1,5 +1,9 @@
 package service.userInfo;
 
+import java.util.ArrayList;
+
+import model.User;
+
 public interface UserInfoService {
 
 	public boolean updatePw(String u_id, String u_pw);
@@ -13,6 +17,8 @@ public interface UserInfoService {
 	public boolean deleteUser(String uID);
 
 	public boolean deletePostByUser(String uID);
+
+	public ArrayList<User> selectUserList();
 
 //	public boolean deleteCommentByUser(String uID);
 
