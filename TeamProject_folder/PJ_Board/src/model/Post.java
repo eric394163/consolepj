@@ -50,6 +50,12 @@ public class Post {
 		this.p_u_id = p_u_id;
 	}
 
+	public Post(int p_num, String p_title, String p_content) {
+		this.p_num = p_num;
+		this.p_title = p_title;
+		this.p_content = p_content;
+	}
+
     
 	
 }

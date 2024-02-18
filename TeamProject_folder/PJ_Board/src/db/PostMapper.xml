@@ -45,4 +45,21 @@
 		insert into post(p_title, p_content, p_date, p_b_num, p_u_id)
 		values(#{post.p_title}, #{post.p_content}, now(), #{post.p_b_Num}, #{post.p_u_id});
 	</insert>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deletePost">
+		delete from post
+		where p_num = #{p_num}
+	</delete>
+	
+	<!-- 게시글 수정 -->
+	<update id="updatePost">
+		UPDATE post
+		SET 
+		    p_title = #{newPost.p_title},
+		    p_content = #{newPost.p_content},
+		    p_date = now()
+		WHERE
+			p_num = #{newPost.p_num}
+	</update>
 </mapper>

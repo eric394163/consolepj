@@ -1,5 +1,10 @@
 package model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class Board {
     private int b_num; // 게시판 번호
     private String b_name; // 게시판 이름
@@ -18,5 +23,16 @@ public class Board {
 		return b_c_num;
 	}
 
-  
+	public Board(String b_name, int b_c_num) {
+		this.b_name = b_name;
+		this.b_c_num = b_c_num;
+	}
+
+	public Board(int b_num, String b_name) {
+		this.b_num = b_num;
+		this.b_name = b_name;
+	}
+	
+	
+
 }

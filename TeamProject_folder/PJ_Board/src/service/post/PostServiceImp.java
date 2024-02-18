@@ -65,4 +65,14 @@ public class PostServiceImp implements PostService {
 		return postdb.insertPost(post);
 	}
 
+	@Override
+	public boolean deletePost(int p_num) {
+		return postdb.deletePost(p_num);
+	}
+
+	@Override
+	public boolean updatePost(Post newPost) {
+		return postdb.updatePost(newPost);
+	}
+
 }

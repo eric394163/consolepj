@@ -20,4 +20,8 @@ public interface PostService {
 	
 	public boolean insertPost(Post post);
 
+	public boolean deletePost(int p_num);
+
+	public boolean updatePost(Post newPost);
+
 }
