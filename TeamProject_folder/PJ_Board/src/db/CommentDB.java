@@ -10,4 +10,7 @@ public interface CommentDB {
 
     List<Comment> getComment(@Param("p_num") int selectedPnum);
 
+    void addComment(@Param("com_u_id") String us, @Param("com_p_num") int selectedPnum,
+            @Param("com_content") String com_content);
+
 }

@@ -55,9 +55,7 @@ public class PostViewPageImp implements PostViewPage {
 			System.out.println("내용 : " + post.getP_content());
 			System.out.println("===============================");
 
-			List<Comment> commentList = cs.getComment(selectedPnum);
-
-			displayComment(commentList);
+			displayComment();
 
 			if (user != null && user.isUStatement() == true && user.getU_id().equals(post.getP_u_id())) {
 				System.out.println("===================================");
@@ -159,18 +157,19 @@ public class PostViewPageImp implements PostViewPage {
 		}
 	}
 
-	private void displayComment(List<Comment> commentList) {
-
+	private void displayComment() {
+		List<Comment> commentList = cs.getComment(selectedPnum);
 		int input = 0;
 		int currentPage = 0;
 		final int pageSize = 5; // 한 페이지에 들어갈 항목 수
 		int totalPages = (commentList.size() + pageSize - 1) / pageSize; // 총 페이지 수 계산
 
 		do {
+			commentList = cs.getComment(selectedPnum);
 			System.out.println("======= (댓글 페이지 " + (currentPage + 1) + " / " + totalPages
 					+ ") ==========");
 			printComments(currentPage * pageSize, pageSize, commentList);
-			
+
 			System.out.println("[ 이전 : 1 ]  [ 다음 : 2 ] [ 댓글 작성 : 3 ]");
 			System.out.println("[ 종료 : 0 ]");
 			System.out.println("===================================");
@@ -182,10 +181,25 @@ public class PostViewPageImp implements PostViewPage {
 			} else if (input == 2 && currentPage < totalPages - 1) {
 				currentPage++;
 			} else if (input == 3) {
-				// 댓글 작성 구현
+				commentWrite(selectedPnum);
 
 			}
 		} while (input != 0);
+
+	}
+
+	private void commentWrite(int selectedPnum) {
+		User user = uManager.getCurrentUser();
+		String us = user.getU_id();
+		sc.nextLine();
+		System.out.print("내용 입력 :");
+		String commentInput = sc.nextLine();
+
+		if (cs.addComment(us, selectedPnum, commentInput)) {
+			System.out.println("댓글 입력 성공");
+		} else {
+			System.out.println("댓글 입력 실패");
+		}
 
 	}
 
