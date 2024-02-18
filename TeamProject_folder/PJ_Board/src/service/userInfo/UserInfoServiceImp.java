@@ -44,8 +44,18 @@ public class UserInfoServiceImp implements UserInfoService {
 
 	@Override
 	public boolean updateName(String u_id, String name) {
-		// TODO Auto-generated method stub
-		return false;
+		return userinfodb.updateName(u_id, name);
 	}
+
+	@Override
+	public boolean updatePhone(String u_id, String phoneNum) {
+		return userinfodb.updatePhone(u_id, phoneNum);
+	}
+
+	@Override
+	public boolean updateEmail(String u_id, String email) {
+		return userinfodb.updateEmail(u_id, email);
+	}
+
 
 }

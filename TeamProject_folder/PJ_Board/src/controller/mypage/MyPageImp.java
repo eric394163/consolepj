@@ -44,12 +44,16 @@ public class MyPageImp implements MyPage {
             System.out.println("2. 내 글 보기");
             System.out.println("3. 내 댓글 보기");
             System.out.println("4. 회원 탈퇴");
+            System.out.println("0. 뒤로가기");
             System.out.println("====================================");
             System.out.print("입력 :");
 
             try {
                 // 메뉴 선택
                 input = sc.nextInt();
+                if(input==0) {
+                	return;
+                }
                 // 메뉴 실행
                 sm.selectMenu(input,
                         () -> isAuthorized(1),
@@ -86,6 +90,7 @@ public class MyPageImp implements MyPage {
 		if(i == 1) {
 			myaccount = new MyAccountImp(uManager);
 			myaccount.run();
+			System.out.println(uManager.getCurrentUser());
 		}else { 
 			// 회원 탈퇴 기능
 			
