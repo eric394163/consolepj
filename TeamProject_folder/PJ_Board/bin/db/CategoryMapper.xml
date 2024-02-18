@@ -38,5 +38,9 @@
 		 select c_name from category where c_num = #{c_num}
 	 </select>
 	-->
+	<delete id="deleteCategory">
+		delete from category
+		where c_name = #{selectedCategory}
+	</delete>
 
 </mapper>

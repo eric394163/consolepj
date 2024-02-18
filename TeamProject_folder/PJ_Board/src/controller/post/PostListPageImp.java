@@ -33,14 +33,12 @@ public class PostListPageImp implements PostListPage {
 	@Override
 	public void run(int selectedBnum, String cateName, String boardName) {
 		int input = -1;
-		
+    
 		// 게시글의 전체 갯수 구하기
 		postListSize = postService.countPostList(selectedBnum);
 //		System.out.println(postListSize);
 		
 		String info = "["+cateName+" 카테고리] ["+boardName+"]";
-		
-	
 		
 		// 메뉴 선택하기
 		do {

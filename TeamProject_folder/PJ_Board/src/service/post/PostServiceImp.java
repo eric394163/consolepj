@@ -75,4 +75,10 @@ public class PostServiceImp implements PostService {
 		return postdb.updatePost(newPost);
 	}
 
+
+	@Override
+	public void updatePostview(int selectedPnum, int view) {
+		postdb.updatePostView(selectedPnum, view);
+	}
+
 }

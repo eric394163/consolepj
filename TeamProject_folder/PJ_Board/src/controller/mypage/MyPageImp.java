@@ -25,7 +25,7 @@ public class MyPageImp implements MyPage {
     private int input = 0;
 
     public MyPageImp(UserManager uManager) {
-       this.uManager = uManager;
+    	this.uManager = uManager;
     }
 
     @Override

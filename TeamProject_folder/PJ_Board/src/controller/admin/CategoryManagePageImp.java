@@ -3,7 +3,6 @@ package controller.admin;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -11,7 +10,7 @@ public class CategoryManagePageImp implements CategoryManagePage {
 
     private Scanner sc = new Scanner(System.in);
     private SelectMenu sm = new SelectMenuImp();
-    private CategoryManage cm;
+    private CategoryManage cm = new CategoryManageImp();
 
     @Override
     public void run() {

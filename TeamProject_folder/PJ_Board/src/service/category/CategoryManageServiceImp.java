@@ -39,11 +39,6 @@ public class CategoryManageServiceImp implements CategoryManageService {
         categoryDB.addCategory(inputCategoryName);
     }
 
-    @Override
-    public void delete() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
 
     @Override
     public void update(String inputCategoryName, String inputUpdateCategoryName) {
@@ -51,6 +46,11 @@ public class CategoryManageServiceImp implements CategoryManageService {
         params.put("oldCategoryName", inputCategoryName);
         params.put("newCategoryName", inputUpdateCategoryName);
         categoryDB.updateCategory(params);
+    }
+
+    @Override
+    public void delete(String selectedCategory) {
+        categoryDB.deleteCategory(selectedCategory);
     }
 
 }

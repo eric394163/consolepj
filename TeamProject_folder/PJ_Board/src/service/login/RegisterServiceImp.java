@@ -14,7 +14,7 @@ import model.User;
 
 public class RegisterServiceImp implements RegisterService {
 
-	private RegisterDB registerDb;
+    private RegisterDB registerDb;
     private User user;
 
     public RegisterServiceImp() {
@@ -30,28 +30,27 @@ public class RegisterServiceImp implements RegisterService {
             e.printStackTrace();
         }
     }
-    
-    @Override
-	public boolean insertUser(User user) {
-		if(user == null || user.getU_id() == null) {
-			return false;
-		}
-		return registerDb.insertUser(user);
-	}
-    
-    @Override
-	public int getUserId(String id) {
-		return registerDb.selectUserId(id);
-	}
 
-	@Override
-	public int getUserEmail(String email) {
-		return registerDb.selectUserEmail(email);
-	}
+    @Override
+    public boolean insertUser(User user) {
+        if (user == null || user.getU_id() == null) {
+            return false;
+        }
+        return registerDb.insertUser(user);
+    }
 
-	@Override
-	public int getUserPhoneNum(String phoneNum) {
-		return registerDb.selectUserPhoneNum(phoneNum);
-	}
-	
+    public int getUserId(String id) {
+        return registerDb.selectUserId(id);
+    }
+
+    @Override
+    public int getUserEmail(String email) {
+        return registerDb.selectUserEmail(email);
+    }
+
+    @Override
+    public int getUserPhoneNum(String phoneNum) {
+        return registerDb.selectUserPhoneNum(phoneNum);
+    }
+
 }

@@ -27,7 +27,6 @@ public class PostViewPageImp implements PostViewPage {
 	private CommentService cs = new CommentServiceImp();
 	private String boardName;
 
-
 	public PostViewPageImp(UserManager uManager, int selectedPnum, String boardName) {
 		this.uManager = uManager;
 		this.selectedPnum = selectedPnum;
@@ -36,22 +35,27 @@ public class PostViewPageImp implements PostViewPage {
 
 	@Override
 	public void run() {
-		Post post = ps.getPost(selectedPnum);
+
 		User user = uManager.getCurrentUser();
 
 		while (true) {
+
+			Post post = ps.getPost(selectedPnum);
+			int view = post.getP_view();
+			view++;
+			ps.updatePostview(selectedPnum, view);
+			post = ps.getPost(selectedPnum);
 
 			System.out.println("===============================");
 			System.out.println("제목 : " + post.getP_title());
 			System.out.println("게시판 : " + boardName);
 			System.out.println("작성자 : " + post.getP_u_id());
 			System.out.println("작성 날짜 : " + post.getP_date());
+			System.out.println("조회수 : " + post.getP_view());
 			System.out.println("내용 : " + post.getP_content());
 			System.out.println("===============================");
 
-			List<Comment> commentList = cs.getComment(selectedPnum);
-
-			displayComment(commentList);
+			displayComment();
 
 			if (user != null && user.isUStatement() == true && user.getU_id().equals(post.getP_u_id())) {
 				System.out.println("===================================");
@@ -61,26 +65,25 @@ public class PostViewPageImp implements PostViewPage {
 				int input = sc.nextInt();
 
 				if (input == 1) {
-					//게시글 삭제
-					if(ps.deletePost(post.getP_num())) {
+					// 게시글 삭제
+					if (ps.deletePost(post.getP_num())) {
 						System.out.println("게시글 삭제가 완료되었습니다.");
-					}else {
+					} else {
 						System.out.println("게시글 삭제를 실패하였습니다.");
 					}
-					
+
 				} else if (input == 2) {
-					//게시글 수정
+					// 게시글 수정
 					Post newPost = updatePost(post, user);
-					if(ps.updatePost(newPost)) {
+					if (ps.updatePost(newPost)) {
 						System.out.println("게시글 수정이 완료되었습니다.");
-					}else {
+					} else {
 						System.out.println("게시글 수정을 실패하였습니다.");
 					}
-					
-					
+
 				} else if (input == 0) {
 					break;
-					
+
 				}
 
 			} else {
@@ -93,76 +96,76 @@ public class PostViewPageImp implements PostViewPage {
 	private Post updatePost(Post post, User user) {
 		System.out.println("========== 게시글 수정 ==========");
 		System.out.println("[처음부터 입력하려면 1을 입력하세요.]");
-    	System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
-    	
-    	while(true) {
-    		System.out.println("==============================");
-    		//제목
-    		String regexTitle = "^.{1,50}$";
-    		String title = null;
-    		
-    		do {
-    			sc.nextLine();
-    			System.out.println("기존 제목 : " + post.getP_title());
-    			System.out.print("수정 제목 : ");
-    			title = sc.nextLine();
-        		if(title.equals("0")) {
-    	    		return null;
-    	    	}
-    	    	if(title.equals("1")) {
-    	    		break;
-    	    	}
-    	    	if(!Pattern.matches(regexTitle, title)) {
+		System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
+
+		while (true) {
+			System.out.println("==============================");
+			// 제목
+			String regexTitle = "^.{1,50}$";
+			String title = null;
+
+			do {
+				sc.nextLine();
+				System.out.println("기존 제목 : " + post.getP_title());
+				System.out.print("수정 제목 : ");
+				title = sc.nextLine();
+				if (title.equals("0")) {
+					return null;
+				}
+				if (title.equals("1")) {
+					break;
+				}
+				if (!Pattern.matches(regexTitle, title)) {
 					System.out.println("1자 이상, 50자 이하의 제목을 입력해주세요.");
 				}
-    		}while(!Pattern.matches(regexTitle, title));
-    		if(title.equals("1")) {
-	    		continue;
-	    	}
-    		
-    		//내용
-    		String regexContent = "^.{1,1000}$";
-    		String content = null;
-    		
-    		do {
-    			System.out.println("기존 내용 : " + post.getP_content());
-    			System.out.print("수정 내용 : ");
-    			content = sc.nextLine();
-        		if(content.equals("0")) {
-    	    		return null;
-    	    	}
-    	    	if(content.equals("1")) {
-    	    		break;
-    	    	}
-    	    	if(!Pattern.matches(regexContent, content)) {
+			} while (!Pattern.matches(regexTitle, title));
+			if (title.equals("1")) {
+				continue;
+			}
+
+			// 내용
+			String regexContent = "^.{1,1000}$";
+			String content = null;
+
+			do {
+				System.out.println("기존 내용 : " + post.getP_content());
+				System.out.print("수정 내용 : ");
+				content = sc.nextLine();
+				if (content.equals("0")) {
+					return null;
+				}
+				if (content.equals("1")) {
+					break;
+				}
+				if (!Pattern.matches(regexContent, content)) {
 					System.out.println("1자 이상, 1000자 이하의 내용을 입력해주세요.");
 				}
-    		}while(!Pattern.matches(regexContent, content));
-    		if(content.equals("1")) {
-	    		continue;
-	    	}
-    		
-//    		//게시일
-//    		//현재 날짜 구하기
-//    		LocalDate now = LocalDate.now();
-//    		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//    		String formatedNow = now.format(formatter);
-    		
-    		
-    		Post newPost = new Post(post.getP_num(), title, content);
-    		
-    		return newPost;
-    	}
+			} while (!Pattern.matches(regexContent, content));
+			if (content.equals("1")) {
+				continue;
+			}
+
+			// //게시일
+			// //현재 날짜 구하기
+			// LocalDate now = LocalDate.now();
+			// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			// String formatedNow = now.format(formatter);
+
+			Post newPost = new Post(post.getP_num(), title, content);
+
+			return newPost;
+		}
 	}
 
-	private void displayComment(List<Comment> commentList) {
-
+	private void displayComment() {
+		List<Comment> commentList = cs.getComment(selectedPnum);
 		int input = 0;
 		int currentPage = 0;
 		final int pageSize = 5; // 한 페이지에 들어갈 항목 수
 		int totalPages = (commentList.size() + pageSize - 1) / pageSize; // 총 페이지 수 계산
 
 		do {
+			commentList = cs.getComment(selectedPnum);
 			System.out.println("======= (댓글 페이지 " + (currentPage + 1) + " / " + totalPages
 					+ ") ==========");
 			printComments(currentPage * pageSize, pageSize, commentList);
@@ -178,14 +181,29 @@ public class PostViewPageImp implements PostViewPage {
 			} else if (input == 2 && currentPage < totalPages - 1) {
 				currentPage++;
 			} else if (input == 3) {
-				// 댓글 작성 구현
+				commentWrite(selectedPnum);
 
 			}
 		} while (input != 0);
 
 	}
 
-	public void printComments(int startIndex, int pageSize, List<Comment> commentList) {
+	private void commentWrite(int selectedPnum) {
+		User user = uManager.getCurrentUser();
+		String us = user.getU_id();
+		sc.nextLine();
+		System.out.print("내용 입력 :");
+		String commentInput = sc.nextLine();
+
+		if (cs.addComment(us, selectedPnum, commentInput)) {
+			System.out.println("댓글 입력 성공");
+		} else {
+			System.out.println("댓글 입력 실패");
+		}
+
+	}
+
+	private void printComments(int startIndex, int pageSize, List<Comment> commentList) {
 		if (commentList.isEmpty()) {
 			System.out.println("댓글 없음");
 			return;

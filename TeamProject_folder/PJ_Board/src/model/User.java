@@ -20,7 +20,6 @@ public class User {
     	this.u_id = uId;
     }
 
-
 	public User(String uId, String uPw, String uMail, String uPhone, String uName) {
 		this.u_id = uId;
 		this.u_pw = uPw;
