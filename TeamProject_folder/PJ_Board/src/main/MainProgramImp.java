@@ -82,7 +82,7 @@ public class MainProgramImp implements MainProgram {
                 sc.nextLine();
             }
         } while (input != EXIT);
-
+        System.out.println("프로그램이 종료되었습니다.");
     }
 
     private void printAdminMenu() {
