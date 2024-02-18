@@ -36,10 +36,11 @@ public class PostViewPageImp implements PostViewPage {
 
 	@Override
 	public void run() {
-		Post post = ps.getPost(selectedPnum);
+		//Post post = ps.getPost(selectedPnum);
 		User user = uManager.getCurrentUser();
 
 		while (true) {
+			Post post = ps.getPost(selectedPnum);
 
 			System.out.println("===============================");
 			System.out.println("제목 : " + post.getP_title());
