@@ -17,6 +17,8 @@ import controller.mypage.MyPage;
 import controller.mypage.MyPageImp;
 import manager.UserManager;
 import model.User;
+import service.login.LogoutService;
+import service.login.LogoutServiceImp;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -32,6 +34,7 @@ public class MainProgramImp implements MainProgram {
     private CategoryManagePage cmPage = new CategoryManagePageImp();
     private BoardManagePage bmPage = new BoardManagePageImp();
     private UserManagePage umPage = new UserManagePageImp();
+    private LogoutService logout;
 
     private User user;
 
@@ -42,6 +45,7 @@ public class MainProgramImp implements MainProgram {
         this.mypage = new MyPageImp(uManager);
         this.board = new BoardListPageImp(uManager);
         this.loginpage = new LoginPageImp(uManager);
+        this.logout = new LogoutServiceImp(uManager);
 
     }
 
@@ -54,7 +58,9 @@ public class MainProgramImp implements MainProgram {
             System.out.println(user);
             if (user != null && user.getU_admin() == 1) {
                 printAdminMenu();
-            } else {
+            }else if (user != null && user.getU_admin() == 0) {
+            	printLoginUserMenu();
+            }else {
                 printUserMenu();
             }
 
@@ -67,13 +73,22 @@ public class MainProgramImp implements MainProgram {
                     sm.selectMenu(input,
                             () -> cmPage.run(),
                             () -> bmPage.run(),
-                            () -> umPage.run());
+                            () -> umPage.run(),
+                            () -> logout.run());
+
+                } else if (user != null && user.getU_admin() == 0) {
+                	
+                	sm.selectMenu(input,
+                            () -> board.run(),
+                            () -> mypage.run(),
+                            () -> logout.run());// 로그아웃 메서드 추가
 
                 } else {
                     sm.selectMenu(input,
                             () -> loginpage.run(),
                             () -> board.run(),
-                            () -> mypage.run()); // 로그아웃 메서드 추가
+                            () -> mypage.run(),
+                            () -> logout.run()); // 로그아웃 메서드 추가
 
                 }
 
@@ -82,7 +97,7 @@ public class MainProgramImp implements MainProgram {
                 sc.nextLine();
             }
         } while (input != EXIT);
-
+        System.out.println("프로그램이 종료되었습니다.");
     }
 
     private void printAdminMenu() {
@@ -102,6 +117,16 @@ public class MainProgramImp implements MainProgram {
         System.out.println("2. 게시판");
         System.out.println("3. 마이페이지");
         System.out.println("4. 로그아웃");
+        System.out.println("0. 프로그램 종료");
+        System.out.println("====================================");
+        System.out.print("입력 :");
+    }
+    
+    private void printLoginUserMenu() {
+        System.out.println("========== 게시판 프로그램 ==========");
+        System.out.println("1. 게시판");
+        System.out.println("2. 마이페이지");
+        System.out.println("3. 로그아웃");
         System.out.println("0. 프로그램 종료");
         System.out.println("====================================");
         System.out.print("입력 :");

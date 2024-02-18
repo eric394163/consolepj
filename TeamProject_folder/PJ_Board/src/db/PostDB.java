@@ -17,9 +17,11 @@ public interface PostDB {
 
     String getPostBoard(@Param("p_b_num") int p_b_num);
 
-	boolean insertPost(@Param("post")Post post);
+    boolean insertPost(@Param("post") Post post);
 
-	boolean deletePost(@Param("p_num")int p_num);
+    boolean deletePost(@Param("p_num") int p_num);
 
-	boolean updatePost(@Param("newPost")Post newPost);
+    boolean updatePost(@Param("newPost") Post newPost);
+
+    void updatePostView(@Param("p_num") int selectedPnum, @Param("view") int view);
 }

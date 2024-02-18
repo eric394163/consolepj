@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import manager.UserManager;
+import model.User;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -17,9 +18,13 @@ public class LoginPageImp implements LoginPage {
     private FindPW findpw;
 
     private final int EXIT = 0;
+    private UserManager uManager;
+    private User user;
 
     public LoginPageImp(UserManager uManager) {
         this.login = new LoginImp(uManager);
+        this.uManager = uManager;
+        this.user = uManager.getCurrentUser();
     }
 
     @Override
@@ -27,6 +32,11 @@ public class LoginPageImp implements LoginPage {
         int input = 0;
         // 반복
         do {
+
+            this.user = uManager.getCurrentUser();
+            if (user != null && user.isUStatement() == true) {
+                break;
+            }
             // 메뉴 출력
             System.out.println("============== 로그인 ==============");
             System.out.println("1. 로그인");

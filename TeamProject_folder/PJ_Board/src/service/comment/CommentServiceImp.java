@@ -39,4 +39,15 @@ public class CommentServiceImp implements CommentService {
 
     }
 
+    @Override
+    public boolean addComment(String us, int selectedPnum, String commentInput) {
+        if (us != null && selectedPnum != 0 && commentInput != null) {
+            commentdb.addComment(us, selectedPnum, commentInput);
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 import controller.myaccountpage.MyAccount;
 import controller.myaccountpage.MyAccountImp;
 import manager.UserManager;
+import model.User;
 import service.selectmenu.SelectMenu;
 import service.selectmenu.SelectMenuImp;
 
@@ -21,13 +22,21 @@ public class MyPageImp implements MyPage {
     private UserManager uManager;
 
     private final int EXIT = 0;
+	private UserManager uManager;
+	private User user;
 
     public MyPageImp(UserManager uManager) {
-       this.uManager = uManager;
+    	this.uManager = uManager;
+		this.user = uManager.getCurrentUser();
     }
 
     @Override
     public void run() {
+		this.user = uManager.getCurrentUser();
+    	if(user == null || user.isUStatement() == false) {
+    		System.out.println("로그인이 필요합니다.");
+    		return;
+    	}
         int input = 0;
         
         // 로그인을 하지 않았을 경우

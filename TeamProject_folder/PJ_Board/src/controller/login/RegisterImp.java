@@ -11,21 +11,21 @@ public class RegisterImp implements Register {
 
 	private Scanner sc = new Scanner(System.in);
 	private RegisterService registerService = new RegisterServiceImp();
-	
-    @Override
-    public void run() {
+
+	@Override
+	public void run() {
 
 		User user = inputUser();
-		if(user == null) {
+		if (user == null) {
 			return;
 		}
-		if(registerService.insertUser(user)) {
+		if (registerService.insertUser(user)) {
 			System.out.println("회원가입이 완료되었습니다.");
-		}else {
+		} else {
 			System.out.println("회원가입을 실패하였습니다.");
 		}
-		
-    }
+
+	}
 
 	private User inputUser() {
 		System.out.println("=========== 회원 가입 ===========");
@@ -33,29 +33,29 @@ public class RegisterImp implements Register {
     	System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
 		while(true) {
 			System.out.println("=============================");
-	    	//본명
-	    	//성명 정규표현식
-			String regexName = "^[가-힣]{2,}$"; //한글 2글자 이상
+			// 본명
+			// 성명 정규표현식
+			String regexName = "^[가-힣]{2,}$"; // 한글 2글자 이상
 			String name = null;
 			do {
 				System.out.print("본명 입력 : ");
 				name = sc.next();
-				if(name.equals("0")) {
-		    		return null;
-		    	}
-		    	if(name.equals("1")) {
-		    		break;
-		    	}
-				if(!Pattern.matches(regexName, name)) {
+				if (name.equals("0")) {
+					return null;
+				}
+				if (name.equals("1")) {
+					break;
+				}
+				if (!Pattern.matches(regexName, name)) {
 					System.out.println("2글자 이상의 한글 이름을 입력해주세요.");
-				}	
-			}while(!Pattern.matches(regexName, name));
-			if(name.equals("1")) {
-	    		continue;
-	    	}
-	    	
-			//아이디
-			//아이디 정규표현식
+				}
+			} while (!Pattern.matches(regexName, name));
+			if (name.equals("1")) {
+				continue;
+			}
+
+			// 아이디
+			// 아이디 정규표현식
 			String regexId = "^[a-zA-Z][0-9a-zA-Z]{7,12}$";
 			String id = null;
 			int userId = 0;
@@ -88,41 +88,41 @@ public class RegisterImp implements Register {
 			do {
 				System.out.print("비밀번호 입력 : ");
 				pw = sc.next();
-				if(pw.equals("0")) {
-		    		return null;
-		    	}
-		    	if(pw.equals("1")) {
-		    		break;
-		    	}
-				if(!Pattern.matches(regexPw, pw)) {
+				if (pw.equals("0")) {
+					return null;
+				}
+				if (pw.equals("1")) {
+					break;
+				}
+				if (!Pattern.matches(regexPw, pw)) {
 					System.out.println("비밀번호는 영문자 대소문자, 숫자, 특수문자(!@#$%) 포함하여 8~20자를 생성해주세요.");
-				}	
-			}while(!Pattern.matches(regexPw, pw));
-			if(pw.equals("1")) {
-	    		continue;
-	    	}
-			
+				}
+			} while (!Pattern.matches(regexPw, pw));
+			if (pw.equals("1")) {
+				continue;
+			}
+
 			// 비번확인
 			String pwConfirm = null;
 			do {
 				System.out.print("비밀번호 확인 : ");
 				pwConfirm = sc.next();
-				if(pwConfirm.equals("0")) {
-		    		return null;
-		    	}
-		    	if(pwConfirm.equals("1")) {
-		    		break;
-		    	}
-				if(!pw.equals(pwConfirm)) {
+				if (pwConfirm.equals("0")) {
+					return null;
+				}
+				if (pwConfirm.equals("1")) {
+					break;
+				}
+				if (!pw.equals(pwConfirm)) {
 					System.out.println("비밀번호가 일치하지 않습니다.");
 				}
-			}while(!pw.equals(pwConfirm));
-			if(pwConfirm.equals("1")) {
-	    		continue;
-	    	}
-	
-			//이메일
-			//이메일 정규표현식
+			} while (!pw.equals(pwConfirm));
+			if (pwConfirm.equals("1")) {
+				continue;
+			}
+
+			// 이메일
+			// 이메일 정규표현식
 			String regexEmail = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 			String email = null;
 			int userEmail = 0;
