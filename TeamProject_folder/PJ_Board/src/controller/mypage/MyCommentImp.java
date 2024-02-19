@@ -3,9 +3,9 @@ package controller.mypage;
 public class MyCommentImp implements MyComment {
 
     @Override
-    public Object run() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'run'");
+    public void run() {
+        System.out.println("기능 준비중..");
+        return;
     }
 
 }

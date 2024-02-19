@@ -17,7 +17,7 @@ public class MyPageImp implements MyPage {
     private MyAccount myaccount;
     private MyComment mycomment = new MyCommentImp();
     private SignOut signout;
-    private MyPost mypost = new MyPostImp();
+    private MyPost mypost;
     private UserManager uManager;
 
     private final int EXIT = 0;
@@ -25,6 +25,7 @@ public class MyPageImp implements MyPage {
 
     public MyPageImp(UserManager uManager) {
     	this.uManager = uManager;
+    	this.mypost = new MyPostImp(uManager);
     }
 
     @Override

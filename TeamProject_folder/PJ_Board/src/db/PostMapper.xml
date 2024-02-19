@@ -70,4 +70,22 @@
 		WHERE
 			p_num = #{p_num}
 	</update>
+	
+	<!-- 내가 쓴 글 -->
+	<select id="countMyPostList" resultType="int">
+		select count(p_u_id) from post where p_u_id = #{u_id}
+	</select>
+	
+	<select id="selectMyPostList" resultType="model.Post">
+		select * from post where p_u_id = #{u_id}
+		order by p_date
+		LIMIT #{startNum}, #{size};
+	</select>
+	
+	<select id="getMyPostBName" resultType="String">
+		select b_name from post 
+	    join board on p_b_num = b_num 
+	    where b_num = #{p_b_num}
+	</select>
+	
 </mapper>

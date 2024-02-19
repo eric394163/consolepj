@@ -81,4 +81,19 @@ public class PostServiceImp implements PostService {
 		postdb.updatePostView(selectedPnum, view);
 	}
 
+	@Override
+	public int countMyPostList(String u_id) {
+		return postdb.countMyPostList(u_id);
+	}
+
+	@Override
+	public ArrayList<Post> selectMyPostList(String u_id, int startNum, int size) {
+		return postdb.selectMyPostList(u_id, startNum, size);
+	}
+
+	@Override
+	public String getMyPostBName(int selectedPbnum) {
+		return postdb.getMyPostBName(selectedPbnum);
+	}
+
 }
