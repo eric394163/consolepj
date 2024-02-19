@@ -14,8 +14,6 @@ public class LoginPageImp implements LoginPage {
 
     private Login login;
     private Register register = new RegisterImp();
-    private FindID findid;
-    private FindPW findpw;
 
     private final int EXIT = 0;
     private UserManager uManager;
@@ -41,8 +39,6 @@ public class LoginPageImp implements LoginPage {
             System.out.println("============== 로그인 ==============");
             System.out.println("1. 로그인");
             System.out.println("2. 회원가입");
-            System.out.println("3. 아이디찾기");
-            System.out.println("4. 비밀번호찾기");
             System.out.println("0. 뒤로가기");
             System.out.println("====================================");
             System.out.print("입력 :");
@@ -57,9 +53,7 @@ public class LoginPageImp implements LoginPage {
                 // 메뉴 실행
                 sm.selectMenu(input,
                         () -> login.run(),
-                        () -> register.run(),
-                        () -> findid.run(),
-                        () -> findpw.run());
+                        () -> register.run());
             } catch (InputMismatchException e) {
                 System.out.println("잘못된 메뉴입니다.");
                 sc.nextLine();

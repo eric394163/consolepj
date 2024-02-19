@@ -41,9 +41,6 @@ public class PostViewPageImp implements PostViewPage {
 		while (true) {
 
 			Post post = ps.getPost(selectedPnum);
-			if (post != null) {
-				return;
-			}
 			int view = post.getP_view();
 			view++;
 			ps.updatePostview(selectedPnum, view);
@@ -71,6 +68,7 @@ public class PostViewPageImp implements PostViewPage {
 					// 게시글 삭제
 					if (ps.deletePost(post.getP_num())) {
 						System.out.println("게시글 삭제가 완료되었습니다.");
+						return;
 					} else {
 						System.out.println("게시글 삭제를 실패하였습니다.");
 					}
