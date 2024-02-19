@@ -28,11 +28,11 @@ public class RegisterImp implements Register {
 	}
 
 	private User inputUser() {
-		System.out.println("=========== 회원 가입 ===========");
+		System.out.println("============== 회원 가입 ==============");
     	System.out.println("[처음부터 입력하려면 1을 입력하세요.]");
     	System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
 		while(true) {
-			System.out.println("=============================");
+			System.out.println("====================================");
 			// 본명
 			// 성명 정규표현식
 			String regexName = "^[가-힣]{2,}$"; // 한글 2글자 이상

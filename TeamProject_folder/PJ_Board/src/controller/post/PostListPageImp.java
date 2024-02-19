@@ -45,13 +45,15 @@ public class PostListPageImp implements PostListPage {
 		postListSize = postService.countPostList(selectedBnum);
 		// System.out.println(postListSize);
 
-		// 게시글 목록을 출력하는 메서드
-		printPostList(selectedBnum, info, startNum, PAGE_SIZE);
+//		// 게시글 목록을 출력하는 메서드
+//		printPostList(selectedBnum, info, startNum, PAGE_SIZE);
 		
 
 		// 메뉴 선택하기
 		do {
 			try {
+				// 게시글 목록을 출력하는 메서드
+				printPostList(selectedBnum, info, startNum, PAGE_SIZE);
 				// 메뉴 입력받기
 				System.out.print("메뉴 입력: ");
 				input = sc.nextInt();
@@ -107,7 +109,7 @@ public class PostListPageImp implements PostListPage {
 
 			}
 
-			if (selectedPidx < 0 || selectedPidx > PAGE_SIZE) {
+			if (selectedPidx < 0 || selectedPidx > PAGE_SIZE || selectedPidx > postList.size()) {
 
 				System.out.println("유효한 수를 입력하세요.");
 			} else if (selectedPidx == EXIT) {

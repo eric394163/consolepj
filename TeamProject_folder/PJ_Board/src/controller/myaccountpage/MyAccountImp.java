@@ -36,7 +36,7 @@ public class MyAccountImp implements MyAccount{
     	
     	do {
             // 메뉴 출력
-            System.out.println("========== 게시판 프로그램 ==========");
+            System.out.println("============= 내 계정 관리 ============");
             System.out.println("1. 비밀번호 변경");
             System.out.println("2. 이메일 변경");
             System.out.println("3. 전화번호 변경");
@@ -74,7 +74,7 @@ public class MyAccountImp implements MyAccount{
 
     	System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
 		while(true) {
-			System.out.println("=============================");
+			System.out.println("====================================");
 
 				System.out.print("새로운 이름 입력 : ");
 				name = sc.next();
