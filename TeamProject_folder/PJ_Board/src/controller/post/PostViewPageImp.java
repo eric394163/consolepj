@@ -41,6 +41,9 @@ public class PostViewPageImp implements PostViewPage {
 		while (true) {
 
 			Post post = ps.getPost(selectedPnum);
+			if (post != null) {
+				return;
+			}
 			int view = post.getP_view();
 			view++;
 			ps.updatePostview(selectedPnum, view);
