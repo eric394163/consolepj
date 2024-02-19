@@ -37,7 +37,6 @@ public class MyPostImp implements MyPost {
 
 	public MyPostImp(UserManager uManager) {
 		this.uManager = uManager;
-		//this.user = uManager.getCurrentUser();
 	}
 	
     @Override
@@ -125,10 +124,6 @@ public class MyPostImp implements MyPost {
 	private void printMyPostList(int startNum, int size) {
 		// 게시글 목록 띄우기
 		postList = postService.selectMyPostList(uManager.getCurrentUser().getU_id(), startNum, size);
-//		System.out.println(postList);
-		
-		//[A카테고리][일상]
-		//System.out.println("\n\n\n\n"+info+"\n");
 		
 		// [(게시글 번호)] (게시글 제목) + (작성자) + [(댓글 갯수)] + 작성잘짜 + 조회수
 		for(int i =0; i<postList.size(); i++) {
