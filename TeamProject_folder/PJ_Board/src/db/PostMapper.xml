@@ -24,7 +24,7 @@
 	 
 	<select id="selectPostList" resultType="model.Post">
 		select * from post where p_b_num = #{p_b_num}
-		order by p_date
+		order by p_date desc
 		LIMIT #{start}, #{size};
 	</select>
 
