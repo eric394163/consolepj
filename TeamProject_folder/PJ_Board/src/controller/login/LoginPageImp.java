@@ -36,11 +36,11 @@ public class LoginPageImp implements LoginPage {
                 break;
             }
             // 메뉴 출력
-            System.out.println("============== 로그인 ==============");
+            System.out.println("=============== 로그인 ================");
             System.out.println("1. 로그인");
             System.out.println("2. 회원가입");
             System.out.println("0. 뒤로가기");
-            System.out.println("====================================");
+            System.out.println("=====================================");
             System.out.print("입력 :");
 
             try {

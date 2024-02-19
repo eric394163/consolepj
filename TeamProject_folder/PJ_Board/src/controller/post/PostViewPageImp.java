@@ -46,21 +46,21 @@ public class PostViewPageImp implements PostViewPage {
 			ps.updatePostview(selectedPnum, view);
 			post = ps.getPost(selectedPnum);
 
-			System.out.println("===============================");
+			System.out.println("======================================");
 			System.out.println("제목 : " + post.getP_title());
 			System.out.println("게시판 : " + boardName);
 			System.out.println("작성자 : " + post.getP_u_id());
 			System.out.println("작성 날짜 : " + post.getP_date());
 			System.out.println("조회수 : " + post.getP_view());
 			System.out.println("내용 : " + post.getP_content());
-			System.out.println("===============================");
+			System.out.println("======================================");
 
 			displayComment();
 
 			if (user != null && user.isUStatement() == true && user.getU_id().equals(post.getP_u_id())) {
-				System.out.println("===================================");
+				System.out.println("=============================================");
 				System.out.println("[ 게시글 삭제 : 1 ]  [ 게시글 수정: 2 ] [ 종료 : 0 ]");
-				System.out.println("===================================");
+				System.out.println("=============================================");
 				System.out.print("입력 : ");
 				int input = sc.nextInt();
 
@@ -170,13 +170,13 @@ public class PostViewPageImp implements PostViewPage {
 
 		do {
 			commentList = cs.getComment(selectedPnum);
-			System.out.println("======= (댓글 페이지 " + (currentPage + 1) + " / " + totalPages
+			System.out.println("========== (댓글 페이지 " + (currentPage + 1) + " / " + totalPages
 					+ ") ==========");
 			printComments(currentPage * pageSize, pageSize, commentList);
 
 			System.out.println("[ 이전 : 1 ]  [ 다음 : 2 ] [ 댓글 작성 : 3 ]");
 			System.out.println("[ 종료 : 0 ]");
-			System.out.println("===================================");
+			System.out.println("=======================================");
 			System.out.print("입력 : ");
 			input = sc.nextInt();
 
@@ -219,7 +219,7 @@ public class PostViewPageImp implements PostViewPage {
 			System.out.println("사용자 이름 : " + comment.getCom_UId());
 			System.out.println("댓글 내용 : " + comment.getCom_Content());
 			System.out.println("댓글 작성일 : " + comment.getCom_Date());
-			System.out.println("-------------------------------------");
+			System.out.println("----------------------------------------");
 		}
 	}
 

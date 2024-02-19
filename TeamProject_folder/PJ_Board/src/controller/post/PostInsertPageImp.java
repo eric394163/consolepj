@@ -95,12 +95,6 @@ public class PostInsertPageImp implements PostInsertPage {
 				continue;
 			}
 
-			// //게시일
-			// //현재 날짜 구하기
-			// LocalDate now = LocalDate.now();
-			// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-			// String formatedNow = now.format(formatter);
-
 			Post post = new Post(title, content, bNum, user.getU_id());
 
 			return post;

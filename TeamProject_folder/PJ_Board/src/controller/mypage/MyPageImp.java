@@ -41,11 +41,10 @@ public class MyPageImp implements MyPage {
         // 반복
         do {
             // 메뉴 출력
-            System.out.println("========== 게시판 프로그램 ==========");
+            System.out.println("============= 마이 페이지 =============");
             System.out.println("1. 내 계정 관리");
             System.out.println("2. 내 글 보기");
-            System.out.println("3. 내 댓글 보기");
-            System.out.println("4. 회원 탈퇴");
+            System.out.println("3. 회원 탈퇴");
             System.out.println("0. 뒤로가기");
             System.out.println("====================================");
             System.out.print("입력 :");
@@ -60,7 +59,6 @@ public class MyPageImp implements MyPage {
                 sm.selectMenu(input,
                         () -> isAuthorized(1),
                         () -> mypost.run(),
-                        () -> mycomment.run(),
                         () -> isAuthorized(2));
                 // () -> mypage.run()); 회원 탈퇴 메서드
             } catch (InputMismatchException e) {
