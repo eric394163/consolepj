@@ -36,7 +36,7 @@ public class BoardListPageImp implements BoardListPage {
 
 	@Override
 	public void run() {
-		postList= new PostListPageImp(uManager);
+		postList = new PostListPageImp(uManager);
 
 		// int input = 0;
 
@@ -75,11 +75,11 @@ public class BoardListPageImp implements BoardListPage {
 
 		// 카테고리 입력받기
 		Category selectedCate = inputCategory();
-		// 게시판 입력받기
-		Board selectedBoard = inputBoard(selectedCate.getCNum());
-		if(selectedBoard == null) {
+		if (selectedCate == null) {
 			return;
 		}
+		// 게시판 입력받기
+		Board selectedBoard = inputBoard(selectedCate.getCNum());
 
 		// 선택된 게시판의 고유번호, 카테고리 이름, 게시판 이름을 넘겨주기
 		postList.run(selectedBoard.getbNum(), selectedCate.getC_name(), selectedBoard.getbName());
@@ -101,6 +101,9 @@ public class BoardListPageImp implements BoardListPage {
 				// 카테고리 이름과 해당 카테고리 번호 입력
 				System.out.print("카테고리 이름 입력: ");
 				categoryInput = sc.nextLine();
+				if (categoryInput.equals("0")) {
+					return null;
+				}
 
 			} catch (InputMismatchException e) {
 				System.out.println("잘못된 입력입니다. 다시 입력해주세요");
@@ -147,7 +150,7 @@ public class BoardListPageImp implements BoardListPage {
 			try {
 				// 존재할 경우, 해당 게시판의 고유 게시판 번호 리턴
 				// System.out.println(boardList.get(boardInput));
-				if(boardInput == -1) {
+				if (boardInput == -1) {
 					break;
 				}
 				return boardList.get(boardInput);
