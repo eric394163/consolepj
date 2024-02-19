@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Post {
@@ -24,8 +25,10 @@ public class Post {
 	public String getP_content() {
 		return p_content;
 	}
-	public Date getP_date() {
-		return p_date;
+	public String getP_date() {
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+		String f_p_date = simpleDateFormat.format(p_date);
+		return f_p_date;
 	}
 	public int getP_view() {
 		return p_view;
@@ -39,8 +42,10 @@ public class Post {
 	
 	@Override 
 	public String toString(){
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+		String f_p_date = simpleDateFormat.format(p_date);
 		// (게시글 제목) + (작성자) + [(댓글 갯수)] + 작성잘짜 + 조회수
-		return p_title + "\t" + p_u_id + "\t" + p_date + "\t" + p_view;
+		return p_title + "\t" + p_u_id + "\t" + f_p_date + "\t" + p_view;
 	}
 
 	public Post(String p_title, String p_content, int p_b_Num, String p_u_id) {
