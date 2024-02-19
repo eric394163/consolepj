@@ -24,4 +24,11 @@ public interface PostDB {
     boolean updatePost(@Param("newPost") Post newPost);
 
     void updatePostView(@Param("p_num") int selectedPnum, @Param("view") int view);
+
+	int countMyPostList(@Param("u_id")String u_id);
+
+	ArrayList<Post> selectMyPostList(@Param("u_id")String u_id, @Param("startNum")int startNum, @Param("size")int size);
+
+	String getMyPostBName(@Param("p_b_num")int selectedPbnum);
+
 }

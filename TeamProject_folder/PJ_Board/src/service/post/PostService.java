@@ -26,4 +26,10 @@ public interface PostService {
 
     public void updatePostview(int selectedPnum, int view);
 
+	public int countMyPostList(String u_id);
+
+	public ArrayList<Post> selectMyPostList(String u_id, int startNum, int size);
+
+	public String getMyPostBName(int selectedPbnum);
+
 }
