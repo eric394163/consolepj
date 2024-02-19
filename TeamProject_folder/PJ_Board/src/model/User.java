@@ -30,8 +30,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [u_id=" + u_id + ", u_pw=" + u_pw + ", u_mail=" + u_mail + ", u_phone=" + u_phone + ", u_name="
-				+ u_name + ", u_admin=" + u_admin + ", u_try=" + u_try + ", uStatement=" + uStatement + "]";
+		return u_id + "[이름: " + u_name  +"\t이메일: " + u_mail + "\t로그인 여부: " + uStatement;
 	}
 	
 	

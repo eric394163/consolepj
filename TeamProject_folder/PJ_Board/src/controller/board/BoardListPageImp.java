@@ -36,7 +36,6 @@ public class BoardListPageImp implements BoardListPage {
 
 	@Override
 	public void run() {
-		postList = new PostListPageImp(uManager);
 
 		// int input = 0;
 
@@ -82,7 +81,8 @@ public class BoardListPageImp implements BoardListPage {
 		Board selectedBoard = inputBoard(selectedCate.getCNum());
 
 		// 선택된 게시판의 고유번호, 카테고리 이름, 게시판 이름을 넘겨주기
-		postList.run(selectedBoard.getbNum(), selectedCate.getC_name(), selectedBoard.getbName());
+		postList = new PostListPageImp(uManager, selectedBoard.getbNum(), selectedCate.getC_name(), selectedBoard.getbName());
+		postList.run();
 
 		// int selectedBnum = selectBoard();
 		// if(selectedBnum != -1) {

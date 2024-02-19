@@ -88,6 +88,9 @@ public class PostViewPageImp implements PostViewPage {
 				}
 
 			} else {
+				System.out.println("\n댓글을 작성하시려면 로그인하세요.\n(뒤로 가려면 아무 키나 입력하세요...)\n\n");
+				sc.nextLine();
+				System.out.println("\n\n\n\n\n\n\n");
 				break;
 			}
 
