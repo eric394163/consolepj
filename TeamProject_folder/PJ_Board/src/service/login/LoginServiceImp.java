@@ -32,10 +32,16 @@ public class LoginServiceImp implements LoginService {
 
     public boolean validateLogin(String userId, String userPw) {
         user = logindb.findUserById(userId);
-        if (user != null && user.getUPw().equals(userPw)) {
+        if (user != null && user.getU_pw().equals(userPw)) {
 
             return true;
         }
         return false;
     }
+
+    public User getUser(String userId) {
+        return user = logindb.findUserById(userId);
+    }
+
+
 }

@@ -6,6 +6,9 @@ public class SelectMenuImp implements SelectMenu {
         if (methods.length < input) {
             return;
         }
+        if (input == 0) {
+        	return;
+        }
         if (methods[input - 1] != null) {
             methods[input - 1].run();
         }

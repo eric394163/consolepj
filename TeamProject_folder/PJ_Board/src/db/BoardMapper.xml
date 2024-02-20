@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="db.BoardDB">
+
+	<insert id="addBoard">
+        INSERT INTO board(b_name, b_c_num) VALUE(#{board.b_name}, #{board.b_c_num})
+    </insert>
+    
+    <delete id="deleteBoard">
+    	delete from board where b_num = #{b_num}
+    </delete>
+    
+    <delete id="deletePosts">
+    	delete from post where p_b_num = #{b_num}
+    </delete>
+    
+    <update id="updateBoard">
+    	update board
+		set b_name = #{board.b_name}
+		where b_num = #{board.b_num}
+    </update>
+    
+	<!-- 
+	# 게시판 관리 프로그램에 필요한 쿼리문
+
+	# 게시판 조회		=====================================
+	# 전체 게시판 조회
+	SELECT b_name as "게시판 이름", CONCAT("===", c_name, "===") as "카테고리 명" FROM board
+		JOIN category ON b_c_num = c_num
+	    ORDER BY b_num;
+	
+	# 특정 카테고리의 게시판 조회(취미 게시판)
+	SELECT b_name as "===취미 게시판===" === , Idx # 임의의 번호를 부여하는 방법이 있었던 거 같은데...?
+		FROM 
+			(SELECT * FROM category
+			WHERE c_name = "취미 게시판") as ct_sub 
+		JOIN board ON b_c_num = c_num
+	    ORDER BY b_num;
+	
+	
+	# 게시글 조회		=====================================
+	# 전체 게시글 조회 (등록 날짜 순서대로)
+	SELECT p_title as "제목", p_u_id as 작성자, p_date as 작성일, p_view as 조회수
+		FROM post
+	    JOIN board ON p_b_num = b_num
+	    ORDER BY p_date;
+	
+	# 특정 카테고리와 게시판의 게시글 조회 (자유 게시판)
+	SELECT p_title as "제목", p_u_id as 작성자, p_date as 작성일, p_view as 조회수
+		FROM 
+			(SELECT * FROM board
+	        WHERE b_name = "자유 게시판") as bo_sub
+	    JOIN post ON p_b_num = b_num
+	    ORDER BY p_date;
+	 -->
+	
+	<!-- 특정 카테고리의 게시판을 조회하는 쿼리 -->
+	<select id="selectBoard" resultType="model.Board">
+		select * from board where b_c_num = #{c_num} order by b_c_num
+	</select>
+
+</mapper>

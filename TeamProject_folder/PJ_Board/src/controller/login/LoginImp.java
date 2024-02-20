@@ -2,12 +2,19 @@ package controller.login;
 
 import java.util.Scanner;
 
+import manager.UserManager;
+import model.User;
 import service.login.LoginService;
 import service.login.LoginServiceImp;
 
 public class LoginImp implements Login {
     private Scanner sc = new Scanner(System.in);
     private LoginService ls = new LoginServiceImp();
+    private UserManager uManager;
+
+    public LoginImp(UserManager uManager) {
+        this.uManager = uManager;
+    }
 
     @Override
     public void run() {
@@ -16,6 +23,10 @@ public class LoginImp implements Login {
 
         // 반복
         while (true) {
+
+            System.out.println("[처음부터 입력하려면 1을 입력하세요.]");
+            System.out.println("[이전 메뉴로 돌아가려면 0을 입력하세요.]");
+
             System.out.print("아이디 입력 :");
             inputId = sc.next();
             if (inputId.equals("1")) {
@@ -34,7 +45,11 @@ public class LoginImp implements Login {
             }
 
             if (ls.validateLogin(inputId, inputPw)) {
+                User user = ls.getUser(inputId);
+                user.setUStatement(true);
+                uManager.setCurrentUser(user);
                 System.out.println("로그인성공");
+
                 break;
             } else {
                 System.out.println("로그인 실패");

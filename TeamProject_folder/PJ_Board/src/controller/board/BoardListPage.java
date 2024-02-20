@@ -1,5 +1,5 @@
 package controller.board;
 
-public interface BoardPage {
+public interface BoardListPage {
     void run();
 }

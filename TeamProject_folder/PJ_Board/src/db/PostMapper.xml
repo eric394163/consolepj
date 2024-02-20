@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="db.PostDB">
+	<!-- 
+	# 게시판 관리 프로그램에 필요한 쿼리문
+	
+	# 게시글 조회		=====================================
+	# 전체 게시글 조회 (등록 날짜 순서대로)
+	SELECT p_title as "제목", p_u_id as 작성자, p_date as 작성일, p_view as 조회수
+		FROM post
+	    JOIN board ON p_b_num = b_num
+	    ORDER BY p_date;
+	
+	# 특정 카테고리와 게시판의 게시글 조회 (자유 게시판)
+	SELECT p_title as "제목", p_u_id as 작성자, p_date as 작성일, p_view as 조회수
+		FROM 
+			(SELECT * FROM board
+	        WHERE b_name = "자유 게시판") as bo_sub
+	    JOIN post ON p_b_num = b_num
+	    ORDER BY p_date;
+	 -->
+	 
+	<select id="selectPostList" resultType="model.Post">
+		select * from post where p_b_num = #{p_b_num}
+		order by p_date desc
+		LIMIT #{start}, #{size};
+	</select>
+
+	<select id="countPostList" resultType="int">
+		select count(p_num) from post where p_b_num = #{p_b_num}
+	</select>
+  	<select id="getPost" resultType="model.Post">
+		select * from post where p_num = #{p_num}
+	</select>
+  	<select id="getPostCategory" resultType="String">
+		select b_name from post 
+	    join board on p_b_num = b_num 
+	    where b_num = #{p_b_num}
+	</select>
+	
+	<!-- 게시글 작성 -->
+	<insert id="insertPost">
+		insert into post(p_title, p_content, p_date, p_b_num, p_u_id)
+		values(#{post.p_title}, #{post.p_content}, now(), #{post.p_b_Num}, #{post.p_u_id});
+	</insert>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deletePost">
+		delete from post
+		where p_num = #{p_num}
+	</delete>
+	
+	<!-- 게시글 수정 -->
+	<update id="updatePost">
+		UPDATE post
+		SET 
+		    p_title = #{newPost.p_title},
+		    p_content = #{newPost.p_content},
+		    p_date = now()
+		WHERE
+			p_num = #{newPost.p_num}
+	</update>
+
+	<update id="updatePostView">
+		UPDATE post
+		SET 
+		    p_view = #{view}
+		WHERE
+			p_num = #{p_num}
+	</update>
+	
+	<!-- 내가 쓴 글 -->
+	<select id="countMyPostList" resultType="int">
+		select count(p_u_id) from post where p_u_id = #{u_id}
+	</select>
+	
+	<select id="selectMyPostList" resultType="model.Post">
+		select * from post where p_u_id = #{u_id}
+		order by p_date
+		LIMIT #{startNum}, #{size};
+	</select>
+	
+	<select id="getMyPostBName" resultType="String">
+		select b_name from post 
+	    join board on p_b_num = b_num 
+	    where b_num = #{p_b_num}
+	</select>
+	
+</mapper>

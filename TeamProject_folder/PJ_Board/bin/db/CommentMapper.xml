@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="db.CommentDB">
+    <select id="getComment" resultType="model.Comment">
+        SELECT * FROM Comment
+        join post on com_p_num = p_num
+        WHERE p_num = #{p_num}
+        order by com_date desc
+    </select>
+
+<insert id="addComment">
+    INSERT INTO Comment(com_content, com_date, com_u_id, com_p_num) VALUES (#{com_content}, NOW(), #{com_u_id}, #{com_p_num})
+</insert>
+
+
+
+</mapper>
