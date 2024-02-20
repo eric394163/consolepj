@@ -30,6 +30,9 @@ public class UserManagePageImp implements UserManagePage {
         	try {
         		
         		input = sc.nextInt()-1;
+        		if(input == -1) {
+        			return;
+        		}
         		
         	}catch(InputMismatchException e) {
     			System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
@@ -52,7 +55,7 @@ public class UserManagePageImp implements UserManagePage {
 				
 			}
         	
-    	}while(input!=EXIT);
+    	}while(input!=EXIT-1);
     	
     }
 
